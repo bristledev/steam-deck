@@ -54,4 +54,9 @@ Once you've tried Fish, you'll probably never want to go back to the plain Bash 
 
 ---
 
+---
+
+### 📚 Further Reading
+Want to dive deeper into what Fish can do? Check out the **[Fish Cookbook](https://github.com/jorgebucaran/cookbook.fish)** for a collection of tips, tricks, and useful snippets to level up your shell game.
+
 {% next_chapter %}
