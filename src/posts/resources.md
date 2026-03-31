@@ -78,7 +78,8 @@ Here's a curated collection of the best places to continue your journey — orga
 - **[OpenSSH Documentation](https://www.openssh.com/manual.html)**: The official manual for SSH — the protocol powering wireless file transfers.
 - **[WinSCP Documentation](https://winscp.net/eng/docs/start)**: Guides for the Windows SFTP client we recommended.
 - **[Tailscale Documentation](https://tailscale.com/kb/)**: Excellent, beginner-friendly guides for setting up remote access.
-- **[Tailscale on SteamOS](https://tailscale.com/kb/1011/install-steamos/)**: Tailscale's specific guide for the Steam Deck.
+- **[Tailscale on SteamOS (GitHub)](https://github.com/tailscale-dev/deck-tailscale)**: The official community-instantiated script for installing Tailscale on SteamOS.
+- **[Syncthing](https://syncthing.net/)**: Continuous, peer-to-peer file syncing between your Deck and other devices — no cloud required.
 
 ---
 

@@ -78,6 +78,9 @@ Suddenly, a split-screen window will appear.
 
 You can now drag and drop huge gigabytes of games, mods, and ROMs across the network as if the Steam Deck was just a regular folder on your computer. Modding your games just became infinitely easier!
 
+> [!TIP]
+> **Want files to sync automatically?** SSH is great for one-time transfers, but if you want a folder (like your ROM library) to stay in sync across your Deck and PC continuously, check out **[Syncthing](https://syncthing.net/)**. It's available as a Flatpak in Discover and works especially well paired with Tailscale for syncing outside your home network.
+
 But what if you want to access your Deck from *outside* your house? 
 
 {% next_chapter %}

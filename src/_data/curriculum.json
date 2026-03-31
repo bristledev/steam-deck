@@ -29,6 +29,7 @@
   {
     "name": "Phase 4: Learn the Terminal",
     "slugs": [
+      "terminals",
       "bash",
       "fish",
       "coreutils"
