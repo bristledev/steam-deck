@@ -47,7 +47,7 @@ Nix works a bit differently than other package managers. The easiest way to use 
 |---|---|
 | **Install permanently** | `nix profile install nixpkgs#app-name` |
 | **Try without installing** | `nix shell nixpkgs#app-name` |
-| **Update everything** | `nix profile upgrade '.*'` |
+| **Update everything** | `nix profile upgrade --all` |
 
 ## 🎥 See it in Action
 Want to see Nix magic in real-time? Check out this demo of running an app without installing it:
