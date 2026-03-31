@@ -1,6 +1,6 @@
 [
   {
-    "name": "Phase 1: First Steps",
+    "name": "Phase 1: Get Comfortable",
     "slugs": [
       "intro",
       "desktop",
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "name": "Phase 2: The App Ecosystem",
+    "name": "Phase 2: Install Apps",
     "slugs": [
       "flatpak",
       "advanced",
@@ -17,29 +17,36 @@
     ]
   },
   {
-    "name": "Phase 3: The Terminal Awakens",
+    "name": "Phase 3: Performance & Customization",
     "slugs": [
-      "bash",
-      "fish"
+      "performance",
+      "customization"
     ]
   },
   {
-    "name": "Phase 4: Remote & Network",
+    "name": "Phase 4: Learn the Terminal",
     "slugs": [
-      "tailscale",
-      "ssh",
+      "bash",
+      "fish",
       "coreutils"
     ]
   },
   {
-    "name": "Phase 5: Package Managers",
+    "name": "Phase 5: Remote & Network",
+    "slugs": [
+      "ssh",
+      "tailscale"
+    ]
+  },
+  {
+    "name": "Phase 6: Package Managers",
     "slugs": [
       "homebrew",
       "nix"
     ]
   },
   {
-    "name": "Phase 6: Scripting & Services",
+    "name": "Phase 7: Scripting & Services",
     "slugs": [
       "github",
       "python",
@@ -47,17 +54,15 @@
     ]
   },
   {
-    "name": "Phase 7: Containers & Sandboxing",
+    "name": "Phase 8: Containers & Sandboxing",
     "slugs": [
       "podman",
       "distrobox"
     ]
   },
   {
-    "name": "Phase 8: Mastery",
+    "name": "Phase 9: Power User Extras",
     "slugs": [
-      "performance",
-      "customization",
       "starship"
     ]
   },

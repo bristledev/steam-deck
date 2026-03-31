@@ -40,4 +40,4 @@ Just like with Flatpaks, you can add an AppImage to your Steam library so you ca
 
 ---
 
-AppImages bring that familiar "download and run" feeling to Linux. Now that you know the three main ways to get apps, let's look at the "Konsole" and start using the **Terminal** in {{ collections.posts | chapterLink('bash') | safe }}!
+AppImages bring that familiar "download and run" feeling to Linux. Now that you know the three main ways to get apps, let's optimize how your Deck performs in {{ collections.posts | chapterLink('performance') | safe }}!

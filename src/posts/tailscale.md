@@ -7,20 +7,9 @@ tags: posts
 
 #  Tailscale – Access Your Deck from Anywhere
 
-So you’ve mastered the **Fish Shell**, and you're starting to feel like a Linux wizard. But what if you want to send a file to your Steam Deck from your laptop? Or run a command on your Deck while it's sitting across the room? 
+In the {{ collections.posts | chapterLink('ssh') | safe }} chapter, you learned how to connect to your Steam Deck over your home Wi-Fi. That’s perfect for home use, but it gets complicated—and potentially dangerous—if you want to reach your Deck from outside your house. You’d have to mess with router port forwarding and firewall rules.
 
 That’s where remote access tools come in.
-
-## The Built-In Way: OpenSSH
-Believe it or not, your Steam Deck already has a built-in remote connection tool called **OpenSSH Server**. If you just want to connect to your Deck while sharing the same home Wi-Fi network, you can turn it on with just two commands:
-```bash
-sudo systemctl enable sshd
-sudo systemctl start sshd
-```
-*(You will need your admin password from {{ collections.posts | chapterLink('bash') | safe }} to run these!)*
-After running this, you can SSH into your Deck from your PC using its local IP address (e.g., `ssh deck@192.168.1.50`). 
-
-While OpenSSH is perfect for home use, it gets complicated—and potentially dangerous—if you want to access your Deck from outside your house. You'd have to mess with router port forwarding and firewall rules.
 
 ## The Magic Way: Tailscale
 If you want the ultimate, painless remote experience, **[Tailscale](https://tailscale.com/)** is the answer. It’s a "Zero Config" VPN that creates a secure, private hallway between your devices—your phone, your laptop, and your Steam Deck—no matter where they are in the world. 
