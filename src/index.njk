@@ -1,0 +1,42 @@
+---
+layout: base.njk
+---
+
+<header class="home-header">
+	<h1>{{ metadata.title }}</h1>
+	<p class="subtitle">{{ metadata.description }}</p>
+	<div class="hero-actions">
+		{% set firstPost = collections.posts | first %}
+		<a href="{{ firstPost.url }}" class="cta-button primary">Start Learning →</a>
+		<a href="/posts/" class="cta-button secondary">View Curriculum</a>
+	</div>
+</header>
+
+<section class="features-section">
+	<div class="feature-card">
+		<h3 class="feature-title">👾 For Absolute Noobs</h3>
+		<p>Demystifying Linux, the Steam Deck desktop, and the terminal. No prior experience required.</p>
+	</div>
+	<div class="feature-card">
+		<h3 class="feature-title">🛠️ Learn by Doing</h3>
+		<p>Actionable tutorials on installing flatpaks, setting up VPNs, running Python, and more.</p>
+	</div>
+	<div class="feature-card">
+		<h3 class="feature-title">🚀 Unlock the Deck</h3>
+		<p>Go beyond Steam and discover the endless possibilities of an open, portable PC.</p>
+	</div>
+</section>
+
+<section class="curriculum-preview">
+	<h2>Course Curriculum</h2>
+	<div class="curriculum-grid">
+	{%- for post in collections.posts -%}
+		<a href="{{ post.url }}" class="curriculum-card">
+			<div class="curriculum-num">Part {{ loop.index }}</div>
+			<h3 class="curriculum-title">{{ post.data.title | replace("Part " + loop.index + ": ", "") }}</h3>
+			<p class="curriculum-excerpt">{{ post.data.excerpt }}</p>
+			<div class="curriculum-meta">⏱️ {{ post.templateContent | striptags | readingTime }}</div>
+		</a>
+	{%- endfor -%}
+	</div>
+</section>

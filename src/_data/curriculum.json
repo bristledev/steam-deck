@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Phase 1: First Steps",
+    "slugs": [
+      "intro",
+      "desktop",
+      "filesystem",
+      "proton"
+    ]
+  },
+  {
+    "name": "Phase 2: The App Ecosystem",
+    "slugs": [
+      "flatpak",
+      "advanced",
+      "appimage"
+    ]
+  },
+  {
+    "name": "Phase 3: The Terminal Awakens",
+    "slugs": [
+      "bash",
+      "fish"
+    ]
+  },
+  {
+    "name": "Phase 4: Remote & Network",
+    "slugs": [
+      "tailscale",
+      "ssh",
+      "coreutils"
+    ]
+  },
+  {
+    "name": "Phase 5: Package Managers",
+    "slugs": [
+      "homebrew",
+      "nix"
+    ]
+  },
+  {
+    "name": "Phase 6: Scripting & Services",
+    "slugs": [
+      "github",
+      "python",
+      "systemd"
+    ]
+  },
+  {
+    "name": "Phase 7: Containers & Sandboxing",
+    "slugs": [
+      "podman",
+      "distrobox"
+    ]
+  },
+  {
+    "name": "Phase 8: Mastery",
+    "slugs": [
+      "performance",
+      "customization",
+      "starship"
+    ]
+  },
+  {
+    "name": "Appendices",
+    "slugs": [
+      "resources"
+    ]
+  }
+]
