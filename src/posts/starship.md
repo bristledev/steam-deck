@@ -83,6 +83,6 @@ By default, Starship looks great, but the real magic is in the **Presets**.
 
 ---
 
-Now that your terminal looks like it belongs in the future, you've completed the entire curriculum! Head over to our final chapter for a curated list of communities, guides, and creators to keep your journey going.
+Now that your terminal looks like it belongs in the future, let's make it *work* like it belongs there too.
 
 {% next_chapter %}

@@ -63,7 +63,9 @@
   {
     "name": "Phase 9: Power User Extras",
     "slugs": [
-      "starship"
+      "starship",
+      "readline",
+      "zoxide-fzf"
     ]
   },
   {
