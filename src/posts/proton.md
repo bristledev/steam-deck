@@ -79,4 +79,6 @@ Navigating to `.local/share/Steam/steamapps/compatdata` is tedious.
 
 ---
 
-Now that you can navigate the hardest part of the Linux filesystem natively, let's learn how to make background scripts start automatically when your Deck powers on next!
+Now that you can navigate the hardest part of the Linux filesystem, let's shift gears and look at how to actually install apps on your Deck!
+
+{% next_chapter %}

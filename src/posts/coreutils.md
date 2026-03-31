@@ -7,7 +7,7 @@ tags: posts
 
 # The Linux Command Toolbox (GNU Coreutils) 🧰
 
-In the previous chapter, we learned that the **Terminal** is just a way to talk to your computer. But if the terminal is a conversation, the **GNU Coreutils** are the vocabulary.
+In the {{ collections.posts | chapterLink('bash') | safe }} chapter, we learned that the **Terminal** is just a way to talk to your computer. But if the terminal is a conversation, the **GNU Coreutils** are the vocabulary.
 
 Most of the simple commands you'll use on your Steam Deck (like `ls`, `cp`, and `mv`) actually belong to a massive collection of tools called the **[GNU Core Utilities](https://www.gnu.org/software/coreutils/manual/coreutils.html)**. These tools have been standard on Linux for decades.
 

@@ -77,3 +77,7 @@ Suddenly, a split-screen window will appear.
 - On the right is your Steam Deck's `/home/deck` folder!
 
 You can now drag and drop huge gigabytes of games, mods, and ROMs across the network as if the Steam Deck was just a regular folder on your computer. Modding your games just became infinitely easier!
+
+But what if you want to access your Deck from *outside* your house? 
+
+{% next_chapter %}

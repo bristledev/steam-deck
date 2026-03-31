@@ -37,25 +37,8 @@ While you might not be writing the next big indie hit in the terminal, having Py
 
 Many tools for the Steam Deck (like advanced save-game managers or specialized performance scripts) are written in Python. Since it's already installed, you can run them directly without needing a fancy installer.
 
-## 🐙 Git for Gamers: Downloading Community Scripts
-If you want to use these community-made scripts, you'll need a way to download them. This is where **Git** comes in. 
-
-Git is a tool developers use to share code, usually on a website called **[GitHub](https://github.com/)**. You don't need to be a developer to use it; you only need to know two commands to get an entire library of tools:
-
-### 1. `git clone` (The "Download" Command)
-To download a tool, you "clone" it. If you find a cool Python script on GitHub, you can download the entire folder to your Deck by copying its URL and running:
-```bash
-git clone https://github.com/username/cool-steam-deck-tool.git
-```
-This creates a new folder in your current directory with all the script's files ready to use.
-
-### 2. `git pull` (The "Update" Command)
-The best part about using Git instead of manually downloading a ZIP file is how easy it is to update. If the developer releases a new version of their script, you don't have to redownload anything. Just move into the tool's folder and type:
-```bash
-cd cool-steam-deck-tool
-git pull
-```
-Your Deck will reach out to GitHub and automatically grab *only* the new or changed files. It's the ultimate updater!
+## 🐙 Downloading Community Scripts
+If you want to use community-made Python scripts, you'll often find them on GitHub. We covered exactly how to download and update projects using `git clone` and `git pull` in the {{ collections.posts | chapterLink('github') | safe }} chapter — those same techniques are how you'll grab Python scripts too!
 
 ## 🐍 Don't Break Your System: Use Environments!
 Python is great, but installing packages directly into the system's Python is usually a bad idea. On the Steam Deck, it might even fail because the core system is "read-only." 
@@ -95,4 +78,6 @@ You've just compiled and run a high-performance program on your handheld!
 
 ---
 
-Now that we’ve unlocked the power of the terminal and its secret languages, let’s head back into **Game Mode** for a quick detour into specialized containers. Next we’ll look at **Podman** – the hidden powerhouse for running apps in isolation!
+Now that we've unlocked the power of the terminal and its secret languages, let's learn how to make your scripts run automatically in the background.
+
+{% next_chapter %}

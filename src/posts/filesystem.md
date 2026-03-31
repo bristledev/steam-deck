@@ -50,4 +50,6 @@ Unlike a normal Windows PC, the Steam Deck's core system files (outside of your 
 - **Splitting the view**: Press `F3` to see two folders side-by-side. Great for moving files!
 - **Opening terminal here**: Press `F4` if you ever need to type a command in a specific folder. (Don't be scared!)
 
-Understanding your files is the key to becoming a Steam Deck master. Now that you're an explorer, let's head to {{ collections.posts | chapterLink('flatpak') | safe }} to talk about **Flatpaks and the Discover Store**!
+Understanding your files is the key to becoming a Steam Deck master. Now that you're an explorer, let's dive deeper into where your games *really* live.
+
+{% next_chapter %}

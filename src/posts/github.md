@@ -79,3 +79,7 @@ Thankfully, the Steam Deck has `git` pre-installed!
 4. This will create a new folder called `CoolDeckMod`. You can then `cd` into it and follow the developer's instructions!
 
 With these three methods under your belt, the entire world of Steam Deck community mods is now at your fingertips!
+
+---
+
+{% next_chapter %}

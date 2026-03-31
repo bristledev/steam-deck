@@ -18,7 +18,7 @@ An **AppImage** is a single file that contains everything an app needs to run.
 ## How to use an AppImage
 This is the part that trips up most beginners. Because Linux is secure, you can't just run any file you download. You have to tell the computer that it’s "allowed" to run.
 
-1. **Download**: Download your `.AppImage` file (like **[Discord](https://discord.com/)**, **[OBS](https://obsproject.com/)**, or **[Prism Launcher](https://prismlauncher.org/)**).
+1. **Download**: Download your `.AppImage` file (like **[Kdenlive](https://kdenlive.org/)**, **[OBS](https://obsproject.com/)**, or **[balenaEtcher](https://etcher.balena.io/)**).
 2. **Right-Click**: Right-click the file and select **Properties**.
 3. **Permissions**: Go to the **Permissions** tab.
 4. **Make Executable**: Check the box that says **"Is executable"**.
@@ -40,4 +40,4 @@ Just like with Flatpaks, you can add an AppImage to your Steam library so you ca
 
 ---
 
-AppImages bring that familiar "download and run" feeling to Linux. Now that you know the three main ways to get apps, let's optimize how your Deck performs in {{ collections.posts | chapterLink('performance') | safe }}!
+AppImages bring that familiar "download and run" feeling to Linux. Now that you know the two main ways to get apps on your Deck—**Flatpaks** and **AppImages**—let's optimize how your Deck performs in {{ collections.posts | chapterLink('performance') | safe }}!

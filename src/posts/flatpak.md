@@ -42,4 +42,6 @@ To uninstall an app, just head back to Discover, find the app, and click **Remov
 
 ---
 
-Now that you know how to install apps from the Discover store, let's look at one of the best ways to play games from other stores and even older consoles. Next, we’ll go **Beyond Steam**!
+Now that you know how to install apps from the Discover store, let's look at one of the best ways to play games from other stores and even older consoles.
+
+{% next_chapter %}
