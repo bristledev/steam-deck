@@ -32,4 +32,4 @@ Check out these 'themes' in CSS Loader:
 - **Round Corners**: Makes the UI look more modern and sleek, similar to iOS or Windows 11.
 - **Classic Blue**: Gives you those 'old-school' Steam vibes if you're a fan of the 2010s look.
 
-Last but not least, next, we'll look at the best **External Resources** to help you keep learning and exploring the world of SteamOS!
+Ready to unlock even more power? Next, we'll dive into the **Terminal** in {{ collections.posts | chapterLink('bash') | safe }}!

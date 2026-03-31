@@ -19,7 +19,7 @@ By turning on **SSH** (Secure Shell), you can wirelessly drag and drop files fro
 
 By default, the Steam Deck ignores connections from other computers. We need to turn on the `sshd` background service so it starts listening.
 
-*(If you remember {{ collections.posts | chapterLink('systemd') | safe }}, you know exactly what a service is!)*
+*(A **service** is a background process that starts automatically — we'll explore services in depth in a later chapter!)*
 
 1. Open **Konsole**.
 2. Run this command to enable the SSH service permanently:
