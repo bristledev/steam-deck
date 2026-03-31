@@ -79,6 +79,6 @@ Navigating to `.local/share/Steam/steamapps/compatdata` is tedious.
 
 ---
 
-Now that you can navigate the hardest part of the Linux filesystem, let's shift gears and look at how to actually install apps on your Deck!
+Now that you can navigate the hardest part of the Linux filesystem, let's talk about what happens when things go wrong — and why you shouldn't worry about it.
 
 {% next_chapter %}

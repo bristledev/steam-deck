@@ -5,7 +5,9 @@
       "intro",
       "desktop",
       "filesystem",
-      "proton"
+      "storage",
+      "proton",
+      "recovery"
     ]
   },
   {
@@ -20,6 +22,7 @@
     "name": "Phase 3: Performance & Customization",
     "slugs": [
       "performance",
+      "troubleshooting",
       "customization"
     ]
   },

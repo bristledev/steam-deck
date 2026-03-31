@@ -33,4 +33,6 @@ SteamOS makes it easy to see what games run well.
 - **Yellow (Playable)**: Might need some manual settings or has tiny text.
 - **Grey (Unsupported)**: Might not work yet. Check **[ProtonDB](https://www.protondb.com/)** for community-reported fixes!
 
-Ready for some style? Next, we'll talk about how to make your Deck look *amazing*!
+But what happens when a game *doesn't* work? Next, we'll cover how to fix stubborn games that refuse to launch.
+
+{% next_chapter %}
