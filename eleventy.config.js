@@ -10,6 +10,8 @@ import pluginToc from "eleventy-plugin-toc";
 import { DateTime } from "luxon";
 import fs from "fs";
 import path from "path";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const curriculumPath = path.join(process.cwd(), "src", "_data", "curriculum.json");
 const curriculum = JSON.parse(fs.readFileSync(curriculumPath, "utf-8"));
@@ -29,7 +31,16 @@ export default function(eleventyConfig) {
     wrapper: 'div'
   });
   eleventyConfig.addPlugin(pluginSyntaxHighlight, {
-    preAttributes: { tabindex: 0 }
+    preAttributes: { tabindex: 0 },
+    init: function({ Prism }) {
+      // Load bash first, then register Fish shell as a custom language
+      require('prismjs/components/prism-bash');
+      Prism.languages.fish = Prism.languages.extend('bash', {
+        'keyword': /\b(?:if|else|switch|case|while|for|in|function|end|begin|return|break|continue|set|set_color|emit|source|status|test|not|and|or|builtin|command|exec|true|false|argparse|string|math|read|count|contains|type|abbr)\b/,
+        'builtin': /\b(?:cd|echo|printf|pwd|exit|eval|bind|complete|funced|funcsave|functions|history|isatty|jobs|disown|fg|bg|wait|ulimit|umask|random|time|fish_add_path|fish_config|fish_greeting|fish_prompt|fish_right_prompt|fish_indent|fish_key_reader|fish_opt|fish_update_completions)\b/,
+        'variable': /\$[\w?#]+/,
+      });
+    }
   });
 
   // Filters

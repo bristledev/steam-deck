@@ -83,6 +83,6 @@ By default, Starship looks great, but the real magic is in the **Presets**.
 
 ---
 
-Now that your terminal looks like it belongs in the future, let's make it *work* like it belongs there too.
+Now that your terminal prompt looks like it belongs in the future, let's make the *rest* of the terminal match.
 
 {% next_chapter %}
