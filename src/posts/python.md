@@ -44,11 +44,15 @@ If you want to use community-made Python scripts, you'll often find them on GitH
 Python is great, but installing packages directly into the system's Python is usually a bad idea. On the Steam Deck, it might even fail because the core system is "read-only." 
 
 ### 1. The Standard Way: `venv`
-The "proper" way to install Python packages is by creating a **Virtual Environment**. This creates a tiny, private sandbox for your project so its packages don't mess with the rest of your system.
+Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time — they'd conflict. A **Virtual Environment** solves this by giving each project its own private sandbox, completely isolated from everything else. The system Python stays untouched, your scripts stay happy.
 ```bash
-python -m venv my-project
-source my-project/bin/activate
+# Make sure you're in the folder of your Python project
+cd ~/MyPythonProject
+# Create a new virtual environment in the current folder
+python -m venv .venv
+source .venv/bin/activate
 ```
+Once activated, any packages you install with `pip` go into that sandbox, not the system. When you're done, just type `deactivate`.
 
 ### 2. The Modern Choice: uv ⚡
 If you want the fastest and easiest experience, check out **[uv](https://github.com/astral-sh/uv)**. It's a "blazingly fast" Python package manager that manages your environments and packages automatically. You can install it with just one command:
