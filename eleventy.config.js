@@ -88,26 +88,35 @@ export default function(eleventyConfig) {
   });
 
   eleventyConfig.addShortcode("next_chapter", function() {
-    // Determine current post slug
-    const currentSlug = this.page.fileSlug;
-    const currentIndex = flatSlugs.indexOf(currentSlug);
-    if (currentIndex !== -1 && currentIndex < flatSlugs.length - 1) {
-       const nextSlug = flatSlugs[currentIndex + 1];
-       // We can't access `collections.posts` easily in a shortcode without passing arguments,
-       // but we know the title if we look it up, OR we can just use the shortcode to generate a markdown string.
-       // However, to get the actual post title, shortcodes do not have access to collections natively unless bound.
-       // Wait, a Nunjucks specific shortcode might have context, but an easier way is a Nunjucks global or filter. 
-       // Wait, we can pass `collections.posts` to the shortcode, but that means doing `{% next_chapter collections.posts %}`.
-       // It's cleaner to provide the title. Let's read the markdown file for the nextSlug.
-       const nextPath = path.join(process.cwd(), "src", "posts", `${nextSlug}.md`);
-       if (fs.existsSync(nextPath)) {
-          const content = fs.readFileSync(nextPath, "utf-8");
-          const titleMatch = content.match(/title:\s*"?([^"\n]+)"?/);
-          const nextTitle = titleMatch ? titleMatch[1].trim() : nextSlug;
-          return `Next we'll look at **[${nextTitle}](/posts/${nextSlug}/)**!`;
-       }
+    const posts = this?.ctx?.collections?.posts || [];
+    const currentUrl = this?.page?.url;
+    const currentSlug = this?.page?.fileSlug;
+    const isDev = process.env.ELEVENTY_RUN_MODE === "serve" || process.env.NODE_ENV === "development";
+
+    const currentIndex = posts.findIndex((post) => {
+      return post.url === currentUrl || post.fileSlug === currentSlug;
+    });
+
+    if (currentIndex === -1) {
+      if (isDev) {
+        throw new Error(`[next_chapter shortcode] Could not resolve current post in collections.posts (url: '${currentUrl}', slug: '${currentSlug}')`);
+      }
+      return "";
     }
-    return "";
+
+    if (currentIndex >= posts.length - 1) {
+      return "";
+    }
+
+    const nextPost = posts[currentIndex + 1];
+    const nextTitle = (nextPost?.data?.title || nextPost?.fileSlug || "").trim();
+    const nextUrl = nextPost?.url || "";
+
+    if (!nextTitle || !nextUrl) {
+      return "";
+    }
+
+    return `Next we'll look at **[${nextTitle}](${nextUrl})**!`;
   });
 
   return {
