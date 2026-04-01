@@ -7,39 +7,45 @@ tags: posts
 
 # The Ultimate Terminal Prompt (Starship) 🚀
 
-If you’ve followed the **Fish Shell** chapter, you know that the terminal doesn't have to be a boring black-and-white box. But what if you want that same beautiful, informative experience no matter which shell you're using?
+Fish gave you a smarter shell. But your **prompt** — the text that appears to the left of your cursor every time you type a command (by default, something forgettable like `deck@steamdeck ~$`) — is still pretty plain. What if that little line could show you your current Git branch, your Python version, your battery level, and more, all in a sleek modern design?
 
-Meet **[Starship](https://starship.rs/)**. 
+Meet **[Starship](https://starship.rs/)**.
 
-Starship is a "minimal, blazing-fast, and infinitely customizable prompt" for any shell. It adds useful information to your command line—like your current Git branch, the version of Python you're using, or even your battery level—all wrapped in a sleek, modern design.
+Starship is a minimal, blazing-fast, and infinitely customizable prompt that works with *any* shell — Bash, Fish, or anything else.
 
 ## 🛠️ Step 1: Installation (Choose Your Weapon)
 
-There are three main ways to install Starship on your Steam Deck. Choose the one that fits your current setup!
+Choose the option that matches where you are in the curriculum.
 
-### Option 1: The Direct Way (Recommended for Beginners)
-This method works for everyone and doesn't require any extra tools. We'll download the Starship binary directly to your home folder's `bin` directory to avoid the "read-only" filesystem.
+### Option 1: The Homebrew Way (Recommended)
+If you've already set up **{{ collections.posts | chapterLink('homebrew') | safe }}**, this is the cleanest option — one command, easy updates, and no scripts to worry about.
+
+```bash
+brew install starship
+```
+
+### Option 2: The Nix Way
+If you're using the **{{ collections.posts | chapterLink('nix') | safe }}** package manager, just run:
+
+```bash
+nix profile add nixpkgs#starship
+```
+
+### Option 3: The Direct Way (Haven't done Homebrew or Nix yet?)
+This method works without any extra tools. It downloads Starship directly into your home folder's `bin` directory, which stays safe across SteamOS updates.
+
+> [!WARNING]
+> This command pipes a script from the internet directly into your shell, which means you're trusting it to run unseen code. It's a common pattern and Starship is a reputable project, but it's worth knowing what you're doing. If you'd rather not, come back after setting up Homebrew (Option 1).
 
 1. Open **Konsole**.
 2. Run this command:
    ```bash
    curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin
    ```
-3. If it asks for your password, enter the one you set in the Terminal chapter.
+3. After it finishes, verify the install worked: `starship --version`
 
-### Option 2: The Homebrew Way
-If you've already set up **{{ collections.posts | chapterLink('homebrew') | safe }}**, this is the cleanest way to keep Starship updated.
-
-```bash
-brew install starship
-```
-
-### Option 3: The Nix Way
-If you're using the **{{ collections.posts | chapterLink('nix') | safe }}** package manager, just run:
-
-```bash
-nix profile add nixpkgs#starship
-```
+> [!TIP]
+> If you see `command not found` after installing, `~/.local/bin` may not be on your PATH yet. Run `echo $PATH` to check. If it's missing, add `export PATH="$HOME/.local/bin:$PATH"` to the bottom of your `~/.bashrc`.
 
 ---
 
