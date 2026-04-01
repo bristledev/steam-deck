@@ -21,11 +21,18 @@ Your Deck will flicker for a second and then—boom—it's a desktop.
 SteamOS uses a desktop called **KDE Plasma**. It looks and feels very similar to Windows 11. You have a taskbar (at the bottom), a start menu (bottom-left), and your windows.
 
 ### Desktop Tips:
-- **Right Trackpad**: Moves the mouse.
-- **Left Trackpad**: Scrolls or behaves like a scroll wheel.
-- **R2 Trigger**: Left-click.
-- **L2 Trigger**: Right-click.
+
+By default, Steam gives you a powerful set of controls to navigate the desktop:
+
+![Steam Deck Desktop Controller Configuration](/assets/desktop-controller-settings.png)
+
+- **Right Trackpad**: Moves the mouse. (**R2** to Left-Click, **L2** to Right-Click).
+- **Left Trackpad**: Middle-mouse click (press) or scroll (swipe).
+- **R1 / L1**: Alt and Control keys.
+- **R5 / R4**: Page Down and Page Up.
 - **Steam Button + X**: Brings up the on-screen keyboard. (Crucial!)
+- **Face Buttons**: **A** (Enter), **B** (Escape), **X** (Keyboard), **Y** (Space).
+- **Joysticks**: Left acts as arrows; Right acts as a mouse.
 
 ## The App Store (Discover)
 In Desktop Mode, you don't download installers from websites (like .exe files). Instead, you use the **Discover Software Center**.
