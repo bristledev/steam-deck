@@ -43,6 +43,8 @@ Think of it like the Apple App Store or Google Play Store. Search for apps like:
 - **Firefox** (or Chrome)
 - **VLC**
 
+![The Discover Software Center on SteamOS](/assets/discover-store.png)
+
 Just click 'Install' and you're good to go. These apps are 'Flatpaks', which means they're isolated and won't break your system.
 
 ## File Sharing (The Explorer)
