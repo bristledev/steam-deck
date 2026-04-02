@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Storage & SD Cards"
 excerpt: "Where your space goes and how to get it back."
-tags: posts
+tags:
+  - posts
+  - steamos
+  - gaming
+  - beginner
 ---
 
 #  Storage & SD Cards 💾

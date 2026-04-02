@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Fixing Games (Proton Troubleshooting)"
 excerpt: "What to do when a game won't launch or runs badly."
-tags: posts
+tags:
+  - posts
+  - gaming
+  - troubleshooting
+  - intermediate
 ---
 
 #  Fixing Games (Proton Troubleshooting) 🔧

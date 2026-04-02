@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Beyond Steam"
 excerpt: "Epic Games, GOG, and Emulation."
-tags: posts
+tags:
+  - posts
+  - apps
+  - gaming
+  - intermediate
 ---
 
 #  Beyond Steam (The Whole World on Your Deck) 

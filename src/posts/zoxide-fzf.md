@@ -2,7 +2,11 @@
 layout: base.njk
 title: "Terminal Superpowers (zoxide & fzf)"
 excerpt: "Navigate like a pro and fuzzy-find anything in seconds."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - productivity
+  - advanced
 ---
 
 # Terminal Superpowers (zoxide & fzf) ⚡

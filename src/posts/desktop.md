@@ -2,7 +2,10 @@
 layout: base.njk
 title: " Desktop Mode"
 excerpt: "Unlocking the power of a full Linux PC."
-tags: posts
+tags:
+  - posts
+  - steamos
+  - beginner
 ---
 
 #  Desktop Mode Unlocked 

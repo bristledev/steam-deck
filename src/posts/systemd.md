@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Auto-Starting Scripts"
 excerpt: "How to run background services automatically on boot."
-tags: posts
+tags:
+  - posts
+  - scripting
+  - terminal
+  - advanced
 ---
 
 #  Auto-Starting Scripts ⚙️

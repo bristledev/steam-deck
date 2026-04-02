@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Updates & Recovery"
 excerpt: "What happens when things go wrong — and why you shouldn't panic."
-tags: posts
+tags:
+  - posts
+  - steamos
+  - troubleshooting
+  - intermediate
 ---
 
 #  Updates & Recovery 🛟

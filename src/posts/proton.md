@@ -2,7 +2,11 @@
 layout: base.njk
 title: " The Proton Filesystem Maze"
 excerpt: "How to find where Steam hides your Windows game saves."
-tags: posts
+tags:
+  - posts
+  - steamos
+  - gaming
+  - intermediate
 ---
 
 #  The Proton Filesystem Maze 🕵️‍♂️

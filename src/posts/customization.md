@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Customization"
 excerpt: "Making your Deck look truly unique."
-tags: posts
+tags:
+  - posts
+  - gaming
+  - customization
+  - intermediate
 ---
 
 #  Personalize Your Deck 

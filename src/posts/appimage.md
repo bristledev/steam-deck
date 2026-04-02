@@ -2,7 +2,11 @@
 layout: base.njk
 title: " AppImages"
 excerpt: "Portable apps that just work."
-tags: posts
+tags:
+  - posts
+  - apps
+  - package-management
+  - intermediate
 ---
 
 #  AppImages – The "Portable" Apps of Linux

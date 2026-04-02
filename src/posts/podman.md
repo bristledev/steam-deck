@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Podman"
 excerpt: "The hidden container engine for safe tinkering."
-tags: posts
+tags:
+  - posts
+  - containers
+  - terminal
+  - advanced
 ---
 
 #  Podman – Containers Without the Complexity

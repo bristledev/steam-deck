@@ -2,7 +2,10 @@
 layout: base.njk
 title: " Finding the Terminal"
 excerpt: "Every way to open a terminal on your Steam Deck — and when to use each one."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - beginner
 ---
 
 # Finding the Terminal 🖥️

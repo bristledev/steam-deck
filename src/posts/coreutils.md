@@ -2,7 +2,10 @@
 layout: base.njk
 title: "The Linux Command Toolbox (GNU Coreutils)"
 excerpt: "Learn the essential tools that power every Linux terminal."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - intermediate
 ---
 
 # The Linux Command Toolbox (GNU Coreutils) 🧰

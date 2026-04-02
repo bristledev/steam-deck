@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Flatpaks & Discover"
 excerpt: "The App Store of the Steam Deck desktop."
-tags: posts
+tags:
+  - posts
+  - apps
+  - package-management
+  - beginner
 ---
 
 #  Flatpaks & The Discover Store

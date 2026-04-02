@@ -2,7 +2,11 @@
 layout: base.njk
 title: "Keyboard Shortcuts (Readline)"
 excerpt: "The hidden shortcuts that make terminal pros look like wizards."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - productivity
+  - advanced
 ---
 
 # Keyboard Shortcuts (Readline) ⌨️

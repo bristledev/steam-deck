@@ -2,7 +2,11 @@
 layout: base.njk
 title: " GitHub & Community Mods"
 excerpt: "Learn how to safely find, download, and execute community scripts and mods from GitHub."
-tags: posts
+tags:
+  - posts
+  - scripting
+  - terminal
+  - intermediate
 ---
 
 The Steam Deck has an incredible community of hackers, modders, and developers building custom scripts to improve your experience. Whether it's a script to fix a specific game, a tool to manage shaders, or the legendary **Decky Loader** for plugins, most of these live on a site called GitHub.

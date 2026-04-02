@@ -2,7 +2,12 @@
 layout: base.njk
 title: " Fish – The Smart Shell"
 excerpt: "Auto-suggestions and the best shell for noobs."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - shell
+  - productivity
+  - intermediate
 ---
 
 #  Fish – The Smart Shell Upgrade 

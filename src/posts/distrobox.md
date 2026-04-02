@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Distrobox"
 excerpt: "Run any Linux distribution inside SteamOS."
-tags: posts
+tags:
+  - posts
+  - containers
+  - terminal
+  - advanced
 ---
 
 #  Distrobox – Any Linux, Any Time

@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Terminal Eye Candy"
 excerpt: "The tools that make your terminal look like a sci-fi cockpit."
-tags: posts
+tags:
+  - posts
+  - customization
+  - terminal
+  - intermediate
 ---
 
 # Terminal Eye Candy 🍬

@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Nix"
 excerpt: "The powerhouse immutable package manager."
-tags: posts
+tags:
+  - posts
+  - package-management
+  - terminal
+  - advanced
 ---
 
 #  Nix (Determinate Nix) – The Immutable Powerhouse

@@ -2,7 +2,10 @@
 layout: base.njk
 title: " The Basics"
 excerpt: "What is SteamOS and why should noobs care?"
-tags: posts
+tags:
+  - posts
+  - steamos
+  - beginner
 ---
 
 #  SteamOS & The Steam Deck 101

@@ -2,7 +2,10 @@
 layout: base.njk
 title: " File System"
 excerpt: "Where are my games and my SD card?"
-tags: posts
+tags:
+  - posts
+  - steamos
+  - beginner
 ---
 
 #  SteamOS File System (Where is my stuff?) 

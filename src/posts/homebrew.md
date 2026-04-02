@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Homebrew"
 excerpt: "Installing apps without touching the core OS."
-tags: posts
+tags:
+  - posts
+  - package-management
+  - terminal
+  - intermediate
 ---
 
 #  Homebrew (Linuxbrew) – The Power User's Secret Weapon

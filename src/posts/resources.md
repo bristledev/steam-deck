@@ -2,7 +2,10 @@
 layout: base.njk
 title: " External Resources"
 excerpt: "Where to go to learn even more."
-tags: posts
+tags:
+  - posts
+  - reference
+  - beginner
 ---
 
 #  External Resources (Keep Learning!)

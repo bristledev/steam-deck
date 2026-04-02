@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Tailscale"
 excerpt: "Access your Deck from anywhere and transfer files."
-tags: posts
+tags:
+  - posts
+  - networking
+  - apps
+  - intermediate
 ---
 
 #  Tailscale – Access Your Deck from Anywhere

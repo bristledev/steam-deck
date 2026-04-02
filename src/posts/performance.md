@@ -2,7 +2,10 @@
 layout: base.njk
 title: " Performance"
 excerpt: "Squeeze every drop of power from your Deck."
-tags: posts
+tags:
+  - posts
+  - gaming
+  - intermediate
 ---
 
 #  Performance & Power (Fearless Optimization) 

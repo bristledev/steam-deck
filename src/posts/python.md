@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Python"
 excerpt: "The secret programming language already on your Deck."
-tags: posts
+tags:
+  - posts
+  - scripting
+  - terminal
+  - intermediate
 ---
 
 #  Python – The Hidden Scripting Engine

@@ -2,7 +2,11 @@
 layout: base.njk
 title: " Terminal & Bash (No Fear!)"
 excerpt: "Unlock the real power of your Steam Deck by learning the basics of the terminal. We'll set a password and learn to speak Linux."
-tags: posts
+tags:
+  - posts
+  - terminal
+  - shell
+  - intermediate
 ---
 
 #  Terminal & Bash (No Fear!) 🐧
