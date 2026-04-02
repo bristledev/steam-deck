@@ -42,6 +42,7 @@ Here's a curated collection of the best places to continue your journey — orga
 - **[tldr pages](https://tldr.sh/)**: Simplified, practical command examples — a friendlier alternative to `man` pages.
 
 ### Learning Linux
+- **[Learn Linux TV](https://www.learnlinux.tv/)**: Jay LaCroix's outstanding YouTube channel and website — one of the best Linux educators out there, covering everything from beginner basics to server administration. He's also the author of *Mastering Ubuntu Server*, making him one of the most credible and approachable voices in the Linux community.
 - **[Linux Journey](https://linuxjourney.com/)**: A beautifully designed, free curriculum that takes you from zero to comfortable with Linux.
 - **[The Linux Command Line (Free Book)](https://www.linuxcommand.org/tlcl.php)**: William Shotts' legendary free book — the gold standard for learning the terminal.
 - **[Arch Wiki](https://wiki.archlinux.org/)**: SteamOS is built on Arch Linux, so this wiki is directly relevant. It's the most comprehensive Linux wiki in existence.
