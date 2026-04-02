@@ -9,8 +9,6 @@ tags:
   - intermediate
 ---
 
-# The Ultimate Terminal Prompt (Starship) 🚀
-
 Fish gave you a smarter shell. But your **prompt** — the text that appears to the left of your cursor every time you type a command (by default, something forgettable like `deck@steamdeck ~$`) — is still pretty plain. What if that little line could show you your current Git branch, your Python version, your battery level, and more, all in a sleek modern design?
 
 Meet **[Starship](https://starship.rs/)**.
@@ -57,16 +55,6 @@ This method works without any extra tools. It downloads Starship directly into y
 
 Now that Starship is installed, we need to tell your shells to use it.
 
-### For Bash Users
-Open your `~/.bashrc` file:
-```bash
-nano ~/.bashrc
-```
-Add this line at the very bottom:
-```bash
-eval "$(starship init bash)"
-```
-
 ### For Fish Users
 Open your Fish configuration file:
 ```bash
@@ -76,20 +64,37 @@ Add this line at the very bottom:
 ```bash
 starship init fish | source
 ```
+Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `source ~/.config/fish/config.fish`) and your new prompt appears immediately.
+
+### For Bash Users
+Open your `~/.bashrc` file:
+```bash
+nano ~/.bashrc
+```
+Add this line at the very bottom:
+```bash
+eval "$(starship init bash)"
+```
+Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `source ~/.bashrc`) and your new prompt appears immediately.
 
 ---
 
 ## 🎨 Step 3: Making it Yours
 
-By default, Starship looks great, but the real magic is in the **Presets**. 
+By default, Starship looks great, but the real magic is in the presets. 
 
 1. Visit the **[Starship Presets Gallery](https://starship.rs/presets/)**.
-2. Find a design you like (like "Pastel Powerline" or "Nerdfont Symbols").
+2. Find a design you like (like "Pastel Powerline" or "Nerd Fonts Symbols").
 3. Follow the simple instructions to copy the configuration into your `~/.config/starship.toml` file.
 
 > [!TIP]
 > **Need Icons?**
-> Many Starship presets use special icons. If you see weird squares instead of icons, you might need to install a **Nerd Font**. Check out the **{{ collections.posts | chapterLink('customization') | safe }}** chapter for more on fonts!
+> Many Starship presets use special icons. If you see weird squares instead of icons, install a Nerd Font:
+> 1. Download a font like **[JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)**.
+> 2. Extract the `.zip` file.
+> 3. Copy the `.ttf` files into `~/.local/share/fonts/` (create the folder if needed).
+> 4. Rebuild the font cache with `fc-cache -fv`.
+> 5. In Konsole, go to **Settings -> Edit Current Profile -> Appearance**, then pick your new Nerd Font.
 
 ---
 
