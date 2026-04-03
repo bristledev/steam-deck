@@ -706,6 +706,31 @@ footer {
 	text-shadow: 3px 3px 0px var(--link-color);
 }
 
+.home-title {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	line-height: 1.05;
+}
+
+.home-title-icon {
+	width: 3rem;
+	height: auto;
+	flex-shrink: 0;
+	color: var(--text-color);
+	filter: drop-shadow(3px 3px 0px var(--link-color));
+}
+
+@media (max-width: 600px) {
+	.home-title {
+		gap: 0.75rem;
+	}
+
+	.home-title-icon {
+		width: 2.2rem;
+	}
+}
+
 .subtitle {
 	font-size: 1.2rem;
 	color: var(--text-color);

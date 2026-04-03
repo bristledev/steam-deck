@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ title + " | " + metadata.title if title else metadata.title }}</title>
 		<meta name="description" content="{{ excerpt or description or metadata.description }}">
-		<link rel="icon" type="image/svg+xml" href="/assets/Steam_Deck_favicon.svg">
+		<link id="site-favicon" rel="icon" type="image/svg+xml" href="/assets/Steam_Deck_favicon.svg">
 		<link rel="stylesheet" href="/style.css">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
 		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
@@ -148,15 +148,33 @@
 		<script>
 			// Theme Selection
 			const themeSelect = document.getElementById('theme-select');
+
+			function updateThemeFavicon() {
+				const rootStyles = getComputedStyle(document.documentElement);
+				const accent = (rootStyles.getPropertyValue('--accent') || '#00ffff').trim();
+				const textColor = (rootStyles.getPropertyValue('--text-color') || '#d1d5db').trim();
+				const linkColor = (rootStyles.getPropertyValue('--link-color') || accent).trim();
+
+				const themedSvg = `<svg width="89" height="115" viewBox="0 0 89 115" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M65.5648 57.5C65.5648 37.1433 49.1526 20.641 28.9072 20.641V0C60.4901 0 86.093 25.7436 86.093 57.5C86.093 89.2564 60.4901 115 28.9072 115V94.359C49.1526 94.359 65.5648 77.8567 65.5648 57.5Z" fill="${textColor}"/><circle cx="28.5929" cy="57.5001" r="28.5929" fill="url(#paint0_linear)"/><defs><linearGradient id="paint0_linear" x1="-22.0009" y1="39.4667" x2="45.1598" y2="71.8891" gradientUnits="userSpaceOnUse"><stop offset="0.106991" stop-color="${linkColor}"/><stop offset="1" stop-color="${accent}"/></linearGradient></defs></svg>`;
+				const faviconHref = `data:image/svg+xml,${encodeURIComponent(themedSvg)}`;
+
+				const faviconEl = document.getElementById('site-favicon') || document.querySelector('link[rel="icon"]');
+				if (faviconEl) {
+					faviconEl.setAttribute('href', faviconHref);
+					faviconEl.setAttribute('type', 'image/svg+xml');
+				}
+			}
 			
 			// Set initial value
 			const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
 			themeSelect.value = initialTheme;
+			updateThemeFavicon();
 
 			themeSelect.addEventListener('change', (e) => {
 				const newTheme = e.target.value;
 				document.documentElement.setAttribute('data-theme', newTheme);
 				localStorage.setItem('theme', newTheme);
+				updateThemeFavicon();
 				if (newTheme === 'matrix') {
 					startMatrixRain();
 				} else {
