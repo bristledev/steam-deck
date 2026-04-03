@@ -47,7 +47,7 @@
 }
 
 @media (prefers-color-scheme: light) {
-	:root:not([data-theme="dark"]):not([data-theme="sepia"]) {
+	:root:not([data-theme="dark"]):not([data-theme="sepia"]):not([data-theme="matrix"]) {
 		color-scheme: light;
 		--bg: #f0f4f8;
 		--text-color: #1f2937;
@@ -84,6 +84,32 @@
 	--pagefind-ui-border: var(--border);
 }
 
+:root[data-theme="matrix"] {
+	color-scheme: dark;
+	--bg: #000000;
+	--text-color: #00ff41;
+	--text-color-light: #00cc33;
+	--link-color: #7fff00;
+	--link-color-visited: #32cd32;
+	--accent: #00ff41;
+	--gray-light: #0a0a0a;
+	--gray-medium: #003b00;
+	--gray-dark: #000;
+	--surface: #0a0f0a;
+	--border: #003b00;
+
+	/* Pagefind Theming */
+	--pagefind-ui-scale: 0.8;
+	--pagefind-ui-primary: var(--accent);
+	--pagefind-ui-text: var(--text-color);
+	--pagefind-ui-background: var(--surface);
+	--pagefind-ui-border: var(--border);
+	--pagefind-ui-tag: var(--gray-medium);
+	--pagefind-ui-border-width: 1px;
+	--pagefind-ui-border-radius: 4px;
+	--pagefind-ui-font: 'JetBrains Mono', monospace;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -99,6 +125,48 @@ body {
 		linear-gradient(var(--gray-light) 1px, transparent 1px),
 		linear-gradient(90deg, var(--gray-light) 1px, transparent 1px);
 	background-size: 50px 50px;
+}
+
+/* Matrix theme overrides */
+:root[data-theme="matrix"] body {
+	background-image: none;
+	background-color: transparent;
+}
+
+:root[data-theme="matrix"] .app-layout {
+	position: relative;
+	z-index: 1;
+}
+
+:root[data-theme="matrix"] .sidebar {
+	background-color: rgba(0, 10, 0, 0.85);
+}
+
+:root[data-theme="matrix"] .container {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="matrix"] .chapter-link:hover,
+:root[data-theme="matrix"] .chapter-link.active {
+	background-color: rgba(0, 60, 0, 0.4);
+}
+
+:root[data-theme="matrix"] pre[class*="language-"] {
+	background-color: rgba(0, 10, 0, 0.9);
+}
+
+:root[data-theme="matrix"] footer {
+	background-color: transparent;
+}
+
+#matrix-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 0;
+	pointer-events: none;
 }
 
 /* Custom Scrollbar */

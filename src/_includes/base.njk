@@ -15,7 +15,7 @@
 		<script>
 			// Initialize theme safely before body renders
 			const savedTheme = localStorage.getItem("theme");
-			const validThemes = ["dark", "light", "sepia"];
+			const validThemes = ["dark", "light", "sepia", "matrix"];
 			if (savedTheme && validThemes.includes(savedTheme)) {
 				document.documentElement.setAttribute("data-theme", savedTheme);
 			} else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -94,8 +94,7 @@
 							<select id="theme-select" aria-label="Select color theme">
 								<option value="light">Light</option>
 								<option value="dark">Dark</option>
-								<option value="sepia">Sepia</option>
-							</select>
+								<option value="sepia">Sepia</option>							<option value="matrix">Matrix</option>							</select>
 						</li>
 					</ul>
 				</header>
@@ -157,6 +156,11 @@
 				const newTheme = e.target.value;
 				document.documentElement.setAttribute('data-theme', newTheme);
 				localStorage.setItem('theme', newTheme);
+				if (newTheme === 'matrix') {
+					startMatrixRain();
+				} else {
+					stopMatrixRain();
+				}
 			});
 
 			// Mobile Menu Toggle
@@ -204,6 +208,108 @@
 					new PagefindUI({ element: "#search", showSubResults: true, baseUrl: "/" });
 				}
 			});
+
+			// Matrix Rain Animation
+			let matrixAnimId = null;
+			let matrixCanvas = null;
+
+			function startMatrixRain() {
+				if (matrixCanvas) return; // already running
+
+				matrixCanvas = document.createElement('canvas');
+				matrixCanvas.id = 'matrix-canvas';
+				document.body.appendChild(matrixCanvas);
+
+				const ctx = matrixCanvas.getContext('2d');
+				let w, h, columns, drops;
+
+				// Half-width katakana + digits for that authentic Matrix look
+				const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+
+				function resize() {
+					w = matrixCanvas.width = window.innerWidth;
+					h = matrixCanvas.height = window.innerHeight;
+					const fontSize = 16;
+					columns = Math.floor(w / fontSize);
+					// Preserve existing drop positions where possible
+					const oldDrops = drops;
+					drops = new Array(columns);
+					for (let i = 0; i < columns; i++) {
+						drops[i] = (oldDrops && oldDrops[i] != null) ? oldDrops[i] : Math.random() * -100;
+					}
+				}
+
+				resize();
+				window.addEventListener('resize', resize);
+
+				const fontSize = 16;
+				const frameInterval = 1000 / 12; // Cap at 12 FPS
+				let lastFrameTime = 0;
+
+				function draw(now) {
+					matrixAnimId = requestAnimationFrame(draw);
+
+					if (now - lastFrameTime < frameInterval) return;
+					lastFrameTime = now;
+
+					// Semi-transparent black to create fade trail
+					ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+					ctx.fillRect(0, 0, w, h);
+
+					ctx.fillStyle = '#00ff41';
+					ctx.font = fontSize + 'px monospace';
+
+					for (let i = 0; i < columns; i++) {
+						const char = chars[Math.floor(Math.random() * chars.length)];
+						const x = i * fontSize;
+						const y = drops[i] * fontSize;
+
+						// Bright leading character
+						if (y > 0 && y < h) {
+							ctx.fillStyle = '#aaffaa';
+							ctx.fillText(char, x, y);
+							ctx.fillStyle = '#00ff41';
+						}
+
+						// Main trail character (one step behind)
+						if (y - fontSize > 0) {
+							const trailChar = chars[Math.floor(Math.random() * chars.length)];
+							ctx.fillText(trailChar, x, y - fontSize);
+						}
+
+						drops[i]++;
+
+						// Reset drop to top with randomness for natural feel
+						if (drops[i] * fontSize > h && Math.random() > 0.975) {
+							drops[i] = 0;
+						}
+					}
+
+					matrixAnimId = requestAnimationFrame(draw);
+				}
+
+				matrixAnimId = requestAnimationFrame(draw);
+
+				// Store resize handler reference for cleanup
+				matrixCanvas._resizeHandler = resize;
+			}
+
+			function stopMatrixRain() {
+				if (matrixAnimId) {
+					cancelAnimationFrame(matrixAnimId);
+					matrixAnimId = null;
+				}
+				if (matrixCanvas) {
+					window.removeEventListener('resize', matrixCanvas._resizeHandler);
+					matrixCanvas.remove();
+					matrixCanvas = null;
+				}
+			}
+
+			// Start rain on load if matrix theme is active
+			if (initialTheme === 'matrix') {
+				startMatrixRain();
+			}
 
 			// Copy Code Button
 			const preBlocks = document.querySelectorAll('pre');
