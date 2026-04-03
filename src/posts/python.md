@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Python"
+title: "🐍 Python"
 excerpt: "The secret programming language already on your Deck."
 tags:
   - posts

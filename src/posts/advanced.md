@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Beyond Steam"
+title: "🚀 Beyond Steam"
 excerpt: "Epic Games, GOG, and Emulation."
 tags:
   - posts

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Customization"
+title: "🎎 Customization"
 excerpt: "Making your Deck look truly unique."
 tags:
   - posts

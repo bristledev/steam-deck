@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Updates & Recovery"
+title: "🔧 Updates & Recovery"
 excerpt: "What happens when things go wrong — and why you shouldn't panic."
 tags:
   - posts

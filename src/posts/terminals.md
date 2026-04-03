@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Finding the Terminal"
+title: "🖥️ Finding the Terminal"
 excerpt: "Every way to open a terminal on your Steam Deck — and when to use each one."
 tags:
   - posts
@@ -8,7 +8,7 @@ tags:
   - beginner
 ---
 
-# Finding the Terminal 🖥️
+# Finding the Terminal
 
 Before we learn *what* to type, let's talk about *where* to type it. SteamOS has several ways to access a terminal, each suited for different situations. You don't need to memorize all of them — just knowing they exist will save you when you need one.
 

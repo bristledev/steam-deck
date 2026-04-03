@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Tailscale"
+title: "🌐 Tailscale"
 excerpt: "Access your Deck from anywhere and transfer files."
 tags:
   - posts

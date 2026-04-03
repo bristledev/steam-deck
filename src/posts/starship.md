@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "The Ultimate Terminal Prompt (Starship)"
+title: "⭐ The Ultimate Terminal Prompt (Starship)"
 excerpt: "Make your terminal beautiful and informative across any shell."
 tags:
   - posts

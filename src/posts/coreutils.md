@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "The Linux Command Toolbox (GNU Coreutils)"
+title: "📦 The Linux Command Toolbox (GNU Coreutils)"
 excerpt: "Learn the essential tools that power every Linux terminal."
 tags:
   - posts
@@ -8,7 +8,7 @@ tags:
   - intermediate
 ---
 
-# The Linux Command Toolbox (GNU Coreutils) 🧰
+# The Linux Command Toolbox (GNU Coreutils)
 
 In the {{ collections.posts | chapterLink('bash') | safe }} chapter, we learned that the **Terminal** is just a way to talk to your computer. But if the terminal is a conversation, the **GNU Coreutils** are the vocabulary.
 

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " AppImages"
+title: "🎯 AppImages"
 excerpt: "Portable apps that just work."
 tags:
   - posts

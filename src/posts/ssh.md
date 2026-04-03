@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Wireless File Transfers (SSH)"
+title: "🔐 Wireless File Transfers (SSH)"
 excerpt: "Move files directly to your Deck over Wi-Fi."
 tags:
   - posts

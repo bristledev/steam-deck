@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " The Proton Filesystem Maze"
+title: "🎮 The Proton Filesystem Maze"
 excerpt: "How to find where Steam hides your Windows game saves."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - intermediate
 ---
 
-#  The Proton Filesystem Maze 🕵️‍♂️
+#  The Proton Filesystem Maze
 
 In {{ collections.posts | chapterLink('filesystem') | safe }}, we learned that games are primarily stored in `.local/share/Steam/steamapps/common`. But what if you want to back up a save file for a game that doesn't have Steam Cloud? What if you want to drop a mod into a game's `Documents` folder?
 

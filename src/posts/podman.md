@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Podman"
+title: "🐳 Podman"
 excerpt: "The hidden container engine for safe tinkering."
 tags:
   - posts

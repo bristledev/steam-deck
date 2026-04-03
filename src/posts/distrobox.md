@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Distrobox"
+title: "📦 Distrobox"
 excerpt: "Run any Linux distribution inside SteamOS."
 tags:
   - posts
@@ -22,7 +22,7 @@ SteamOS is amazing, but because it's "read-only," you can't always install the s
 - **Unlimited Software**: If a tool only exists for a specific version of Linux, you can just create a "box" for that version and run it.
 
 > [!TIP]
-> > Wondering exactly *which* Linux distributions you can run? Check out the **[Official Distrobox Compatibility List](https://distrobox.it/compatibility/#containers-distros)** for a massive, constantly updated list of supported operating systems!
+> Wondering exactly *which* Linux distributions you can run? Check out the **[Official Distrobox Compatibility List](https://distrobox.it/compatibility/#containers-distros)** for a massive, constantly updated list of supported operating systems!
 
 ## Setting Up Your First "Box"
 Distrobox is also pre-installed on the Steam Deck! To create an **Ubuntu** environment, just run:

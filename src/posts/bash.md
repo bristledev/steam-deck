@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Terminal & Bash (No Fear!)"
+title: "🐧 Terminal & Bash (No Fear!)"
 excerpt: "Unlock the real power of your Steam Deck by learning the basics of the terminal. We'll set a password and learn to speak Linux."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - intermediate
 ---
 
-#  Terminal & Bash (No Fear!) 🐧
+#  Terminal & Bash (No Fear!)
 
 The **Konsole** app is often the most intimidating part of the Steam Deck for beginners. You might have seen tech YouTubers typing fast and scary commands into a black box. But here's a secret: the terminal isn't a "hacker tool"—it's just a faster way to talk to your computer.
 

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Auto-Starting Scripts"
+title: "⚙️ Auto-Starting Scripts"
 excerpt: "How to run background services automatically on boot."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - advanced
 ---
 
-#  Auto-Starting Scripts ⚙️
+#  Auto-Starting Scripts
 
 You've learned how to write Bash scripts and run Python code. But running a script manually in Konsole every time you turn on your Steam Deck is tedious, especially if you want a mod or a syncing tool to run silently in the background while you game. 
 

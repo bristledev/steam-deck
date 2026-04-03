@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Performance"
+title: "⚡ Performance"
 excerpt: "Squeeze every drop of power from your Deck."
 tags:
   - posts

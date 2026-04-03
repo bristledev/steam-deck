@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Desktop Mode"
+title: "🖥️ Desktop Mode"
 excerpt: "Unlocking the power of a full Linux PC."
 tags:
   - posts

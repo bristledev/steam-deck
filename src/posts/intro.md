@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " The Basics"
+title: "🏁 The Basics"
 excerpt: "What is SteamOS and why should noobs care?"
 tags:
   - posts

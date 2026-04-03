@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Storage & SD Cards"
+title: "💾 Storage & SD Cards"
 excerpt: "Where your space goes and how to get it back."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - beginner
 ---
 
-#  Storage & SD Cards 💾
+#  Storage & SD Cards
 
 After a few weeks with your Steam Deck, you'll inevitably open **Settings → Storage** and ask: *"Where did all my space go?"*
 

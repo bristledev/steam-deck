@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Homebrew"
+title: "🍺 Homebrew"
 excerpt: "Installing apps without touching the core OS."
 tags:
   - posts

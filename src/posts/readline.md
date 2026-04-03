@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Keyboard Shortcuts (Readline)"
+title: "⌨️ Keyboard Shortcuts (Readline)"
 excerpt: "The hidden shortcuts that make terminal pros look like wizards."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - advanced
 ---
 
-# Keyboard Shortcuts (Readline) ⌨️
+# Keyboard Shortcuts (Readline) 
 
 Have you ever watched someone blast through the terminal, editing commands at lightning speed without reaching for the mouse? They aren't typing faster — they're using **Readline shortcuts**.
 

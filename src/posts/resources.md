@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " External Resources"
+title: "📚 External Resources"
 excerpt: "Where to go to learn even more."
 tags:
   - posts

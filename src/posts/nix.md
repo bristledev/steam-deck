@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: " Nix"
+title: "❄ Nix"
 excerpt: "The powerhouse immutable package manager."
 tags:
   - posts
@@ -21,7 +21,7 @@ Specifically, we're talking about the **[Determinate Nix Installer](https://dete
 On the Steam Deck, Nix is particularly amazing because it's designed from the ground up to work on systems that are 'read-only' or immutable.
 
 > [!IMPORTANT]
-> ### 🛠️ The SteamOS 3.5 Advantage: /nix is Here!
+> ### The SteamOS 3.5 Advantage: /nix is Here!
 > For a long time, installing Nix on the Steam Deck was a bit of a "pro-only" move because you had to "unlock" your read-only file system just to create the necessary `/nix` folder. 
 > 
 > Starting with **SteamOS 3.5**, Valve officially included a `/nix` directory (or the symlink required to create it) in the system's root. This means you can now install Nix **without ever touching your file system's write lock**, keeping your Deck's OS official and secure while enjoying the power of the Nix ecosystem.
