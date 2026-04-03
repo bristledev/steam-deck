@@ -56,7 +56,7 @@ Nix works a bit differently than other package managers. The easiest way to use 
 ## 🎥 See it in Action
 Want to see Nix magic in real-time? Check out this demo of running an app without installing it:
 
-<script src="https://asciinema.org/a/zu1z4m8iLeSZiaRv.js" id="asciicast-zu1z4m8iLeSZiaRv" async="true"></script>
+[![asciicast](https://asciinema.org/a/zu1z4m8iLeSZiaRv.svg)](https://asciinema.org/a/zu1z4m8iLeSZiaRv)
 
 ## Optional Fix: Perl Apps and glibcLocales
 Most people can skip this. You usually only need this if you're running Perl software through Nix (like `cowsay`) and you see locale-related errors.

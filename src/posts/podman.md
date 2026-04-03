@@ -33,7 +33,7 @@ Podman will download a tiny image, run it, and print a message. All without need
 ## 🎥 See it in Action
 Check out how fast Podman starts up and runs a container!
 
-<script src="https://asciinema.org/a/6QpATU4wRtFkFPW0.js" id="asciicast-6QpATU4wRtFkFPW0" async="true"></script>
+[![asciicast](https://asciinema.org/a/6QpATU4wRtFkFPW0.svg)](https://asciinema.org/a/6QpATU4wRtFkFPW0)
 
 ## Cool Things to do with Podman
 While most gamers won't need Podman daily, it opens up some amazing possibilities. The best example? **Hosting your own game servers directly on your Deck.**
@@ -56,7 +56,7 @@ podman run -d -it -p 25565:25565 -e EULA=TRUE -v ~/minecraft-data:/data --name m
 
 To stop the server later, just type `podman stop mc-server`. To start it again, `podman start mc-server`. It’s that easy!
 
-<script src="https://asciinema.org/a/qo924SpN5D5TBh68.js" id="asciicast-qo924SpN5D5TBh68" async="true"></script>
+[![asciicast](https://asciinema.org/a/qo924SpN5D5TBh68.svg)](https://asciinema.org/a/qo924SpN5D5TBh68)
 
 ### More Awesome Game Servers for Podman
 

@@ -80,7 +80,7 @@ fastfetch
 
 **[btop](https://github.com/aristocratos/btop)** is a system monitor that looks like it belongs on the bridge of a starship. It shows CPU, memory, disk, network, and running processes — all in real time with beautiful graphs and color themes.
 
-<script src="https://asciinema.org/a/SigmzvU4M4mT4nYl.js" id="asciicast-SigmzvU4M4mT4nYl" async="true"></script>
+[![asciicast](https://asciinema.org/a/SigmzvU4M4mT4nYl.svg)](https://asciinema.org/a/SigmzvU4M4mT4nYl)
 
 Good news — **btop is already installed on SteamOS!** Just open Konsole and run:
 ```bash

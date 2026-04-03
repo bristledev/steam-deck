@@ -17,6 +17,23 @@ const curriculumPath = path.join(process.cwd(), "src", "_data", "curriculum.json
 const curriculum = JSON.parse(fs.readFileSync(curriculumPath, "utf-8"));
 const flatSlugs = curriculum.flatMap(m => m.slugs);
 
+function injectAsciinemaEmbeds(content) {
+  const asciicastLinkPattern = /<a\s+([^>]*?)href="https:\/\/asciinema\.org\/a\/([A-Za-z0-9_-]+)"([^>]*)>\s*<img\s+([^>]*?)alt="asciicast"([^>]*?)>\s*<\/a>/gi;
+
+  return content.replace(asciicastLinkPattern, (match, _preHrefAttrs, castId) => {
+    const scriptPattern = new RegExp(
+      `<script\\s+src="https:\\/\\/asciinema\\.org\\/a\\/${castId}\\.js"\\s+id="asciicast-${castId}"[\\s\\S]*?<\\/script>`,
+      "i"
+    );
+
+    if (scriptPattern.test(content)) {
+      return "";
+    }
+
+    return `<script src="https://asciinema.org/a/${castId}.js" id="asciicast-${castId}" async="true"></script>`;
+  });
+}
+
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/style.css");
   eleventyConfig.addPassthroughCopy("src/assets");
@@ -117,6 +134,14 @@ export default function(eleventyConfig) {
     }
 
     return `Next we'll look at **[${nextTitle}](${nextUrl})**!`;
+  });
+
+  eleventyConfig.addTransform("asciinemaEmbeds", (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) {
+      return content;
+    }
+
+    return injectAsciinemaEmbeds(content);
   });
 
   return {
