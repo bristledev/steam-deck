@@ -58,6 +58,23 @@ Want to see Nix magic in real-time? Check out this demo of running an app withou
 
 <script src="https://asciinema.org/a/zu1z4m8iLeSZiaRv.js" id="asciicast-zu1z4m8iLeSZiaRv" async="true"></script>
 
+## Optional Fix: Perl Apps and glibcLocales
+Most people can skip this. You usually only need this if you're running Perl software through Nix (like `cowsay`) and you see locale-related errors.
+
+First, install the locale package:
+
+```bash
+nix profile install nixpkgs#glibcLocales
+```
+
+Then point your shell to the locale archive:
+
+```bash
+export LOCALE_ARCHIVE=/home/deck/.nix-profile/lib/locale/locale-archive
+```
+
+If this fixes your issue, you can make it permanent by adding that `export` line to your shell startup file.
+
 ### Which one should you pick?
 - **Choose Homebrew** if you want something familiar and easy that 'just works' like a regular app store.
 - **Choose Nix** if you love the idea of a 'bulletproof' system and want to explore the cutting edge of Linux software management.
