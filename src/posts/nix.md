@@ -75,6 +75,46 @@ export LOCALE_ARCHIVE=/home/deck/.nix-profile/lib/locale/locale-archive
 
 If this fixes your issue, you can make it permanent by adding that `export` line to your shell startup file.
 
+If you're using Fish shell, use this instead:
+
+```fish
+set -Ux LOCALE_ARCHIVE=/home/deck/.nix-profile/lib/locale/locale-archive
+```
+
+> [!TIP]
+> set -Ux is a Fish command that sets a universal environment variable, which means it will be available in all your Fish sessions and persist across restarts. This is perfect for something like LOCALE_ARCHIVE, which needs to be set every time you start a new terminal session. No need to add it to your config file; once you run that command, it's set for good.
+
+## Optional Fix: Unfree Packages (`NIXPKGS_ALLOW_UNFREE`)
+Some packages in `nixpkgs` are marked as unfree (for example, software with licenses that are not fully open source). If Nix blocks one of these installs, you need to allow unfree packages first.
+
+In Bash, export this variable:
+
+```bash
+export NIXPKGS_ALLOW_UNFREE=1
+```
+
+In Fish, use this instead:
+
+```fish
+set -Ux NIXPKGS_ALLOW_UNFREE 1
+```
+
+Then run your install or shell command with `--impure` so Nix can read that environment variable:
+
+```bash
+nix profile install --impure nixpkgs#app-name
+```
+
+```bash
+nix shell --impure nixpkgs#app-name
+```
+
+If you only want this for a single command, you can do it in one line:
+
+```bash
+NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#app-name
+```
+
 ### Which one should you pick?
 - **Choose Homebrew** if you want something familiar and easy that 'just works' like a regular app store.
 - **Choose Nix** if you love the idea of a 'bulletproof' system and want to explore the cutting edge of Linux software management.
