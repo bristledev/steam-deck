@@ -38,13 +38,14 @@ Because SteamOS is a unique, "read-only" system, we shouldn't just install Tails
    ```
    *(You'll need your admin password from {{ collections.posts | chapterLink('bash') | safe }}!)*
 
-4. Finally, start Tailscale and log in:
+4. **Close Konsole and open a new window.** The installer adds Tailscale to your PATH, but only terminals opened afterwards pick that up.
+5. Finally, start Tailscale and log in:
    ```bash
-   tailscale up --qr --operator=deck --ssh
+   sudo tailscale up --qr --operator=deck --ssh
    ```
    A **QR Code** will appear in your terminal. Scan it with your phone, log in, and your Steam Deck is officially on your private network!
 
-*(Note: You will need the admin password you set back in {{ collections.posts | chapterLink('bash') | safe }}!)*
+   This first run needs `sudo`. The `--operator=deck` flag then lets your `deck` user run later `tailscale` commands without it.
 
 ## Optional: The "KTailctl" GUI
 If you prefer a visual interface over the terminal, you can install **[KTailctl](https://flathub.org/en/apps/org.fkoehler.KTailctl)**. This is a community-made app that lets you see your other devices and manage your connection right from the desktop.
@@ -56,7 +57,7 @@ If you prefer a visual interface over the terminal, you can install **[KTailctl]
 ## 🪄 Superpowered Remote Commands
 Now that you have an SSH connection to your Deck (either via Tailscale or OpenSSH), you can perform "magic tricks" from your laptop while the Deck stays exactly where it is:
 
-- **Switch to Desktop Mode Remotely**: Type `steamos-session-select plasma` and hit Enter. The Deck will instantly reboot directly into Desktop mode. (To force it back to Game Mode, use `steamos-session-select gamescope`).
+- **Switch to Desktop Mode Remotely**: Type `steamos-session-select plasma` and hit Enter. The Deck restarts its session (no full reboot) and comes back up in Desktop Mode. (To force it back to Game Mode, use `steamos-session-select gamescope`).
 - **Install Apps Invisibly**: Browsing Flathub on your phone? Type `flatpak install flathub com.discordapp.Discord` to quietly install an app directly to your Deck. It will be ready and waiting in your library.
 - **The Ultimate PC Benchmark**: Type `btop` and hit Enter. You now have a live, real-time dashboard of exactly what your Deck's CPU and RAM are doing. Run a game, look at your laptop screen, and see what's eating your memory!
 - **Reboot & Shutdown**: Need a quick restart from the couch? `sudo steamos-reboot` (or `sudo steamos-poweroff` to shut down) works instantly.
@@ -64,7 +65,7 @@ Now that you have an SSH connection to your Deck (either via Tailscale or OpenSS
 ## Remote File Transfers (Taildrop)
 Once Tailscale is on your phone and your Deck, you can use "Taildrop" to send files. 
 - **On your phone/laptop**: Right-click a file, select 'Send with Tailscale', and pick your **Steam Deck**.
-- **On your Deck**: The file will appear instantly in your `Downloads` folder. 
+- **On your Deck**: Received files wait in Tailscale's inbox until you collect them. Run `tailscale file get ~/Downloads` to move them into your `Downloads` folder, or let **KTailctl** (above) pick them up for you.
 
 No more USB drives or cloud uploads!
 

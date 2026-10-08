@@ -87,7 +87,7 @@ du -sh ~/.local/share/Steam/steamapps/compatdata
 This shows the total size of your shader cache and Proton prefixes in a human-readable format (like `12G`).
 
 ### The Deep Dive
-For a more interactive experience, install `ncdu` (a visual disk usage analyzer) via {{ collections.posts | chapterLink('homebrew') | safe }} or {{ collections.posts | chapterLink('nix') | safe }}:
+For a more interactive experience, use `ncdu` (a visual disk usage analyzer). It comes preinstalled on SteamOS, so there's nothing to install:
 ```bash
 ncdu /home/deck
 ```

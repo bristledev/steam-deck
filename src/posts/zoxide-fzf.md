@@ -45,7 +45,7 @@ brew install zoxide
 
 #### Via Nix (from {{ collections.posts | chapterLink('nix') | safe }}):
 ```bash
-nix profile install nixpkgs#zoxide
+nix profile add nixpkgs#zoxide
 ```
 
 ### Setting it Up
@@ -84,7 +84,7 @@ brew install fzf
 
 #### Via Nix:
 ```bash
-nix profile install nixpkgs#fzf
+nix profile add nixpkgs#fzf
 ```
 
 ### More fzf Tricks

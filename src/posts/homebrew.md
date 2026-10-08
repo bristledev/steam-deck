@@ -24,7 +24,7 @@ Think of it like a second App Store, but for the terminal.
 The Steam Deck is designed to be safe and stable. If you try to install software the 'traditional' Linux way, Valve might overwrite it during the next SteamOS update. 
 
 **Homebrew is different:**
-- **No Sudo Needed**: It installs everything inside your own home folder.
+- **Sudo Only Once**: It installs everything into `/home/linuxbrew`, on the same drive as your home folder. The installer asks for your admin password once to create that folder; after that, `brew` commands never need `sudo`.
 - **Safe**: It never touches the read-only part of the OS.
 - **Persistent**: Your apps will survive SteamOS updates.
 
@@ -44,7 +44,7 @@ After the installation finishes, you'll see a message at the bottom of the termi
 Once installed, using Homebrew is incredibly easy. Here are the only three commands you really need to know:
 
 1. **To install an app:** `brew install [app-name]`
-   - *Example:* `brew install htop` (a better activity monitor)
+   - *Example:* `brew install fastfetch` (shows your Deck's specs in style)
 2. **To update your apps:** `brew update` followed by `brew upgrade`
 3. **To see what you've installed:** `brew list`
 

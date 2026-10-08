@@ -214,8 +214,9 @@ Colorful pipes snake across your screen, turning and branching like a screensave
 
 ### lolcat — Rainbow Everything
 ```bash
-brew install lolcat
+brew install lolcat fortune
 ```
+(`fortune` prints a random quote, which makes a good test for `lolcat`.)
 Pipe *any* command through `lolcat` to make its output rainbow:
 ```bash
 fastfetch | lolcat

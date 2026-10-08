@@ -24,7 +24,7 @@ Everything you do is in `/home/deck`.
 ## Where is my SD Card?
 This is the \#1 question for noobs. It's not `D:\`.
 In SteamOS, your SD card is 'mounted' in:
-`/run/media/deck/*` (it will be named the block device).
+`/run/media/deck/<card name>`, where the folder is named after the card's label (for example, `/run/media/deck/SN512`).
 
 ### Pro-Tip: Shortcuts
 In the file manager (**Dolphin**), your SD card usually shows up on the left sidebar under 'Removable Devices'. You can drag it to 'Places' to make it a permanent shortcut!
@@ -47,7 +47,7 @@ On Windows, a folder named `Mods` and a folder named `mods` are treated exactly 
 **On Linux, they are two completely different folders.** If a game guide tells you to put files in the `mods` folder, but you name it `Mods`, the game will completely ignore it. Pay close attention to capital letters!
 
 ### 3. 'Look, But Don't Touch' (The Immutable OS)
-Unlike a normal Windows PC, the Steam Deck's core system files (outside of your `/home/deck` folder) are "locked" down. This is called an **Immutable Filesystem**. Valve does this so a bad system update or a rogue program doesn't officially "brick" your Deck. You can explore those folders, but you can't write to them. Stick to `/home/deck`!
+Unlike a normal Windows PC, the Steam Deck's core system files (outside of your `/home/deck` folder) are "locked" down. This is called an **Immutable Filesystem**. Valve does this so a rogue program or a slip of the keyboard can't damage the operating system. (Protection against a *bad update* is a separate safety net, which we'll cover in {{ collections.posts | chapterLink('recovery') | safe }}.) You can explore those folders, but you can't write to them. Stick to `/home/deck`!
 
 ## Dolphin Tips
 - **Splitting the view**: Press `F3` to see two folders side-by-side. Great for moving files!

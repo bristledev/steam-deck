@@ -44,7 +44,7 @@ SteamOS ships with Valve's official Proton, but it's not always the best version
 
 **Which version to try?**
 - **Proton Experimental** — Valve's bleeding-edge version. Try this first for newer games.
-- **Proton 9.x / 8.x** — Stable releases. If Experimental is crashing, try stepping back to a numbered version.
+- **Numbered releases** (like Proton 10.0) — Stable versions. If Experimental is crashing, try the newest numbered release, then step back one version at a time.
 
 ---
 
@@ -83,17 +83,18 @@ Steam lets you add special flags that run *before* your game launches. These can
 
 | Launch Option | What It Fixes |
 | :--- | :--- |
-| `PROTON_USE_WINED3D=1 %command%` | Forces OpenGL instead of DirectX. Fixes some older games that crash on Vulkan. |
-| `gamescope -f -- %command%` | Forces the game through Gamescope (SteamOS's display compositor). Can fix resolution issues. |
-| `DXVK_ASYNC=1 %command%` | Enables async shader compilation. Reduces stuttering in some games. |
+| `PROTON_USE_WINED3D=1 %command%` | Translates DirectX to OpenGL (WineD3D) instead of Vulkan (DXVK). Fixes some older games that crash with DXVK. |
 | `PULSE_LATENCY_MSEC=60 %command%` | Fixes crackling or distorted audio. |
 | `SteamDeck=0 %command%` | Tells the game you're NOT on a Steam Deck. Some games apply unwanted "Deck optimizations" that hurt more than they help. |
 
 > [!TIP]
 > **You can combine launch options!** Just put them all before `%command%`:
 > ```
-> DXVK_ASYNC=1 PULSE_LATENCY_MSEC=60 %command%
+> PULSE_LATENCY_MSEC=60 SteamDeck=0 %command%
 > ```
+
+> [!NOTE]
+> **Two options you'll see in older guides don't help on the Deck.** `DXVK_ASYNC=1` does nothing on Valve's Proton, because async shader compilation was never part of official DXVK. `gamescope -f -- %command%` is meant for desktop Linux; in Game Mode your game already runs inside Gamescope, so this just nests a second copy.
 
 ---
 

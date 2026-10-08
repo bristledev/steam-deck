@@ -29,7 +29,7 @@ When an update arrives:
 2. Once the download is complete and verified, it switches your boot to the newly updated partition.
 3. If the new update fails to boot? SteamOS **automatically rolls back** to the previous working partition.
 
-This means a bad update can never strand you on an unbootable system. Your Deck just quietly goes back to the version that worked.
+This means an update that fails to boot won't strand you. Your Deck just quietly goes back to the version that worked. The rollback only kicks in when booting fails, though. An update that boots fine but has a bug stays installed until Valve ships a fix, or until you use the recovery options below.
 
 > [!NOTE]
 > This is why SteamOS updates feel so fast — it's not installing "live." It prepared everything in the background and just flips a switch on reboot.
@@ -48,7 +48,9 @@ steamos-update check
 
 In {{ collections.posts | chapterLink('filesystem') | safe }}, we briefly mentioned that the Steam Deck's system files are "locked." Let's explain what that means and why it's actually a *good* thing.
 
-SteamOS is an **immutable** operating system. That means the core system files (`/usr`, `/etc`, `/bin`, etc.) are **read-only**. You physically cannot accidentally delete something critical or install a rogue program that corrupts your OS.
+SteamOS is an **immutable** operating system. That means the core operating system (everything under `/usr`, including `/bin`) is **read-only**. You physically cannot accidentally delete something critical or install a rogue program that corrupts your OS.
+
+There's one important exception: `/etc`, where system settings live. It's a writable layer on top of the read-only image, and SteamOS carries it over when it updates. That's why settings like `sudo systemctl enable sshd` or `chsh` (both covered later) survive updates, while programs installed into `/usr` don't.
 
 ### What You *Can* Change
 - **Your home folder** (`/home/deck`) — completely yours, read/write, no restrictions.
@@ -106,7 +108,7 @@ If something truly goes sideways — your Deck won't boot, the screen is stuck, 
 ## 🧘 The Bottom Line
 
 The Steam Deck is designed to be resilient:
-- **Bad update?** The A/B system rolls back automatically.
+- **Update won't boot?** The A/B system rolls back automatically.
 - **Weird software glitch?** The immutable filesystem means the core OS is untouchable.
 - **Something truly broken?** The recovery image gets you back to factory fresh in 20 minutes.
 

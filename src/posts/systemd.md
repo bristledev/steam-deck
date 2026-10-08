@@ -16,7 +16,7 @@ You've learned how to write Bash scripts and run Python code. But running a scri
 To run something automatically when your Deck boots, we don't put it in a Startup folder like Windows. Instead, we use Linux's master service manager: **systemd**.
 
 > [!NOTE]
-> If you installed a tool through Home Manager or Linuxbrew, prefer their built-in service workflows first. Those approaches are more reproducible and easier to maintain. This chapter covers the manual `systemd` route for one-off scripts that are *not* managed by those tools.
+> If you installed a tool through {{ collections.posts | chapterLink('homebrew') | safe }}, check whether `brew services start <name>` supports it first; Homebrew can create and manage the service for you. This chapter covers the manual `systemd` route for scripts and tools that aren't managed that way.
 
 ## What is systemd?
 
@@ -30,8 +30,6 @@ When you install an app that runs in the background (like *EmuDeck's* background
 ## Creating Your First Service
 
 Let's use a real example: running **Copyparty** as a personal file server in the background, so your Deck is always ready to receive or share files on your local network.
-
-If Copyparty came from Home Manager or Linuxbrew, configure the service there instead of creating a manual unit. The manual unit below is for the unmanaged case where you installed it yourself and want a straightforward autostart.
 
 > [!WARNING]
 > You should never run custom scripts as the `root` user unless absolutely necessary. We will use `systemctl --user`, which safely limits your background script to only control things *your* user profile can touch.
@@ -56,7 +54,6 @@ Paste this into nano:
 ```ini
 [Unit]
 Description=Copyparty File Server
-After=network-online.target
 
 [Service]
 WorkingDirectory=/home/deck/Sync
@@ -76,11 +73,13 @@ WantedBy=default.target
 > The [upstream unit file](https://raw.githubusercontent.com/9001/copyparty/refs/heads/hovudstraum/contrib/systemd/copyparty.service) is available as a reference, but it targets a system-wide install and needs significant adaptation for a user service — the version above is all you need.
 
 **What these lines mean:**
-- `After=network-online.target` — wait for the network to be ready before starting. For a user service, the system will already have brought the network up by the time this runs, but the `After=` line adds an explicit ordering guarantee.
 - `WorkingDirectory` — Copyparty serves the current working directory by default, so setting this to your `Sync` folder is all you need. No volume flags required.
 - `ExecStart` — `uvx` fetches and runs Copyparty from PyPI in an isolated environment. The web UI is available at `http://<your-deck-ip>:3923` from any device on your network.
 - `Restart=always` — if Copyparty crashes, wait 10 seconds and restart it automatically.
 - `WantedBy=default.target` — the correct target for user services (not the system-wide `multi-user.target`).
+
+> [!NOTE]
+> Other guides often add `After=network-online.target` to wait for the network. That line does nothing in a `--user` service. Your user's service manager is separate from the system one and can't see system targets like `network-online.target`. Copyparty doesn't need it anyway; it starts listening right away and answers once the Wi-Fi is up.
 
 Press `Ctrl+O` then `Enter` to save, then `Ctrl+X` to exit.
 
@@ -127,7 +126,7 @@ This streams the complete journal for Copyparty. When it starts successfully, yo
 
 ## Surviving Game Mode: Enable Lingering
 
-There's one gotcha you should know about. By default, Linux only runs your `--user` services while you have an active login session (like Desktop Mode). When you switch back to Game Mode, the system may consider your desktop session "closed" and quietly kill all your background scripts.
+There's one gotcha you should know about. By default, Linux only runs your `--user` services while the `deck` user is logged in. Game Mode and Desktop Mode are *both* login sessions: the Deck logs you in automatically either way. But switching modes ends one session and starts another, and if there's a moment with no session at all, systemd may stop your background services along with it.
 
 The fix is a one-time command called `loginctl enable-linger`:
 
@@ -135,7 +134,7 @@ The fix is a one-time command called `loginctl enable-linger`:
 loginctl enable-linger deck
 ```
 
-This tells `systemd`: "Keep this user's services running even when they don't have a desktop session open." After running this once, your services will stay alive in the background whether you're in Desktop Mode, Game Mode, or even if you never open the desktop at all.
+This tells `systemd`: "Start this user's services at boot and keep them running, even when no session is open." After running this once, your services will stay alive in the background through mode switches, whether you're in Desktop Mode or Game Mode.
 
 > [!TIP]
 > You only need to run `loginctl enable-linger` once — it's permanent. You can verify it's active with `loginctl show-user deck | grep Linger`, which should print `Linger=yes`.  Run `loginctl disable-linger deck` to revert if you change your mind.

@@ -49,9 +49,12 @@ Nix works a bit differently than other package managers. The easiest way to use 
 
 | Action | Command |
 |---|---|
-| **Install permanently** | `nix profile install nixpkgs#app-name` |
+| **Install permanently** | `nix profile add nixpkgs#app-name` |
 | **Try without installing** | `nix shell nixpkgs#app-name` |
 | **Update everything** | `nix profile upgrade --all` |
+
+> [!NOTE]
+> Older guides use `nix profile install`. Newer versions of Nix renamed it to `nix profile add`; the old name still works but prints a deprecation warning.
 
 ## 🎥 See it in Action
 Want to see Nix magic in real-time? Check out this demo of running an app without installing it:
@@ -64,7 +67,7 @@ Most people can skip this. You usually only need this if you're running Perl sof
 First, install the locale package:
 
 ```bash
-nix profile install nixpkgs#glibcLocales
+nix profile add nixpkgs#glibcLocales
 ```
 
 Then point your shell to the locale archive:
@@ -78,7 +81,7 @@ If this fixes your issue, you can make it permanent by adding that `export` line
 If you're using Fish shell, use this instead:
 
 ```fish
-set -Ux LOCALE_ARCHIVE=/home/deck/.nix-profile/lib/locale/locale-archive
+set -Ux LOCALE_ARCHIVE /home/deck/.nix-profile/lib/locale/locale-archive
 ```
 
 > [!TIP]
@@ -102,7 +105,7 @@ set -Ux NIXPKGS_ALLOW_UNFREE 1
 Then run your install or shell command with `--impure` so Nix can read that environment variable:
 
 ```bash
-nix profile install --impure nixpkgs#app-name
+nix profile add --impure nixpkgs#app-name
 ```
 
 ```bash
