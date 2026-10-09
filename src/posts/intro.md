@@ -31,7 +31,7 @@ SteamOS has two modes:
 
 No. SteamOS is designed to work out of the box, and most games run without you ever opening a terminal. This series is for when you want to understand what's going on underneath, or do more than the defaults allow.
 
-### How Windows Games Run: Proton
+## How Windows Games Run: Proton
 
 Most PC games are made for Windows. They run on SteamOS thanks to **[Proton](https://github.com/ValveSoftware/Proton)**, a compatibility layer from Valve that translates what a Windows game asks for into something Linux understands. Later in this phase, you'll see where Proton keeps each game's files.
 
