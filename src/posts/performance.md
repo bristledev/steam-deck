@@ -1,49 +1,61 @@
 ---
 layout: base.njk
-title: "⚡ Performance"
-excerpt: "Squeeze every drop of power from your Deck."
+title: "⚡ Performance Settings"
+excerpt: "What the Quick Access performance settings do, and how to trade frame rate for battery life."
 tags:
   - posts
   - gaming
   - intermediate
 ---
 
-#  Performance & Power (Fearless Optimization) 
+# Performance Settings
 
-One of the best things about SteamOS? You can squeeze *every bit* of performance out of your Steam Deck with some easy settings.
+Every game on the Deck is a trade-off between how smooth it looks, how long the battery lasts and how loud the fan gets. SteamOS gives you a handful of settings to choose that trade-off yourself, per game. This chapter explains what each one does.
 
-## The 'Quick Settings' Menu
-Press the **... Button** (bottom-right) on your Deck to bring up the **Quick Access menu**. The battery icon is where all the performance magic happens.
+## Where the Settings Are
+
+Press the **"..."** button, below the right trackpad, to open the **Quick Access menu**. The performance settings are under the battery icon.
 
 > [!TIP]
 > At the top of the performance menu, switch on **Use per-game profile** first. Then every setting below is saved for the game you're playing, so a demanding game and a light indie game can each keep their own limits.
 
-### 1. Frame Rate (FPS) Limit
-Limiting your FPS can save battery and make games feel more stable. 
-- **30 FPS**: Great for high-end games and saving battery.
-- **40 FPS at 40 Hz**: A favorite on the original LCD Deck. Lower the **Refresh Rate** slider to 40 Hz and set the limit to 40 FPS. Every frame lines up exactly with the screen, so it feels much smoother than 30 for only a little more battery.
-- **45 FPS / 90 Hz**: The same trick on the Steam Deck OLED, whose screen goes up to 90 Hz.
-- **60 FPS**: Best for competitive games or older titles.
+### Frame Rate Limit
 
-### 2. TDP Limit 
-**TDP** stands for Thermal Design Power. It controls how much juice the Steam Deck's chip is allowed to use.
-- **Lower TDP (e.g., 5-8W)**: Perfect for indie games like *Stardew Valley* or *Hollow Knight*. It keeps the fans quiet and the battery long.
-- **No Limit**: For those big, demanding games like *Elden Ring*.
+Capping the frame rate saves battery and makes motion more even, because the Deck stops chasing frames it can't hold steadily.
 
-### 3. FSR (The Magic Resize)
-**FSR** (FidelityFX Super Resolution) is like a smart magnifying glass. 
-If a game is struggling to run at the Deck's native resolution, you can lower it in the game settings (e.g., to 540p) and then turn on **[AMD FSR](https://www.amd.com/en/technologies/fidelityfx-super-resolution)** in the Quick Settings menu. This will sharpen the image and give you a performance boost!
+- **30 FPS**: the biggest battery saving, a good fit for demanding games.
+- **40 FPS at 40 Hz**: popular on the original LCD Deck. Lower the **Refresh Rate** slider to 40 Hz and set the limit to 40 FPS. Every frame lines up exactly with the screen, so it feels much smoother than 30 for only a little more battery.
+- **45 FPS at 90 Hz**: the same idea on the Steam Deck OLED, whose screen goes up to 90 Hz.
+- **60 FPS**: for fast-paced games, or older games the Deck runs easily.
 
-### 4. The Performance Overlay
-How do you know whether a change helped? Move the **Performance Overlay Level** slider up. A small readout appears on top of your game: at the first level just the frame rate, and at higher levels battery drain in watts, CPU and GPU load, and temperatures. Watch the numbers while you adjust the other settings, then slide it back to off.
+### TDP Limit
 
-## Deck Verified (What the Green Checkmark Means)
-SteamOS makes it easy to see what games run well.
-- **Green Check ([Verified](https://www.steamdeck.com/en/verified))**: Works flawlessly out of the box.
-- **Yellow (Playable)**: Might need some manual settings or has tiny text.
-- **Grey (Unsupported)**: Valve found that some or all of the game doesn't work on the Deck yet.
-- **Unknown**: Valve hasn't tested it yet. Check **[ProtonDB](https://www.protondb.com/)** for community reports!
+*TDP* (thermal design power) is how much power, in watts, the Deck's chip is allowed to draw.
 
----
+- **A low limit (around 5 to 8 W)** suits lighter games like *Stardew Valley* or *Hollow Knight*. The fan stays quiet and the battery lasts longer.
+- **No limit** (the setting switched off) gives demanding games like *Elden Ring* everything the chip has.
 
-But what happens when a game *doesn't* work? Next, we'll cover how to fix stubborn games that refuse to launch.
+### Upscaling
+
+If a game struggles at the Deck's full resolution, lower its resolution in the game's own settings (for example, to 960×600), then set **Scaling Filter** to **Sharp**. The game renders fewer pixels, which runs faster, and the Sharp filter (Steam calls it a "super-resolution sharpening filter") scales the picture back up to fill the screen with less blur.
+
+Older guides call this setting **FSR**, after **[AMD FSR](https://www.amd.com/en/technologies/fidelityfx-super-resolution)**, the upscaler that earlier versions of SteamOS named here.
+
+### The Performance Overlay
+
+To see whether a change helped, move the **Performance Overlay Level** slider up. A small readout appears on top of your game: at the first level just the frame rate, and at higher levels battery drain in watts, CPU and GPU load, and temperatures. Watch the numbers while you adjust the other settings, then slide it back to off.
+
+## Deck Verified Ratings
+
+Every game in your Steam library carries one of Valve's **[Deck Verified](https://www.steamdeck.com/en/verified)** ratings:
+
+| Rating | Valve's definition |
+| :--- | :--- |
+| **Verified** (green check) | "The game works great on Steam Deck, right out of the box." |
+| **Playable** (yellow) | "The game may require some manual tweaking by the user to play." |
+| **Unsupported** (grey) | "The game is currently not functional on Steam Deck." |
+| **Unknown** | "We haven't checked this game for compatibility yet." |
+
+For Unsupported and Unknown games, the community site **[ProtonDB](https://www.protondb.com/)** often has reports from people who got them running.
+
+Some games still won't start, or crash, no matter how you set the sliders. The next chapter is a step-by-step toolkit for those.
