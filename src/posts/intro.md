@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🏁 What Is SteamOS?"
-excerpt: "What SteamOS is, how its two modes work, and how Windows games run on it."
+excerpt: "What SteamOS is, how its two modes work and how Windows games run on it."
 tags:
   - posts
   - steamos
@@ -18,7 +18,7 @@ SteamOS is made by Valve. It runs on the Steam Deck and a few other devices, and
 
 ### Why Linux?
 
-Linux is open source, so Valve can change any part of it. That lets Valve build a system around what a handheld needs: boot straight into your games, update itself in the background, and keep the desktop out of your way until you ask for it.
+Linux is open source, so Valve can change any part of it. That lets Valve build a system around what a handheld needs: boot straight into your games, update itself in the background and keep the desktop out of your way until you ask for it.
 
 ## Game Mode and Desktop Mode
 
