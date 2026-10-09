@@ -182,6 +182,11 @@ body {
 	border-radius: 4px;
 }
 
+/* Headings take focus when you jump to them from the TOC; no ring needed */
+[tabindex="-1"]:focus {
+	outline: none;
+}
+
 .skip-link {
 	position: absolute;
 	top: -3rem;
