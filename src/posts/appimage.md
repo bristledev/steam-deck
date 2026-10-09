@@ -25,7 +25,7 @@ An AppImage is a single file that contains an app and everything it needs to run
 
 Linux won't run a downloaded file until you mark it as a program. That's a safety measure, and it's the step that trips up most people.
 
-1. **Download** the `.AppImage` file from the app's official site. **[Kdenlive](https://kdenlive.org/)**, **[Krita](https://krita.org/)** and **[balenaEtcher](https://etcher.balena.io/)** all offer one.
+1. **Download** the `.AppImage` file from the app's official site. **[Kdenlive](https://kdenlive.org/)**, **[Krita](https://krita.org/)** and the **[Heroic Games Launcher](https://heroicgameslauncher.com/)** all offer one.
 2. In Dolphin, **right-click** the file and select **Properties**.
 3. Open the **Permissions** tab.
 4. Tick **Allow executing file as program**, then click **OK**.
@@ -35,7 +35,7 @@ Linux won't run a downloaded file until you mark it as a program. That's a safet
 
 AppImages have real advantages:
 
-- **They don't touch the system.** Like Flatpaks, they live in your home folder and survive SteamOS updates.
+- **They don't touch the system.** They live in your home folder, outside the read-only system, so like Flatpaks they survive SteamOS updates.
 - **They're easy to organize.** Many people keep them all in one folder, such as `~/Applications`.
 - **They're portable.** The same file runs on most other Linux PCs.
 
