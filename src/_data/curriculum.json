@@ -40,7 +40,8 @@
     "name": "Phase 5: Remote & Network",
     "slugs": [
       "ssh",
-      "tailscale"
+      "tailscale",
+      "wireguard"
     ]
   },
   {
