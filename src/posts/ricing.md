@@ -157,7 +157,7 @@ One of eza's best features is its built-in tree view:
 ```bash
 eza --tree --level=2 --icons
 ```
-This shows your directory structure as a visual tree — no more piping through `find` or installing `tree` separately.
+This shows your directory structure as a visual tree, like the `tree` command that comes with SteamOS, but with colors, icons and Git status.
 
 ### Suggested Aliases
 Add these to your shell config to make eza your default:
@@ -241,5 +241,3 @@ The classic screenshot formula:
 ---
 
 Your terminal now looks better than most people's entire desktops. But let's make sure it also *works* faster — next up, keyboard shortcuts that'll make you a terminal speed demon.
-
-{% next_chapter %}
