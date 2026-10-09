@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "📦 Distrobox"
-excerpt: "Run any Linux distribution inside SteamOS."
+title: "🎁 Distrobox"
+excerpt: "Run Ubuntu, Fedora, Arch and other Linux distributions inside SteamOS, with their own package managers."
 tags:
   - posts
   - containers
@@ -9,22 +9,20 @@ tags:
   - advanced
 ---
 
-#  Distrobox – Any Linux, Any Time
+# Distrobox
 
-In {{ collections.posts | chapterLink('podman') | safe }}, we looked at **Podman**, the engine that lets you run isolated "containers." But typing raw Podman commands can be a bit much for a beginner.
-
-Enter **[Distrobox](https://github.com/89luca89/distrobox)**: a tool that uses Podman to let you run almost any Linux distribution (like **[Ubuntu](https://ubuntu.com/)**, **[Fedora](https://fedoraproject.org/)**, or **[Arch](https://archlinux.org/)**) right inside your Steam Deck terminal, as if it were natively installed.
+In {{ collections.posts | chapterLink('podman') | safe }}, you ran containers with Podman directly. That takes long commands, and each container is cut off from the rest of your Deck. **[Distrobox](https://github.com/89luca89/distrobox)** is a tool that uses Podman to let you run almost any Linux distribution (like **[Ubuntu](https://ubuntu.com/)**, **[Fedora](https://fedoraproject.org/)**, or **[Arch](https://archlinux.org/)**) right inside your Steam Deck terminal, as if it were natively installed.
 
 > [!NOTE]
 > Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2** with **Distrobox 1.8.2.5**.
 
-## What is Distrobox?
+## What Is Distrobox?
 Distrobox creates a Podman container with a whole Linux distribution inside, then wires it into your Deck: it shares your home folder, your network and your screen, so programs inside feel like they're running on SteamOS itself.
 
-Think of each "box" as a **guest room in your house**. It has its own furniture (its own system files and package manager), but it shares your front door and hallway (your home folder). Redecorate the guest room however you like, and the rest of the house stays the same.
+Each *box* is like a **guest room in your house**. It has its own furniture (its own system files and package manager), but it shares your front door and hallway (your home folder). Redecorate the guest room however you like, and the rest of the house stays the same.
 
 ## Why Distrobox?
-SteamOS is amazing, but because its system is read-only, you can't install everything you might need for a project.
+Because SteamOS's system is read-only, you can't install everything you might need for a project.
 - **Get software SteamOS doesn't ship**: SteamOS has no compilers like `gcc` (see {{ collections.posts | chapterLink('preinstalled') | safe }}). A box can have them in one command.
 - **Use any package manager**: `apt` in Ubuntu, `dnf` in Fedora, even `pacman` in Arch, all without touching SteamOS.
 - **Try another distro**: Curious about Ubuntu? Try it without reformatting your Deck.
@@ -35,7 +33,7 @@ It's also the approach Valve recommends: SteamOS's own `steamos-devmode` command
 > [!TIP]
 > Wondering exactly *which* Linux distributions you can run? Check out the **[Official Distrobox Compatibility List](https://distrobox.it/compatibility/#containers-distros)**.
 
-## ⚠️ A Box Is Not a Sandbox
+## A Box Is Not a Sandbox
 This is the most important thing to understand about Distrobox. Its own documentation says it plainly: "Isolation and sandboxing are **not** the main aims of the project."
 
 - **Your home folder is shared.** Anything a program inside a box does to your files, it does to your *real* files.
@@ -45,8 +43,8 @@ This is the most important thing to understand about Distrobox. Its own document
 > [!CAUTION]
 > **Don't use Distrobox to run software you don't trust.** For that, a Flatpak from Discover is the better choice: Flatpaks *are* sandboxed. Also avoid creating boxes with the `--root` option, which runs them with full admin rights over your Deck.
 
-## Setting Up Your First "Box"
-Distrobox comes pre-installed on the Steam Deck! To create an **Ubuntu** box, run:
+## Setting Up Your First Box
+Distrobox comes preinstalled on the Steam Deck. To create an **Ubuntu** box, run:
 
 ```bash
 distrobox create -i ubuntu:latest -n my-ubuntu
@@ -95,7 +93,7 @@ sudo pacman -Syu fastfetch
 
 **What did that just do?** It created an Arch box, entered it, then updated the box's packages and installed `fastfetch` from Arch's own repositories. Your box lives in your home folder, so it survives every SteamOS update.
 
-## The "Magic" of Integration
+## Sharing Files and Apps With SteamOS
 Because a box shares your home folder, a file you download inside your Ubuntu box is already in your regular Steam Deck folders.
 
 You can also **export** apps from a box so they appear on SteamOS itself. Run these *inside* the box:
@@ -119,7 +117,7 @@ distrobox-export --bin /usr/bin/fastfetch --export-path ~/.local/bin
 
 To undo an export, run the same command with `--delete` added. And it works in the other direction too: inside a box, put `distrobox-host-exec` in front of a command to run it on SteamOS instead.
 
-## 🧰 Managing Your Boxes
+## Managing Your Boxes
 Run these from SteamOS, outside any box:
 
 | Command | What it does |
@@ -133,4 +131,4 @@ Deleting a box never touches your home folder, so your own files stay put. To se
 
 ---
 
-You've now got a whole world of Linux at your fingertips, without ever risking SteamOS. To finish the series, let's make the terminal itself a nicer place to live, starting with your prompt.
+With Distrobox, almost any Linux software can run on your Deck without touching SteamOS. The last phase is about the terminal itself, starting with a more informative prompt.
