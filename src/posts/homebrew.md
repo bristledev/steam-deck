@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🍺 Homebrew"
-excerpt: "Installing apps without touching the core OS."
+excerpt: "Install terminal tools that SteamOS doesn't include, in a place SteamOS updates never touch."
 tags:
   - posts
   - package-management
@@ -9,27 +9,23 @@ tags:
   - intermediate
 ---
 
-#  Homebrew (Linuxbrew) – The Power User's Secret Weapon
+# Homebrew
 
-In {{ collections.posts | chapterLink('steamos-extending') | safe }}, you saw why installing terminal tools with `pacman` doesn't last: the next update replaces the system image, and your tools vanish with it. You also saw the fix: a package manager that lives on the home partition.
+In {{ collections.posts | chapterLink('steamos-extending') | safe }}, you saw why installing terminal tools with `pacman` doesn't last: the next update replaces the system image, and your tools vanish with it. The fix is a package manager that lives on the home partition instead. Homebrew is the most popular one.
 
-That’s where **Homebrew** comes in.
+## What Is Homebrew?
 
-## What is Homebrew?
-Originally created for Mac users, **[Homebrew](https://brew.sh/)** (or "Linuxbrew" on Linux) is a package manager that lets you install thousands of useful tools and apps *without* needing to mess with the core SteamOS files. 
+**[Homebrew](https://brew.sh/)** is a *package manager*: a tool that downloads, installs and updates other programs for you. It started on the Mac and now runs on Linux too (where it's sometimes called Linuxbrew). It offers thousands of command-line tools, and it installs all of them outside SteamOS's read-only system.
 
-Think of it like a second App Store, but for the terminal.
+On the Deck, that means:
 
-## Why use it on a Steam Deck?
-The Steam Deck is designed to be safe and stable. If you try to install software the 'traditional' Linux way, Valve might overwrite it during the next SteamOS update. 
+- **`sudo` only once.** Homebrew lives in `/home/linuxbrew`, on the same partition as your home folder. The installer asks for your admin password once to create that folder; after that, `brew` commands never need `sudo`.
+- **It never touches the read-only system.**
+- **Everything survives SteamOS updates**, because the home partition is never replaced.
 
-**Homebrew is different:**
-- **Sudo Only Once**: It installs everything into `/home/linuxbrew`, on the same drive as your home folder. The installer asks for your admin password once to create that folder; after that, `brew` commands never need `sudo`.
-- **Safe**: It never touches the read-only part of the OS.
-- **Persistent**: Your apps will survive SteamOS updates.
+## Installing Homebrew
 
-## How to Install Homebrew
-To install Homebrew, you just need to run one command in your terminal. Open **Konsole** (from {{ collections.posts | chapterLink('bash') | safe }}) and paste this:
+Open **Konsole** and run:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -37,8 +33,9 @@ To install Homebrew, you just need to run one command in your terminal. Open **K
 
 **What did that just do?** `curl` downloaded Homebrew's official install script, and `/bin/bash -c` ran it. It asks for your admin password once, creates `/home/linuxbrew/.linuxbrew`, and downloads Homebrew into it.
 
-### The "Path" Step (Important!)
-After the installation finishes, look for the **Next steps** section at the bottom of the terminal. It lists three commands that tell your shell where to find `brew`. For Bash, they look like this:
+### Adding Homebrew to Your Path
+
+Your shell finds programs by looking through a list of folders called the *PATH*, and Homebrew's folder isn't on it yet. When the installer finishes, look for the **Next steps** section at the bottom of the terminal. It lists three commands that fix this. For Bash, they look like this:
 
 ```bash
 echo >> /home/deck/.bashrc
@@ -58,20 +55,17 @@ echo '/home/linuxbrew/.linuxbrew/bin/brew shellenv fish | source' >> ~/.config/f
 > [!WARNING]
 > **Skip the "Install Homebrew's dependencies" step.** The installer also suggests running `sudo pacman -S base-devel`. That advice is for regular Arch Linux. On SteamOS, `pacman` can't install into the read-only system, and anything you force in gets wiped by the next update. Homebrew downloads ready-built packages, so most tools work fine without it.
 
-## Basic Homebrew Commands
-Once installed, using Homebrew is incredibly easy. Here are the only three commands you really need to know:
+## Everyday Commands
 
-1. **To install an app:** `brew install [app-name]`
-   - *Example:* `brew install fastfetch` (shows your Deck's specs in style)
-2. **To update your apps:** `brew update` followed by `brew upgrade`
-3. **To see what you've installed:** `brew list`
+| Command | What it does |
+| :--- | :--- |
+| `brew install fastfetch` | Installs a tool (here, `fastfetch`, which shows your Deck's specs) |
+| `brew uninstall fastfetch` | Removes it again |
+| `brew search fetch` | Finds tools whose names match a word |
+| `brew update` then `brew upgrade` | Refreshes Homebrew's list of tools, then updates everything you've installed |
+| `brew list` | Shows what you've installed |
 
 > [!TIP]
 > **Check before you brew.** Many popular tools, like `htop`, `ncdu` and `ripgrep`, already ship with SteamOS. Run `command -v <tool>` first; if it prints a path, you already have it. See {{ collections.posts | chapterLink('preinstalled') | safe }} for the full tour.
 
-### Why this is a Game Changer
-With Homebrew, you can install specialized developer tools, better terminal utilities, or even simple games, all while keeping your Steam Deck's operating system pristine and safe.
-
----
-
-Ready for a more powerful alternative? There's a package manager built around instant rollbacks and reproducible setups.
+Homebrew is the simpler of the two home-partition package managers. The other, Nix, asks a bit more of you, and in return can undo any change with a single command.
