@@ -1,32 +1,38 @@
 ---
 layout: base.njk
-title: "🏁 The Basics"
-excerpt: "What is SteamOS and why should noobs care?"
+title: "🏁 What Is SteamOS?"
+excerpt: "What SteamOS is, how its two modes work, and how Windows games run on it."
 tags:
   - posts
   - steamos
   - beginner
 ---
 
-#  SteamOS & The Steam Deck 101
+# What Is SteamOS?
 
-Welcome to the family! SteamOS is the brains behind your Steam Deck, but it's not what most people are used to. 
+Welcome! SteamOS is the operating system on your Steam Deck, and it works differently from what most people are used to. This chapter gives you the big picture. The rest of the series fills in the details, all the way down to how the system updates itself.
 
-## What IS SteamOS?
-SteamOS is an operating system built by Valve, specifically designed to run on the Steam Deck and other handhelds. Unlike Windows, which is built for desktops, SteamOS is built on **Linux** (specifically Arch Linux, btw).
+## A Linux System Built for Games
 
-### Why use Linux?
-Windows is heavy, and it's not great for compact devices. Linux allows Valve to strip away the fluff (like those annoying Windows updates) and focus purely on gaming.
+SteamOS is made by Valve. It runs on the Steam Deck and a few other devices, and it's built on **Linux** (specifically Arch Linux, btw).
 
-## Game Mode vs. Desktop Mode
-SteamOS has two split personalities:
-1. **Game Mode**: This is the console-like interface you see when you turn on your Deck. It's built for navigation with buttons and joysticks.
-2. **Desktop Mode**: Pressing a few buttons lets you switch into a full-blown desktop environment, similar to Windows. We'll be using **[KDE Plasma](https://kde.org/plasma-desktop/)**, the desktop environment that powers SteamOS.
+### Why Linux?
 
-## Is it 'noob' friendly?
-Absolutely. SteamOS is designed to work right out of the box. Most games will 'just work' without you ever needing to touch a line of code.
+Linux is open source, so Valve can change any part of it. That lets Valve build a system around what a handheld needs: boot straight into your games, update itself in the background, and keep the desktop out of your way until you ask for it.
 
-### The 'Proton' Magic Layer
-You might have heard that most games are made for Windows. How do they run on Linux? That's thanks to **[Proton](https://github.com/ValveSoftware/Proton)**, a layer developed by Valve that translates Windows code into something Linux can understand.
+## Game Mode and Desktop Mode
 
-Next, we'll unlock the desktop and show you how to treat your Deck like a real PC!
+SteamOS has two modes:
+
+1. **Game Mode** is the console-style interface you see when you turn on your Deck. It's built for buttons and joysticks.
+2. **Desktop Mode** is a full desktop, a lot like Windows, called **[KDE Plasma](https://kde.org/plasma-desktop/)**. You switch to it from the **Power** menu.
+
+## Do You Need to Know Linux?
+
+No. SteamOS is designed to work out of the box, and most games run without you ever opening a terminal. This series is for when you want to understand what's going on underneath, or do more than the defaults allow.
+
+### How Windows Games Run: Proton
+
+Most PC games are made for Windows. They run on SteamOS thanks to **[Proton](https://github.com/ValveSoftware/Proton)**, a compatibility layer from Valve that translates what a Windows game asks for into something Linux understands. Later in this phase, you'll see where Proton keeps each game's files.
+
+First, let's switch to Desktop Mode and see what your Deck looks like as a PC.
