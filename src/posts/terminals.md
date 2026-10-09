@@ -52,11 +52,14 @@ Install it from **Discover**. Once it's running, press **F12** in Desktop Mode t
 
 A *TTY* (short for teletypewriter) is a text-only terminal that runs outside the graphical desktop entirely. If Desktop Mode freezes, crashes or won't load, the TTY still works.
 
-To open it, press **Ctrl+Alt+F2** on a physical keyboard (USB or Bluetooth). The on-screen keyboard can't help you here, so it's worth keeping a cheap keyboard around.
+To open it, press **Ctrl+Alt+F4** on a physical keyboard (USB or Bluetooth). The on-screen keyboard can't help you here, so it's worth keeping a cheap keyboard around.
 
-You'll see a black screen with a login prompt. Type `deck` as the username, then your password. You're now in a text-only session on tty2.
+You'll see a black screen with a login prompt. Type `deck` as the username, then your password. You're now in a text-only session on tty4.
 
 To get back, press **Ctrl+Alt+F1**. SteamOS runs its graphical session, Game Mode or Desktop Mode, on tty1.
+
+> [!NOTE]
+> **Why F4, when most Linux guides say F2?** SteamOS starts the kernel with the setting `fbcon=vc:4-6` (you can see it with `cat /proc/cmdline`), so text terminals only appear on screen on tty4, tty5 and tty6. **Ctrl+Alt+F2** does switch to tty2, but nothing is drawn there: the screen keeps showing the last picture, and the Deck looks frozen. If that happens, press **Ctrl+Alt+F1** to get back.
 
 The TTY is useful when:
 
@@ -85,7 +88,7 @@ The TTY is useful when:
 | **Dolphin panel** | **F4** in Dolphin | Commands in the folder you're browsing |
 | **Kate panel** | **F4** in Kate | Testing while editing settings files |
 | **Yakuake** | **F12** (after installing) | A terminal that's always one key away |
-| **TTY** | **Ctrl+Alt+F2** | Emergencies when the desktop is broken |
+| **TTY** | **Ctrl+Alt+F4** | Emergencies when the desktop is broken |
 | **KRunner** | **Alt+Space** | Launching apps and quick commands |
 
 You know where to type. The next chapter covers what to type, starting with the first command every Deck owner should run.
