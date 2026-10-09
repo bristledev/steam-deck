@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🚀 Beyond Steam"
-excerpt: "How to play games from Epic, GOG and Amazon with Heroic, set up emulators with EmuDeck, and add any app to your Steam library."
+excerpt: "How to play games from Epic, GOG and Amazon with Heroic, set up emulators with EmuDeck and add any app to your Steam library."
 tags:
   - posts
   - apps
@@ -18,7 +18,7 @@ The Steam Deck is a PC, so Steam isn't the only place your games can come from. 
 The official launchers from other stores are made for Windows, and many don't run well on Linux. The community-built **[Heroic Games Launcher](https://heroicgameslauncher.com/)** handles three of them natively: **[Epic Games](https://www.epicgames.com/)**, **[GOG](https://www.gog.com/)** and **Amazon Games**.
 
 1. Switch to **Desktop Mode**.
-2. Open **Discover**, search for **Heroic**, and click **Install**.
+2. Open **Discover**, search for **Heroic** and click **Install**.
 3. Open Heroic and log in to your accounts.
 
 From there, you can download your games and run them with Proton, just like Steam does. To play them from Game Mode, use Heroic's **Add to Steam** option on a game, or switch on **Add games to Steam automatically** in its settings.
