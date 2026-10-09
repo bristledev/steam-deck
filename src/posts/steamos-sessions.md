@@ -13,20 +13,16 @@ tags:
 
 Every time you power on your Deck, you land in Game Mode without ever seeing a login screen. Press **Switch to Desktop**, and a few seconds later you're on a full Linux desktop. It feels like flipping between two apps, but a lot more happens underneath.
 
-This chapter follows your Deck from power button to Game Mode, look at **Gamescope** (the piece that makes Game Mode feel like a console), and see what actually happens when you switch modes.
+This chapter follows your Deck from the power button to Game Mode, looks at **Gamescope** (the piece that makes Game Mode feel like a console), and shows what actually happens when you switch modes.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel), in Game Mode.
-
----
 
 ## What Is a Session?
 
 When you log in to a computer, Linux starts a **session**: your desktop, your apps, and the background services that go with them. Log out, and the session ends.
 
 Game Mode and Desktop Mode are two *different sessions* for the same `deck` user. They're like two consoles plugged into the same TV, sharing one memory card. Switching modes means logging out of one and logging straight into the other. That's why the screen goes dark for a moment and why apps you left open in Desktop Mode are gone when you come back.
-
----
 
 ## From Power Button to Game Mode
 
@@ -62,8 +58,6 @@ systemctl --user list-units --type=service | grep -E 'gamescope|steam'
 | **`steamos-manager.service`** | Applies hardware settings like the TDP limit |
 | **`steamos-powerbuttond.service`** | Handles the power button while you're in Game Mode |
 
----
-
 ## Gamescope, Game Mode's Compositor
 
 A **compositor** is the program that takes every window and draws them all onto your screen. Every desktop has one. In Game Mode, that job belongs to **Gamescope**, Valve's compositor built specifically for games.
@@ -90,8 +84,6 @@ pgrep -a -x steam
 
 Look for `-gamepadui` (the controller-friendly interface) and `-steamos3` (tells Steam it's running on SteamOS).
 
----
-
 ## SteamOS Manager: The Settings Engine
 
 When you drag the **TDP Limit** slider in the Quick Access menu, Steam doesn't touch the hardware itself. It asks a background service, **SteamOS Manager**, to do it. You can talk to the same service from the terminal with `steamosctl`:
@@ -104,8 +96,6 @@ It prints something like `TDP limit: 15`, the current power limit in watts. Try 
 
 > [!WARNING]
 > **Stick to the `get-` commands.** The `set-` commands change real hardware settings. Use the Quick Access menu for those; it knows the safe ranges for your model.
-
----
 
 ## What Happens When You Switch Modes
 
@@ -133,15 +123,13 @@ steamosctl get-default-login-mode
 
 It prints `game`. If you'd rather boot straight to the desktop, perhaps for a Deck that lives docked under a monitor, `steamosctl set-default-login-mode desktop` changes it, and `steamosctl set-default-login-mode game` changes it back.
 
----
-
 ## Who Gets to Do Admin Things?
 
 Out of the box, your `deck` user has no password. Yet Discover installs apps, you can save Wi-Fi networks, and Steam can eject your SD card, all without asking. Type `sudo` in Konsole, though, and it demands a password. The difference comes down to two separate systems.
 
 SteamOS has two gatekeepers:
 
-- **`sudo`** runs a whole command as `root`, the all-powerful system account. It always asks for your password, which is why you set one in {{ collections.posts | chapterLink('bash') | safe }}.
+- **`sudo`** runs a whole command as `root`, the all-powerful system account. It needs your password, which is why you set one in {{ collections.posts | chapterLink('bash') | safe }}.
 - **polkit** handles requests from apps (like Discover, the Wi-Fi settings or Steam) to do one *specific* admin task. Instead of always asking, it follows a set of rules.
 
 Think of polkit as a bouncer with a guest list. For each kind of request, it checks who's asking and where they are, then either lets them in, asks for ID (your password), or turns them away.
@@ -183,12 +171,8 @@ pkcheck --action-id org.freedesktop.Flatpak.app-install --process $$
 > [!WARNING]
 > **Don't add your own polkit rules.** Custom rules go in `/etc/polkit-1/rules.d/`, which isn't on SteamOS's keep-list, so the next update deletes them (see {{ collections.posts | chapterLink('steamos-updates') | safe }}). More importantly, a loose rule can let any app do admin tasks without asking. Valve's built-in rules are deliberately narrow.
 
----
-
 ## Why This Matters for Background Services
 
 Because Game Mode and Desktop Mode are separate sessions, anything tied to your session stops when you switch. That includes apps you started in Konsole and, by default, user services. This is exactly the problem the `loginctl enable-linger` trick solves later in this series: it keeps your services running no matter which session is open.
-
----
 
 The last chapter of this phase puts the map, the update rules and the session model together: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
