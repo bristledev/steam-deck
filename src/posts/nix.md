@@ -13,7 +13,7 @@ tags:
 
 {{ collections.posts | chapterLink('homebrew') | safe }} is the easy way to add terminal tools to your Deck. **[Nix](https://nixos.org/)** is the other option. It takes a little more getting used to, and in return it keeps every version of your setup, so you can undo an upgrade with one command.
 
-This chapter uses the **[Determinate Nix Installer](https://determinate.systems/nix-installer/)**, which supports the Steam Deck directly.
+This chapter uses the **[Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer)**, which supports the Steam Deck directly. By default it installs *Determinate Nix*, Determinate Systems' build of Nix, which switches on the newer `nix` commands this chapter uses. On our test Deck, `nix --version` prints `nix (Determinate Nix 3.15.2) 2.33.1`.
 
 ## What Is Nix?
 
@@ -42,7 +42,7 @@ Open **Konsole** and run:
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-**What did that just do?** `curl` downloaded the Determinate installer over a secure connection, and `sh -s -- install` ran it. The installer asks for your admin password, sets up Nix in `/nix`, and adds two small setup files that put the `nix` command on your PATH: `/etc/profile.d/nix.sh` for Bash and `/etc/fish/conf.d/nix.fish` for Fish. It also lists them in `/etc/atomic-update.conf.d/nix-installer.conf`, so SteamOS keeps them across updates (see {{ collections.posts | chapterLink('steamos-updates') | safe }}).
+**What did that just do?** `curl` downloaded the Determinate installer over a secure connection, and `sh -s -- install` ran it. The installer asks for your admin password, sets up Nix in `/nix` and adds two small setup files that put the `nix` command on your PATH: `/etc/profile.d/nix.sh` for Bash and `/etc/fish/conf.d/nix.fish` for Fish. It also lists them in `/etc/atomic-update.conf.d/nix-installer.conf`, so SteamOS keeps them across updates (see {{ collections.posts | chapterLink('steamos-updates') | safe }}).
 
 Unlike Homebrew, there's no PATH step to do yourself, but when the change takes effect depends on your shell:
 
