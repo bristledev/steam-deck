@@ -28,6 +28,8 @@ The **Discover Store** is like an App Store for your Steam Deck. You can find it
 2. **Install**: Just click the big **Install** button. 
 3. **Updates**: In the bottom-left of Discover, you'll see an "Update" section. Check this regularly to keep your apps fresh!
 
+Most of Discover's apps come from **[Flathub](https://flathub.org/)**, the main Flatpak app store. You can browse it in a web browser too, and you'll see its name again later in this series.
+
 ## Why some apps ask for "Permissions"
 Since Flatpaks are in a container, they sometimes can't "see" your SD card or other parts of your system by default. 
 
@@ -39,13 +41,13 @@ If you aren't sure where to start in the Discover store, here are a few absolute
 1. **[Yakuake](https://apps.kde.org/yakuake/)**: If you've ever played *Quake* or classic PC games, you know the iconic drop-down developer console. Yakuake brings exactly that to your Steam Deck desktop! Press `F12` (or bind it to a Deck button), and a terminal sleekly drops down from the top of your screen, no matter what app you're in. Press it again, and it instantly hides. It is the ultimate tool for feeling like a true Linux wizard.
 2. **[Flatseal](https://github.com/tchx84/Flatseal)**: As mentioned above, this is the master control panel for fixing app permission issues when a Flatpak can't find your files.
 3. **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)**: An absolute must-have for gamers. It's the easiest way to install custom versions of Proton (like GE-Proton), which can magically fix stubborn Windows games that won't run on standard SteamOS.
-4. **[Prism Launcher](https://prismlauncher.org/)**: The absolute best way to play *Minecraft: Java Edition* on the Steam Deck. It lets you easily manage multiple accounts, automatically download and manage game-changing mods right from the app, and significantly boosts performance.
+4. **[Prism Launcher](https://prismlauncher.org/)**: The absolute best way to play *Minecraft: Java Edition* on the Steam Deck. It lets you easily manage multiple accounts and download mods right from the app, including popular performance mods like Sodium that can make the game run much smoother.
 
 ## Managing Your Apps
-To uninstall an app, just head back to Discover, find the app, and click **Remove**. It’s clean, simple, and won’t leave "junk" behind on your system.
+To uninstall an app, just head back to Discover, find the app, and click **Remove**. The app is gone, and it never touched SteamOS itself.
+
+Discover does keep the app's settings and saved data (in `~/.var/app`), in case you reinstall it later. To delete those too, open the app's page in Discover again and click **Delete settings and user data**.
 
 ---
 
 Now that you know how to install apps from the Discover store, let's look at one of the best ways to play games from other stores and even older consoles.
-
-{% next_chapter %}
