@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🔄 How Updates Really Work"
-excerpt: "What actually happens between 'Update available' and the reboot, which settings survive, and how to roll back."
+excerpt: "What actually happens between 'Update available' and the reboot, which settings survive and how to roll back."
 tags:
   - posts
   - steamos
@@ -18,7 +18,7 @@ In {{ collections.posts | chapterLink('recovery') | safe }}, you learned the sho
 
 ## What Is an Atomic Update?
 
-Imagine a game that autosaves by overwriting your only save file. If the power cuts out halfway through, the save is corrupted and your progress is gone. Smart games write the new save into a **separate slot** first, check it, and only then mark it as the one to load.
+Imagine a game that autosaves by overwriting your only save file. If the power cuts out halfway through, the save is corrupted and your progress is gone. Smart games write the new save into a **separate slot** first, check it and only then mark it as the one to load.
 
 SteamOS updates the same way. It never edits the system you're running. It writes a complete new copy into the spare slot, and switching to it is a single, instant flip. That's what *atomic* means here: the update either happens completely or not at all. There's no half-updated state to get stuck in.
 
@@ -84,16 +84,18 @@ grep -vE '^\s*(#|$)' /usr/lib/rauc/atomic-update-keep.conf
 - **SSH keys** (so other computers still recognize your Deck)
 - **Enabled, disabled and custom background services** (`systemd/system`)
 - **Your hostname, timezone and DNS settings**
-- **Your update channel**, plus a few display and input settings
+- **Your update channel** (`steamos-atomupd/preferences.conf`)
+- **WireGuard VPN configs** (`wireguard`)
+- **Your login screen and input method settings** (`sddm.conf.d` and `dconf`)
 
 That's why `sudo systemctl enable sshd` from {{ collections.posts | chapterLink('ssh') | safe }} keeps working after updates: enabled services are on the list. A hand-edited config file elsewhere in `/etc` isn't, and it quietly reverts to Valve's version.
 
-### Nothing Is Truly Lost
+### Where Discarded Settings Go
 
 Before discarding anything, SteamOS saves two safety copies:
 
 - **`/etc/previous`** holds every `/etc` change you had *before* the last update, so you can compare or copy things back.
-- **`/var/lib/steamos-atomupd/etc_backup`** keeps compressed backups from your last five updates.
+- **`/var/lib/steamos-atomupd/etc_backup`** keeps compressed backups from your last five updates, or fewer if the small `var` partition runs short of space.
 
 ```bash
 ls /etc/previous
