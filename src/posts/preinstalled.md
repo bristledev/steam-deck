@@ -177,7 +177,7 @@ To try `tmux`, start a named session, run something long inside it, then detach:
 tmux new -s download
 ```
 
-Press `Ctrl+B`, then `D`, to detach. The session keeps running in the background. Get back to it any time with `tmux attach -t download`.
+Press `Ctrl+B`, then `D`, to detach. The session keeps running in the background, even if you close Konsole or switch to Game Mode and back. Get back to it any time with `tmux attach -t download`.
 
 > [!WARNING]
 > **Over SSH, plain `tmux` dies when you disconnect.** Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True` in `/etc/systemd/logind.conf.d/killuserprocesses.conf`. When an SSH connection closes, systemd kills everything still running inside it, and that includes a tmux session started there. Start tmux outside the connection instead:
