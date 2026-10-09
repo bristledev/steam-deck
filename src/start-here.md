@@ -59,41 +59,42 @@ Once the basics feel comfortable, these phases cover the Linux side of the Steam
 |---|---------|-------------------|
 | 18 | {{ collections.posts | chapterLink('ssh') | safe }} | Remote terminal access and file transfers over Wi-Fi |
 | 19 | {{ collections.posts | chapterLink('tailscale') | safe }} | Secure access to your Deck from anywhere |
+| 20 | {{ collections.posts | chapterLink('wireguard') | safe }} | Connecting to your home network or a VPN provider with WireGuard |
 
 ### Phase 6: How SteamOS Works
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 20 | {{ collections.posts | chapterLink('steamos-anatomy') | safe }} | The partitions, read-only image and writable layers that make up SteamOS |
-| 21 | {{ collections.posts | chapterLink('steamos-updates') | safe }} | What really happens during an update, which settings survive and how to roll back |
-| 22 | {{ collections.posts | chapterLink('steamos-sessions') | safe }} | How Game Mode boots, what Gamescope does and what switching modes really does |
-| 23 | {{ collections.posts | chapterLink('steamos-extending') | safe }} | Every way to add software that survives updates, and the one that always gets wiped |
+| 21 | {{ collections.posts | chapterLink('steamos-anatomy') | safe }} | The partitions, read-only image and writable layers that make up SteamOS |
+| 22 | {{ collections.posts | chapterLink('steamos-updates') | safe }} | What really happens during an update, which settings survive and how to roll back |
+| 23 | {{ collections.posts | chapterLink('steamos-sessions') | safe }} | How Game Mode boots, what Gamescope does and what switching modes really does |
+| 24 | {{ collections.posts | chapterLink('steamos-extending') | safe }} | Every way to add software that survives updates, and the one that always gets wiped |
 
 ### Phase 7: Package Managers
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 24 | {{ collections.posts | chapterLink('homebrew') | safe }} | Installing terminal tools that SteamOS doesn't include |
-| 25 | {{ collections.posts | chapterLink('nix') | safe }} | A reproducible package manager with stronger rollback habits |
+| 25 | {{ collections.posts | chapterLink('homebrew') | safe }} | Installing terminal tools that SteamOS doesn't include |
+| 26 | {{ collections.posts | chapterLink('nix') | safe }} | A reproducible package manager with stronger rollback habits |
 
 ### Phase 8: Scripting & Services
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 26 | {{ collections.posts | chapterLink('github') | safe }} | Fetching scripts from the internet without being reckless |
-| 27 | {{ collections.posts | chapterLink('python') | safe }} | Running and understanding Python scripts on your Deck |
-| 28 | {{ collections.posts | chapterLink('systemd') | safe }} | Automating tasks as background services |
+| 27 | {{ collections.posts | chapterLink('github') | safe }} | Fetching scripts from the internet without being reckless |
+| 28 | {{ collections.posts | chapterLink('python') | safe }} | Running and understanding Python scripts on your Deck |
+| 29 | {{ collections.posts | chapterLink('systemd') | safe }} | Automating tasks as background services |
 
 ### Phase 9: Containers & Sandboxing
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 29 | {{ collections.posts | chapterLink('podman') | safe }} | Running isolated app containers |
-| 30 | {{ collections.posts | chapterLink('distrobox') | safe }} | Using a full Linux distro inside your Deck |
+| 30 | {{ collections.posts | chapterLink('podman') | safe }} | Running isolated app containers |
+| 31 | {{ collections.posts | chapterLink('distrobox') | safe }} | Using a full Linux distro inside your Deck |
 
 ### Phase 10: Terminal Extras
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 31 | {{ collections.posts | chapterLink('starship') | safe }} | A more informative terminal prompt |
-| 32 | {{ collections.posts | chapterLink('ricing') | safe }} | Tools that make the terminal nicer to look at and easier to read |
-| 33 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts for editing commands quickly |
-| 34 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Jumping to folders and searching your command history in a few keystrokes |
+| 32 | {{ collections.posts | chapterLink('starship') | safe }} | A more informative terminal prompt |
+| 33 | {{ collections.posts | chapterLink('ricing') | safe }} | Tools that make the terminal nicer to look at and easier to read |
+| 34 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts for editing commands quickly |
+| 35 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Jumping to folders and searching your command history in a few keystrokes |
 
 ## Appendix
 
