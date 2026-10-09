@@ -11,7 +11,7 @@ tags:
 
 # Terminal Eye Candy
 
-With {{ collections.posts | chapterLink('starship') | safe }}, your prompt shows more than a folder name. This chapter covers tools that do the same for the rest of the terminal: system information at a glance, color-coded files, readable folder listings, and a few things that are just for fun. Customizing your setup like this is known as *ricing* in Linux circles.
+With {{ collections.posts | chapterLink('starship') | safe }}, your prompt shows more than a folder name. This chapter covers tools that do the same for the rest of the terminal: system information at a glance, color-coded files, readable folder listings and a few things that are just for fun. Customizing your setup like this is known as *ricing* in Linux circles.
 
 > [!NOTE]
 > Every tool in this chapter that SteamOS doesn't already include can be installed with {{ collections.posts | chapterLink('homebrew') | safe }}, so we show the `brew install` command for each one. They're also available through {{ collections.posts | chapterLink('nix') | safe }}.
@@ -94,7 +94,7 @@ It's useful for more than looks:
 - **Finding runaway programs:** if a game has crashed but something is still using the CPU, btop shows you what it is.
 
 > [!TIP]
-> Press **Esc** inside btop to open its menu, then **Options** to switch color themes. "TTY" is plain, "Default" is colorful, and "dracula" and "gruvbox_dark" are popular choices.
+> Press **Esc** inside btop to open its menu, then **Options** to switch color themes. "TTY" is plain and "Default" is colorful; "dracula" and "gruvbox_dark" are popular choices.
 
 ## bat: cat With Colors
 
@@ -146,7 +146,7 @@ Try it:
 eza -la --icons --git
 ```
 
-You'll see file types in different colors, permissions, readable file sizes, Git status markers, and an icon for each file type (if you have a Nerd Font installed; see the Starship chapter).
+You'll see file types in different colors, permissions, readable file sizes, Git status markers and an icon for each file type (if you have a Nerd Font installed; see the Starship chapter).
 
 ### Tree View
 
