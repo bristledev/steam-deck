@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🧰 What's Already Installed"
-excerpt: "The surprisingly big toolbox that ships with SteamOS, and how to check for a tool before you install it."
+excerpt: "The tools that already ship with SteamOS, and how to check for a tool before you install it."
 tags:
   - posts
   - steamos
@@ -20,7 +20,7 @@ This chapter is a guided tour of the best ones, grouped by job. More importantly
 
 ---
 
-## 📦 Where Do These Tools Come From?
+## Where Do These Tools Come From?
 
 SteamOS is built on Arch Linux, and Arch installs software with a package manager called **pacman**. Valve builds each SteamOS release from a fixed list of pacman packages, then seals the result into the read-only system image you met in {{ collections.posts | chapterLink('recovery') | safe }}.
 
@@ -30,11 +30,11 @@ The good news: even though you can't *change* the package list, you can freely *
 
 ---
 
-## 🔎 Check Before You Install
+## Check Before You Install
 
 Three commands answer almost every "do I already have this?" question. None of them need `sudo`, and none of them change anything.
 
-### Is a command installed?
+### Is a Command Installed?
 
 Ask your shell where a command lives:
 
@@ -44,7 +44,7 @@ command -v htop
 
 If the tool exists, this prints its location (`/usr/bin/htop`). If it prints nothing, the tool isn't installed.
 
-### Which package does it come from?
+### Which Package Does It Come From?
 
 Ask pacman who owns that file:
 
@@ -54,7 +54,7 @@ pacman -Qo /usr/bin/htop
 
 You'll see something like `/usr/bin/htop is owned by htop 3.5.2-1`. The `-Q` means "query what's installed" and the `o` means "owner". A result here tells you the tool is part of SteamOS itself, not something you added later.
 
-### What does a package do?
+### What Does a Package Do?
 
 Ask pacman for the package's details:
 
@@ -69,7 +69,7 @@ pacman -Qi ncdu
 
 ---
 
-## 📊 Watching Your System
+## Watching Your System
 
 | Command | What it does | Example |
 | :--- | :--- | :--- |
@@ -83,7 +83,7 @@ pacman -Qi ncdu
 
 Press `q` to quit `htop`, `btop` and `powertop`.
 
-### Check your battery's health
+### Check Your Battery's Health
 
 Run this in Konsole:
 
@@ -93,22 +93,22 @@ upower -i $(upower -e | grep BAT)
 
 **What did that just do?** The part in `$( )` runs first and finds your battery's name, then `upower -i` prints its details. Look for these lines:
 
-- `percentage` — the current charge.
-- `energy-rate` — how many watts are flowing in (charging) or out (in use) right now.
-- `capacity` — battery health. `91%` means the battery holds 91% of the charge it did when new.
+- `percentage`: the current charge.
+- `energy-rate`: how many watts are flowing in (charging) or out (in use) right now.
+- `capacity`: battery health. `91%` means the battery holds 91% of the charge it did when new.
 
-### Check temperatures
+### Check Temperatures
 
 Run `sensors` and you'll get a block for each part of the Deck. The lines worth knowing:
 
-- `edge` under `amdgpu` — the GPU temperature.
-- `Tctl` under `k10temp` — the CPU temperature.
-- `Composite` under `nvme` — the SSD temperature.
-- `slowPPT` — how many watts the chip is drawing, next to its current limit (`cap`). This is the number the **TDP Limit** slider from {{ collections.posts | chapterLink('performance') | safe }} controls.
+- `edge` under `amdgpu`: the GPU temperature.
+- `Tctl` under `k10temp`: the CPU temperature.
+- `Composite` under `nvme`: the SSD temperature.
+- `slowPPT`: how many watts the chip is drawing, next to its current limit (`cap`). This is the number the **TDP Limit** slider from {{ collections.posts | chapterLink('performance') | safe }} controls.
 
 ---
 
-## 💾 Disks and Storage
+## Disks and Storage
 
 | Command | What it does | Example |
 | :--- | :--- | :--- |
@@ -136,7 +136,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 ---
 
-## 🌐 Network
+## Network
 
 | Command | What it does | Example |
 | :--- | :--- | :--- |
@@ -157,7 +157,7 @@ rsync -avP ~/ROMs/ /run/media/deck/<card-name>/ROMs/
 
 ---
 
-## 🗂️ Finding and Handling Files
+## Finding and Handling Files
 
 | Command | What it does | Example |
 | :--- | :--- | :--- |
@@ -168,7 +168,7 @@ rsync -avP ~/ROMs/ /run/media/deck/<card-name>/ROMs/
 | **`jq`** | Reads and filters JSON files | `jq . settings.json` |
 | **`7z`** / **`unzip`** / **`unrar`** | Extract archives | `7z x archive.7z` |
 
-`fd` is a superpower for the Proton maze from {{ collections.posts | chapterLink('proton') | safe }}. This finds every `.sav` file across all of your games' fake `C:` drives at once:
+`fd` is especially handy for the Proton prefixes from {{ collections.posts | chapterLink('proton') | safe }}. This finds every `.sav` file across all of your games' fake `C:` drives at once:
 
 ```bash
 fd -e sav . ~/.local/share/Steam/steamapps/compatdata
@@ -178,12 +178,12 @@ fd -e sav . ~/.local/share/Steam/steamapps/compatdata
 
 ---
 
-## ✏️ Editors and Long-Running Sessions
+## Editors and Long-Running Sessions
 
-- **`nano`** — the beginner-friendly terminal editor used throughout this series. The shortcuts are listed along the bottom of the screen.
-- **`vim`** — a powerful editor with a steep learning curve. You'll meet it sooner than you think (see below).
-- **`kate`** — KDE's graphical text editor, for when you'd rather use a mouse.
-- **`tmux`** — keeps terminal sessions running after you close the window. This becomes priceless once you connect over SSH in the next chapter.
+- **`nano`**: the beginner-friendly terminal editor used throughout this series. The shortcuts are listed along the bottom of the screen.
+- **`vim`**: a powerful editor with a steep learning curve. You'll meet it sooner than you think (see below).
+- **`kate`**: KDE's graphical text editor, for when you'd rather use a mouse.
+- **`tmux`**: keeps terminal sessions running after you close the window. This is especially useful once you connect over SSH in the next chapter.
 
 To try `tmux`, start a named session, run something long inside it, then detach:
 
@@ -234,16 +234,16 @@ In Desktop Mode, Fish inherits vim from the session just like Bash does. But Fis
 
 ---
 
-## 🎮 Gaming and Graphics
+## Gaming and Graphics
 
-- **`mangohud`** — the performance overlay you switch on from the Quick Access menu is drawn by MangoHud. In Desktop Mode you can add it to any game with the launch option `mangohud %command%`.
-- **`gamescope`** — the compositor that runs Game Mode. The frame rate limit and FSR scaling from {{ collections.posts | chapterLink('performance') | safe }} are Gamescope features.
-- **`vulkaninfo`** — reports your GPU and driver. Run `vulkaninfo --summary` and look for `deviceName`; on an LCD Deck it shows `AMD Custom GPU 0405 (RADV VANGOGH)`.
-- **`ffmpeg`** — a full video and audio converter. For example, `ffmpeg -i clip.mkv clip.mp4` converts a recording into a format your phone can play.
+- **`mangohud`**: the performance overlay you switch on from the Quick Access menu is drawn by MangoHud. In Desktop Mode you can add it to any game with the launch option `mangohud %command%`.
+- **`gamescope`**: the compositor that runs Game Mode. The frame rate limit and upscaling from {{ collections.posts | chapterLink('performance') | safe }} are Gamescope features.
+- **`vulkaninfo`**: reports your GPU and driver. Run `vulkaninfo --summary` and look for `deviceName`; on an LCD Deck it shows `AMD Custom GPU 0405 (RADV VANGOGH)`.
+- **`ffmpeg`**: a full video and audio converter. For example, `ffmpeg -i clip.mkv clip.mp4` converts a recording into a format your phone can play.
 
 ---
 
-## 🛠️ SteamOS's Own Commands
+## SteamOS's Own Commands
 
 Valve includes a set of commands that only exist on SteamOS:
 
@@ -264,7 +264,7 @@ Valve includes a set of commands that only exist on SteamOS:
 
 ---
 
-## 🚫 What's *Not* Included (And Why That's Fine)
+## What's Not Included
 
 Knowing what's missing saves you from hunting for it:
 
