@@ -12,7 +12,7 @@ tags:
 
 # The Fish Shell
 
-In {{ collections.posts | chapterLink('bash') | safe }}, you typed commands into Bash, the shell SteamOS uses by default. Bash works, but it doesn't help you much: it won't remind you of commands you've used before or warn you about a typo until you press **Enter**. **[Fish](https://fishshell.com/)** (the Friendly Interactive Shell) does both.
+In {{ collections.posts | chapterLink('bash') | safe }}, you typed commands into Bash, the shell SteamOS uses by default. Bash works, but it only helps when you ask: you press **Up Arrow** to find an old command, and you find out about a typo only after you press **Enter**. **[Fish](https://fishshell.com/)** (the Friendly Interactive Shell) suggests commands as you type and highlights typos before you run them.
 
 ## Trying Fish
 
