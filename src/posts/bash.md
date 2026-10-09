@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🐧 Your First Terminal Commands"
-excerpt: "Set your admin password, learn five everyday commands, and find out what a command does before you run it."
+excerpt: "Set your admin password, learn five everyday commands and find out what a command does before you run it."
 tags:
   - posts
   - terminal
@@ -11,7 +11,7 @@ tags:
 
 # Your First Terminal Commands
 
-The terminal can look intimidating, especially if you've only seen it in videos where someone types very fast. It's another way to give your Deck instructions: you type a command, press **Enter**, and the Deck does it. For some jobs, that's much faster than clicking.
+The terminal can look intimidating, especially if you've only seen it in videos where someone types very fast. It's another way to give your Deck instructions: you type a command, press **Enter** and the Deck does it. For some jobs, that's much faster than clicking.
 
 ## Konsole and Bash
 
@@ -23,7 +23,7 @@ Before your cursor, you'll see the *prompt*:
 (deck@steamdeck ~)$
 ```
 
-It tells you who you are (`deck`), which computer you're on (`steamdeck`), and which folder you're in (`~`, your home folder). The `$` means Bash is ready for a command.
+It tells you who you are (`deck`), which computer you're on (`steamdeck`) and which folder you're in (`~`, your home folder). The `$` means Bash is ready for a command.
 
 ## Set Your Admin Password First
 
@@ -73,7 +73,7 @@ Paste a command into **[Explainshell](https://explainshell.com/)**, and it expla
 
 ### cheat.sh
 
-For quick examples of how to use a command, ask cheat.sh from the terminal:
+For quick examples of how to use a command, ask **[cheat.sh](https://cheat.sh/)** from the terminal:
 
 ```bash
 curl cht.sh/ls
