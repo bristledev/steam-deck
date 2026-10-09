@@ -13,7 +13,7 @@ tags:
 
 By now you've installed apps, opened a terminal and even connected to your Deck from another computer. You've also read "SteamOS is read-only" many times. This phase looks at *how* it all fits together.
 
-This chapter is the map. Once you know where everything lives, a lot of earlier rules make sense: why `pacman` installs vanish, why Flatpaks don't, and why your Deck can survive a broken update.
+This chapter is the map. Once you know where everything lives, a lot of earlier rules make sense: why `pacman` installs vanish, why Flatpaks don't and why your Deck can survive a broken update.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel). Every Steam Deck uses the same layout; only the size of the biggest partition changes with your storage.
@@ -122,7 +122,7 @@ You'll find things like `hostname`, `passwd`, `NetworkManager` (your Wi-Fi) and 
 
 ## `/var`: The Per-Slot Workspace
 
-`/var` holds system data that changes all the time: logs, caches, databases, and the `/etc` tracing paper you just saw. Each slot has its own small `var` partition (256 MB), mounted at `/var`.
+`/var` holds system data that changes all the time: logs, caches, databases and the `/etc` tracing paper you just saw. Each slot has its own small `var` partition (256 MB), mounted at `/var`.
 
 Because it's per-slot, the `var` that goes with slot A is separate from the one that goes with slot B. When SteamOS updates, it copies your current `var` across to the other slot, so your logs and system data carry over. The one thing filtered on the way is the `/etc` tracing paper, as the note above says.
 
@@ -152,6 +152,7 @@ The output, `/dev/nvme0n1p8[/.steamos/offload/nix]`, means "`/nix` is really thi
 | **`/var/log`** | System logs, kept across updates |
 | **`/var/cache/pacman`** | Downloaded package files |
 | **`/var/lib/docker`** | Container storage |
+| **`/var/lib/systemd/coredump`**, **`/var/lib/steamos-log-submitter`** | Crash dumps and the reports SteamOS's log submitter collects |
 | **`/root`**, **`/srv`**, **`/var/tmp`** | Admin files, server data and long-lived temp files |
 
 That's why your Flatpaks and Nix packages survive every SteamOS update: they physically live on the home partition, the memory card that updates never touch.
