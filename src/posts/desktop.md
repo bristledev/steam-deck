@@ -1,60 +1,65 @@
 ---
 layout: base.njk
 title: "🖥️ Desktop Mode"
-excerpt: "Unlocking the power of a full Linux PC."
+excerpt: "How to switch to Desktop Mode, control it with the Deck's buttons, and install your first apps."
 tags:
   - posts
   - steamos
   - beginner
 ---
 
-#  Desktop Mode Unlocked 
+# Desktop Mode
 
-Ready to make your Steam Deck a full-blown productivity (or even *more* gaming) machine? Let's dive into **Desktop Mode**.
+Game Mode is built for playing. Desktop Mode turns your Steam Deck into a regular PC, with windows, a file manager and an app store. It's where you'll install most apps, manage files and, later in this series, open a terminal.
 
 ## How to Switch
-To get to Desktop Mode:
-1. Press the **Steam Button** on your Deck.
-2. Navigate down to **Power**.
+
+1. Press the **Steam** button on your Deck.
+2. Go down to **Power**.
 3. Select **Switch to Desktop**.
 
-Your Deck will flicker for a second and then—boom—it's a desktop.
+The screen goes dark for a moment, then the desktop appears.
 
 To go back, double-click the **Return to Gaming Mode** icon on the desktop. Any apps you left open in Desktop Mode will close, so save your work first.
 
-## A New Window
-SteamOS uses a desktop called **KDE Plasma**. It looks and feels very similar to Windows 11. You have a taskbar (at the bottom), a start menu (bottom-left), and your windows.
+## Finding Your Way Around
 
-### Desktop Tips:
+SteamOS's desktop is called **KDE Plasma**, and it's laid out much like Windows. There's a taskbar along the bottom, and the **Application Launcher** (Plasma's start menu) sits in the bottom-left corner.
 
-By default, Steam gives you a powerful set of controls to navigate the desktop:
+### Controlling the Desktop
+
+Steam gives the Deck's buttons a desktop layout by default:
 
 ![Steam Deck Desktop Controller Configuration](/assets/desktop-controller-settings.png)
 
-- **Right Trackpad**: Moves the mouse. (**R2** to Left-Click, **L2** to Right-Click).
-- **Left Trackpad**: Middle-mouse click (press) or scroll (swipe).
-- **R1 / L1**: Alt and Control keys.
-- **R5 / R4**: Page Down and Page Up.
-- **Steam Button + X**: Brings up the on-screen keyboard. (Crucial!)
-- **Face Buttons**: **A** (Enter), **B** (Escape), **X** (Keyboard), **Y** (Space).
-- **Joysticks**: Left acts as arrows; Right acts as a mouse.
+| Control | What it does |
+| :--- | :--- |
+| **Right trackpad** | Moves the mouse pointer |
+| **R2** / **L2** | Left click / right click |
+| **Left trackpad** | Scrolls; press it for a middle click |
+| **Right joystick** | Also moves the mouse |
+| **Left joystick** | Arrow keys |
+| **A** / **B** / **Y** | Enter / Escape / Space |
+| **X**, or **Steam** button + **X** | Shows the on-screen keyboard |
+| **L1** / **R1** | Ctrl / Alt |
+| **R4** / **R5** | Page Up / Page Down |
 
-## The App Store (Discover)
-In Desktop Mode, you get most apps from the **Discover Software Center** instead of downloading installers from websites (like .exe files). A few community tools, like EmuDeck and Decky Loader, do come with their own installers; we'll cover those later.
+You'll need the on-screen keyboard often, so **Steam** + **X** is the one to remember. A USB or Bluetooth mouse and keyboard also work, and make longer sessions much more comfortable.
 
-Think of it like the Apple App Store or Google Play Store. Search for apps like:
-- **Discord**
-- **Spotify**
-- **Firefox** (or Chrome)
-- **VLC**
+## Getting Apps: Discover
+
+In Desktop Mode, you get most apps from **Discover**, SteamOS's app store, instead of downloading installers from websites. A few community tools, like EmuDeck and Decky Loader, come with their own installers instead; we'll cover those later.
+
+Search Discover for apps like **Discord**, **Spotify**, **Firefox** or **VLC**, then click **Install**.
 
 ![The Discover Software Center on SteamOS](/assets/discover-store.png)
 
-Just click 'Install' and you're good to go. These apps are 'Flatpaks', which means they're isolated and won't break your system.
+Most apps in Discover are *Flatpaks*: each one runs separately from the system, so installing one can't damage SteamOS. You'll learn how they work in the next phase.
 
-## File Sharing (The Explorer)
-The file explorer is called **Dolphin**. It's just like File Explorer, but a bit more powerful. 
+## Browsing Files: Dolphin
 
-*Self-care tip*: If you're coming from Windows, don't worry about the weird file paths (like /home/deck). Just know that everything you need is usually in your **Home** folder.
+The file manager is called **Dolphin**. It works much like File Explorer on Windows, with a few extras we'll cover in the next chapter.
 
-Speaking of those weird paths, let's figure out where everything actually lives on your Deck.
+If you're coming from Windows, paths like `/home/deck` will look strange at first. For now, just know that almost everything you need is in your **Home** folder.
+
+Next, let's work out where everything actually lives on your Deck.
