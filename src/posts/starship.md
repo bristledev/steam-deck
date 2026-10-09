@@ -11,7 +11,7 @@ tags:
 
 # A Better Prompt (Starship)
 
-Your *prompt* is the text to the left of your cursor in the terminal. On SteamOS, it's `(deck@steamdeck ~)$` by default: your username, your Deck's name and the current folder. **[Starship](https://starship.rs/)** replaces it with a prompt that also shows useful context when it's relevant, like the Git branch of the project you're in, the Python version it uses, or a warning when your battery drops below 10%.
+Your *prompt* is the text to the left of your cursor in the terminal. On SteamOS, it's `(deck@steamdeck ~)$` by default: your username, your Deck's name and the current folder. **[Starship](https://starship.rs/)** replaces it with a prompt that also shows useful context when it's relevant, like the Git branch of the project you're in, the Python version it uses or a warning when your battery drops below 10%.
 
 Starship is a single program, configured with one text file, and it works in Bash, Fish and many other shells.
 
