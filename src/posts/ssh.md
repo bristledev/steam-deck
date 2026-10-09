@@ -11,9 +11,9 @@ tags:
 
 # Wireless File Transfers (SSH)
 
-Sooner or later, you'll want to move a big folder from your PC to your Deck: mods, videos, or game files. A USB drive or cloud storage works, but there's a simpler option once it's set up: copy the files straight across your home Wi-Fi.
+Sooner or later, you'll want to move a big folder from your PC to your Deck: mods, videos or game files. A USB drive or cloud storage works, but once it's set up, copying straight across your home Wi-Fi is simpler.
 
-By turning on **SSH** (Secure Shell), you can wirelessly drag and drop files from your Windows, Mac, or Linux computer directly onto the Steam Deck using your home Wi-Fi network. SSH gives you a secure connection to your Deck, and file transfer apps use a part of it called **SFTP** (SSH File Transfer Protocol) to move files over that connection.
+That's what **SSH** (Secure Shell) is for. It gives your Windows, Mac or Linux computer a secure connection to your Deck, and file transfer apps use a part of it called **SFTP** (SSH File Transfer Protocol) to drag and drop files over that connection.
 
 ## Step 1: Tell Your Deck to Listen
 
@@ -34,11 +34,11 @@ By default, the Steam Deck ignores connections from other computers. We need to 
 **What did that just do?** `enable` tells the SSH service to start every time your Deck boots, and `--now` starts it right away too, so there's no need to reboot. The setting even survives SteamOS updates; you'll see why in {{ collections.posts | chapterLink('steamos-updates') | safe }}.
 
 > [!CAUTION]
-> **Enabling SSH means any device on the same network can try to log in to your Deck.** Use a strong admin password, never "1234" or "password". If you take your Deck to a café, hotel, or other network you don't trust, switch SSH off first with `sudo systemctl disable --now sshd`, then turn it back on at home.
+> **Enabling SSH means any device on the same network can try to log in to your Deck.** Use a strong admin password, never "1234" or "password". If you take your Deck to a café, hotel or other network you don't trust, switch SSH off first with `sudo systemctl disable --now sshd`, then turn it back on at home.
 
 ## Step 2: Grab Your Deck's IP Address
 
-Your computer needs to know where the Steam Deck is on the network. This is its **IP Address**.
+Your computer needs to know where the Steam Deck is on the network. This is its **IP address**.
 
 To find it, open **Konsole** and run:
 ```bash
@@ -61,9 +61,9 @@ But if you want to **drag and drop files visually**, you need an SFTP app.
 ### Windows: WinSCP
 **[WinSCP](https://winscp.net/)** is a free file transfer app for Windows.
 
-1. Download, install, and open WinSCP.
+1. Download, install and open WinSCP.
 2. In the "Login" screen, set the **File Protocol** to **SFTP**.
-3. In **Host name**, type your Deck's IP Address (e.g. `192.168.1.50`).
+3. In **Host name**, type your Deck's IP address (e.g. `192.168.1.50`).
 4. Set **User name** to `deck`.
 5. Enter the admin password you set in {{ collections.posts | chapterLink('bash') | safe }}.
 6. Click **Login**.
@@ -73,7 +73,7 @@ Both **[FileZilla](https://filezilla-project.org/)** and **[Cyberduck](https://c
 
 1. Open the app and create a new connection.
 2. Choose **SFTP** as the protocol.
-3. Enter the IP Address, username (`deck`), and password.
+3. Enter the IP address, username (`deck`) and password.
 4. Click **Connect**.
 
 > [!TIP]
