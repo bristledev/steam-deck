@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🎯 AppImages"
-excerpt: "Portable apps that just work."
+excerpt: "How to run apps that come as a single downloadable file, and the trade-offs compared to Flatpaks."
 tags:
   - posts
   - apps
@@ -9,44 +9,50 @@ tags:
   - intermediate
 ---
 
-#  AppImages – The "Portable" Apps of Linux
+# AppImages
 
-If you’re coming from Windows or macOS, you’re used to downloading a `.exe` or `.dmg` file and just double-clicking it. On Linux, we have something very similar called an **[AppImage](https://appimage.org/)**.
+On Windows, you download a `.exe` and double-click it. Linux has something similar: the **[AppImage](https://appimage.org/)**. Some apps that aren't in Discover, or whose newest version isn't there yet, are offered this way on their own websites.
 
-## What is an AppImage?
-An **AppImage** is a single file that contains everything an app needs to run. 
-- It’s like a "portable" app on Windows. 
-- It doesn't need to be "installed" into your system.
-- You can keep it anywhere (like on your SD card or in your Downloads folder).
+## What Is an AppImage?
 
-## How to use an AppImage
-This is the part that trips up most beginners. Because Linux is secure, you can't just run any file you download. You have to tell the computer that it’s "allowed" to run.
+An AppImage is a single file that contains an app and everything it needs to run, much like a portable app on Windows.
 
-1. **Download**: Download your `.AppImage` file (like **[Kdenlive](https://kdenlive.org/)**, **[Krita](https://krita.org/)**, or **[balenaEtcher](https://etcher.balena.io/)**).
-2. **Right-Click**: Right-click the file and select **Properties**.
-3. **Permissions**: Go to the **Permissions** tab.
-4. **Make Executable**: Check the box that says **"Is executable"**.
-5. **Run**: Now you can just double-click the file to start the app!
+- There's nothing to install. The file *is* the app.
+- You can keep it anywhere, such as your `Downloads` folder or your SD card.
+- Deleting the file removes the app.
 
-## Why use them on a Steam Deck?
-AppImages are fantastic because they:
-- **Don't touch the core OS**: Just like Flatpaks, they keep your system clean.
-- **Can be grouped**: You can make a folder called `Applications` in your home directory and keep all your AppImages there.
-- **Work anywhere**: You can even put them on a USB drive and run them on another Linux PC!
+## Running an AppImage
+
+Linux won't run a downloaded file until you mark it as a program. That's a safety measure, and it's the step that trips up most people.
+
+1. **Download** the `.AppImage` file from the app's official site. **[Kdenlive](https://kdenlive.org/)**, **[Krita](https://krita.org/)** and **[balenaEtcher](https://etcher.balena.io/)** all offer one.
+2. In Dolphin, **right-click** the file and select **Properties**.
+3. Open the **Permissions** tab.
+4. Tick **Allow executing file as program**, then click **OK**.
+5. **Double-click** the file to start the app.
+
+## Pros and Cons
+
+AppImages have real advantages:
+
+- **They don't touch the system.** Like Flatpaks, they live in your home folder and survive SteamOS updates.
+- **They're easy to organize.** Many people keep them all in one folder, such as `~/Applications`.
+- **They're portable.** The same file runs on most other Linux PCs.
+
+They also have two important downsides.
 
 > [!WARNING]
 > **AppImages are not sandboxed.** A Flatpak runs inside a container with limited permissions, but an AppImage runs with full access to everything your `deck` user can touch, including all your files. Only run AppImages from the app's official website or GitHub page.
 
 AppImages also don't update through Discover. Some include their own updater; for the rest, download the new version and replace the old file.
 
-## Pro-Tip: Adding to Steam
-Just like with Flatpaks, you can add an AppImage to your Steam library so you can launch it in **Game Mode**. 
+## Adding an AppImage to Steam
 
-1. Go to Steam in **Desktop Mode**.
-2. Click **Games** -> **Add a Non-Steam Game...**
-3. Click **Browse** and navigate to where you saved your AppImage.
-4. Select it and click **Add Selected Programs**.
+To launch an AppImage from Game Mode, add it to your Steam library:
 
----
+1. Open Steam in **Desktop Mode**.
+2. Go to **Games → Add a Non-Steam Game to My Library...**
+3. Click **Browse** and find your AppImage.
+4. Select it, then click **Add Selected Programs**.
 
-AppImages bring that familiar "download and run" feeling to Linux. Now that you know the two main ways to get apps on your Deck—**Flatpaks** and **AppImages**—let's squeeze more speed and battery life out of it.
+That covers the main ways to get apps onto your Deck. Next, we'll look at the settings that control how well your games run, and how long your battery lasts.
