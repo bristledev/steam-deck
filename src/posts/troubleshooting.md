@@ -11,7 +11,7 @@ tags:
 
 # Fixing Games That Won't Run
 
-You install a game, press **Play**, and nothing happens. Or it crashes, or runs at 5 FPS. The five steps below cover the usual fixes. Work through them in order: each one takes a little more effort than the last.
+You install a game, press **Play** and nothing happens. Or it crashes, or runs at 5 FPS. The five steps below cover the usual fixes. Work through them in order: each one takes a little more effort than the last.
 
 ## Step 1: Check ProtonDB
 
@@ -49,9 +49,9 @@ If none of Valve's versions work, try **[GE-Proton](https://github.com/GloriousE
 
 ### Installing GE-Proton with ProtonUp-Qt
 
-1. In Desktop Mode, open **Discover**, search for **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)**, and install it.
+1. In Desktop Mode, open **Discover**, search for **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)** and install it.
 2. Open ProtonUp-Qt and click **Add version**.
-3. Select **GE-Proton**, pick the latest version, and install it.
+3. Select **GE-Proton**, pick the latest version and install it.
 4. Restart Steam.
 5. Back in the game's **Properties → Compatibility**, the new GE-Proton version now appears in the list.
 
@@ -62,7 +62,7 @@ If none of Valve's versions work, try **[GE-Proton](https://github.com/GloriousE
 
 *Launch options* are extra settings Steam passes to a game when it starts. ProtonDB reports often include them.
 
-To set them, select the game, then the **gear icon → Properties**, and paste them into **Launch Options** on the **General** page.
+To set them, select the game, then the **gear icon → Properties** and paste them into **Launch Options** on the **General** page.
 
 These are some common ones:
 
@@ -105,6 +105,6 @@ The number is the game's AppID, and {{ collections.posts | chapterLink('proton')
 | 4 | Copy **launch options** from ProtonDB |
 | 5 | Use **Protontricks**, only if a report says to |
 
-If a game still won't run after all five, it may simply not work on Linux yet; games with kernel-level anti-cheat are the most common example. The game's ProtonDB page will usually confirm it.
+If a game still won't run after all five, it may not work on Linux yet; games with kernel-level anti-cheat are the most common example. The game's ProtonDB page will usually confirm it.
 
 Once your games are running, you might want to add features to Game Mode itself. That's what Decky Loader does, and it's the subject of the next chapter.
