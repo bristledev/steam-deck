@@ -41,7 +41,7 @@ Choose something you'll remember. Several later chapters ask for it.
 | Command | What it does | Example |
 | :--- | :--- | :--- |
 | **`pwd`** | Shows which folder you're in ("print working directory") | `pwd` |
-| **`ls`** | Lists what's in the current folder | `ls -lh` |
+| **`ls`** | Lists what's in the current folder (`-l` adds details like size and date, `-h` makes sizes readable) | `ls -lh` |
 | **`cd`** | Moves into another folder ("change directory") | `cd Downloads` |
 | **`mkdir`** | Creates a new folder ("make directory") | `mkdir scripts` |
 | **`sudo`** | Runs a command as an administrator, after asking for your password | `sudo <command>` |
