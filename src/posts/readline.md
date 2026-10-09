@@ -17,7 +17,7 @@ Have you ever watched someone blast through the terminal, editing commands at li
 
 **[GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)** is a tiny, invisible library built into **Bash** (and many other terminal programs) that handles everything you type at the command line. It's the reason you can press `Up Arrow` to recall your last command or hit `Tab` to auto-complete a file name.
 
-But `Up Arrow` and `Tab` are just the tip of the iceberg. Readline has dozens of keyboard shortcuts that most people never discover — and they work **everywhere**, not just in your shell. They work in `python`, `node`, `mysql`, and almost any interactive command-line tool.
+But `Up Arrow` and `Tab` are just the tip of the iceberg. Readline has dozens of keyboard shortcuts that most people never discover — and they work in more places than your shell. Python's interactive prompt (`>>>`) understands most of them too, and so do many other interactive command-line tools.
 
 > [!NOTE]
 > **Fish Shell Users**: Fish doesn't use GNU Readline internally — it has its own editor. However, Fish supports most of the same shortcuts listed here by default, so these habits will serve you well in either shell!
@@ -86,11 +86,11 @@ You actually meant to put it in `~/Pictures/wallpapers/`. Instead of retyping th
 
 You just checked a config file:
 ```bash
-cat /etc/NetworkManager/conf.d/wifi_backend.conf
+cat ~/.config/starship.toml
 ```
 Now you want to edit it. Type `nano`, then hit **`Alt+.`**:
 ```bash
-nano /etc/NetworkManager/conf.d/wifi_backend.conf
+nano ~/.config/starship.toml
 ```
 No retyping that long path! This works just as well for directories — after running `mkdir -p ~/Games/emulation/roms/gba`, you can type `cd` and hit **`Alt+.`** to jump straight into the new directory.
 
@@ -124,4 +124,4 @@ Here's everything in one place for quick reference:
 
 These shortcuts take about a day to become muscle memory, and once they click, you'll wonder how you ever lived without them. The terminal stops feeling like a text box and starts feeling like an instrument.
 
-{% next_chapter %}
+To finish, let's add two tools that make finding files, folders and old commands almost instant.
