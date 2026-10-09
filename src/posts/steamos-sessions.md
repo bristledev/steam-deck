@@ -173,6 +173,8 @@ pkcheck --action-id org.freedesktop.Flatpak.app-install --process $$
 
 ## Why This Matters for Background Services
 
-Because Game Mode and Desktop Mode are separate sessions, anything tied to your session stops when you switch. That includes apps you started in Konsole and, by default, user services. This is exactly the problem the `loginctl enable-linger` trick solves later in this series: it keeps your services running no matter which session is open.
+Because Game Mode and Desktop Mode are separate sessions, the apps you opened close when you switch modes, along with anything running inside them. Your *user services* keep running, though. systemd only stops a user's services 10 seconds after their last session ends (the `UserStopDelaySec` setting), and a mode switch starts the next session within a second of ending the last one.
+
+SteamOS adds one stricter rule. Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True`, so when a session ends, systemd kills every process still running inside it. An SSH connection is a session too, which is why a plain `tmux` started over SSH dies when you disconnect. {{ collections.posts | chapterLink('preinstalled') | safe }} shows the fix.
 
 The last chapter of this phase puts the map, the update rules and the session model together: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
