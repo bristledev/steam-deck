@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "🖥️ Finding the Terminal"
-excerpt: "Every way to open a terminal on your Steam Deck — and when to use each one."
+title: "💻 Finding the Terminal"
+excerpt: "Every way to open a terminal on your Steam Deck, and when to use each one."
 tags:
   - posts
   - terminal
@@ -10,120 +10,82 @@ tags:
 
 # Finding the Terminal
 
-Before we learn *what* to type, let's talk about *where* to type it. SteamOS has several ways to access a terminal, each suited for different situations. You don't need to memorize all of them — just knowing they exist will save you when you need one.
+Before learning *what* to type, it helps to know *where* to type it. SteamOS has several ways to open a terminal, each suited to a different situation. You don't need to memorize them; knowing they exist is enough for when you need one.
 
----
+## Konsole, the Main Terminal
 
-## 🎯 Konsole (The Main Terminal)
+**[Konsole](https://apps.kde.org/konsole/)** is SteamOS's terminal app, and it's the one you'll use most. When a guide tells you to "open a terminal", this is what it means.
 
-**[Konsole](https://apps.kde.org/konsole/)** is SteamOS's default terminal app. It's the one you'll use 99% of the time.
+To open it:
 
-**How to open it:**
 1. Switch to **Desktop Mode**.
-2. Click the **Application Launcher** (bottom-left corner).
+2. Click the **Application Launcher** in the bottom-left corner.
 3. Search for **Konsole**, or find it under **System**.
 
-Konsole is a full-featured terminal with tabs, split views, profiles, and customizable fonts and colors. When guides tell you to "open a terminal," this is what they mean.
+Konsole has tabs, split views, and settings for fonts and colors.
 
 > [!TIP]
-> **Pin it to your taskbar!** Right-click Konsole in the app menu and choose **Add to Panel** or **Add to Favorites**. You'll be opening it constantly.
+> **Pin it to your taskbar.** Right-click Konsole in the Application Launcher and choose **Add to Panel** or **Add to Favorites**, so it's always one click away.
 
----
+## Dolphin's Terminal Panel
 
-## 📂 Dolphin's Built-In Terminal (F4)
+The Dolphin file manager has a terminal built in. Press **F4** inside Dolphin, and a terminal opens at the bottom of the window.
 
-The Dolphin file manager has a hidden terminal panel built right into it.
+The panel follows whatever folder you're browsing: open `Downloads` in Dolphin, and the terminal moves to `Downloads` too. That makes it handy for running a command on files you've just found, without typing the path. Press **F4** again to hide it.
 
-**How to open it:**
-Press **F4** while inside Dolphin.
+## Kate's Terminal Panel
 
-A terminal slides in at the bottom of the window, and it automatically follows whatever folder you're browsing. Navigate to `Downloads` in Dolphin, and the terminal's working directory changes to `Downloads` too.
+**[Kate](https://apps.kde.org/kate/)** is KDE's text editor, and it comes with SteamOS. Press **F4** in Kate (**Show Terminal Panel**) to open a terminal below the file you're editing.
 
-This is incredibly useful for quick file operations — you can visually browse to a folder and then run a command right there, without needing to `cd` to the right path first.
+This is useful when you're changing a settings file and want to test it straight away. For example, you can edit your `~/.bashrc` at the top and run `source ~/.bashrc` in the terminal below.
 
-Press **F4** again to hide it.
+## Yakuake, the Drop-Down Terminal
 
----
+**[Yakuake](https://apps.kde.org/yakuake/)** is a terminal that slides down from the top of the screen when you press a key, like the developer console in *Quake* and many PC games.
 
-## 📝 Kate's Built-In Terminal
-
-**[Kate](https://apps.kde.org/kate/)** is KDE's text editor, and it comes pre-installed on SteamOS. It also has an embedded terminal panel.
-
-**How to open it:**
-Open Kate, then press **F4** (or go to **View → Terminal**).
-
-This is handy when you're editing a config file and need to test a command without switching windows. Edit your `~/.bashrc` in the top half, run `source ~/.bashrc` in the terminal at the bottom — all in one place.
-
----
-
-## ⬇️ Yakuake (The Drop-Down Terminal)
-
-**[Yakuake](https://apps.kde.org/yakuake/)** is a Quake-style drop-down terminal that slides in from the top of your screen with a single keypress. If you've ever played *Quake* or classic Source engine games, you know the developer console that drops down when you hit tilde (`~`). Yakuake is exactly that, but for your entire desktop.
-
-**How to install it:**
-Open **Discover** and search for **Yakuake**.
-
-**How to use it:**
-Press **F12** from anywhere in Desktop Mode. The terminal drops down from the top of the screen. Press **F12** again and it vanishes. No window management, no alt-tabbing — it's just *there* whenever you need it.
+Install it from **Discover**. Once it's running, press **F12** in Desktop Mode to show it, and **F12** again to hide it.
 
 > [!TIP]
-> Yakuake runs in the background after launch, so `F12` only works once you've opened it. To have it ready every time you enter Desktop Mode, add it in **System Settings → Autostart**.
+> Yakuake runs in the background after launch, so **F12** only works once you've opened it. To have it ready every time you enter Desktop Mode, add it in **System Settings → Autostart**.
 
----
+## The TTY, for Emergencies
 
-## 🚨 The TTY (Emergency Terminal)
+A *TTY* (short for teletypewriter) is a text-only terminal that runs outside the graphical desktop entirely. If Desktop Mode freezes, crashes or won't load, the TTY still works.
 
-This is the one most people don't know about, and the one that saves you when everything else breaks.
+To open it, press **Ctrl+Alt+F2** on a physical keyboard (USB or Bluetooth). The on-screen keyboard can't help you here, so it's worth keeping a cheap keyboard around.
 
-A **TTY** (TeleTYpewriter) is a text-only terminal that runs *outside* of Desktop Mode entirely. It doesn't need KDE Plasma, Dolphin, or any graphical interface to work. If Desktop Mode freezes, crashes, or won't load — the TTY still works.
+You'll see a black screen with a login prompt. Type `deck` as the username, then your password. You're now in a text-only session on tty2.
 
-**How to access it:**
-Press **Ctrl+Alt+F2** on a physical keyboard (USB or Bluetooth). The on-screen keyboard can't help you here, so it's worth keeping a cheap keyboard around.
+To get back, press **Ctrl+Alt+F1**. SteamOS runs its graphical session, Game Mode or Desktop Mode, on tty1.
 
-You'll see a plain black screen with a login prompt. Type `deck` as the username, then enter your password. You're now in a raw terminal session on tty2 with full access to your system.
+The TTY is useful when:
 
-**To get back to Desktop Mode:**
-Press **Ctrl+Alt+F1**. SteamOS runs its graphical session, Game Mode or Desktop Mode, on tty1.
-
-### When You'd Use This
-- Desktop Mode froze and won't respond to anything
-- You need to kill a stuck process (`sudo kill -9 [PID]`)
-- You accidentally broke your display settings and can't see anything
-- SSH isn't set up yet and you have no other way in
+- Desktop Mode has frozen and won't respond.
+- A program is stuck and you need to stop it.
+- You changed a display setting and can't see the screen properly.
+- SSH isn't set up yet and there's no other way in.
 
 > [!WARNING]
-> **Remember your password!** The TTY requires your `deck` user password. If you haven't set one yet (we'll do that in the next chapter), do it soon — it's your lifeline when things go sideways.
+> **You need a password to log in.** The TTY asks for your `deck` user's password, and the Deck doesn't have one until you set it. You'll do that in the next chapter.
 
----
+## KRunner, the Quick Launcher
 
-## ⚡ KRunner (The Quick Launcher)
+**KRunner** isn't a terminal, but it's a fast way to run things. Press **Alt+Space** or **Alt+F2** anywhere in Desktop Mode, and a search bar appears at the top of the screen. You can:
 
-**KRunner** isn't a full terminal, but it's worth knowing about. It's KDE's universal search and command bar.
+- launch an app by typing its name, such as `Konsole`, and pressing **Enter**
+- do quick math, such as `=1920/16`
+- open files and folders
+- run a single command
 
-**How to open it:**
-Press **Alt+F2** (or **Alt+Space**) anywhere in Desktop Mode.
-
-A slim search bar appears at the top of your screen. You can:
-- Launch apps by name (type `Konsole` and hit Enter)
-- Do quick math (`= 1920/16` returns `120`)
-- Open files and folders
-- Run simple shell commands
-
-It's not a replacement for Konsole, but it's the fastest way to launch something without reaching for the app menu.
-
----
-
-## 🗺️ Quick Reference
+## Quick Reference
 
 | Terminal | Shortcut | Best for |
 | :--- | :--- | :--- |
-| **Konsole** | App menu | Everyday terminal use |
-| **Dolphin panel** | `F4` in Dolphin | Quick commands in a specific folder |
-| **Kate panel** | `F4` in Kate | Testing while editing config files |
-| **Yakuake** | `F12` (after install) | Fast access without window switching |
-| **TTY** | `Ctrl+Alt+F2` | Emergency access when Desktop Mode is broken |
-| **KRunner** | `Alt+F2` | Quick app launches and simple commands |
+| **Konsole** | Application Launcher | Everyday terminal use |
+| **Dolphin panel** | **F4** in Dolphin | Commands in the folder you're browsing |
+| **Kate panel** | **F4** in Kate | Testing while editing settings files |
+| **Yakuake** | **F12** (after installing) | A terminal that's always one key away |
+| **TTY** | **Ctrl+Alt+F2** | Emergencies when the desktop is broken |
+| **KRunner** | **Alt+Space** | Launching apps and quick commands |
 
----
-
-Now that you know where to find a terminal, let's learn what to type into it.
+You know where to type. The next chapter covers what to type, starting with the first command every Deck owner should run.
