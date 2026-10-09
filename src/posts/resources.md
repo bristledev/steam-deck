@@ -20,9 +20,18 @@ Here's a curated collection of the best places to continue your journey — orga
 
 ### Valve Official
 - **[Steam Deck Official Site](https://www.steamdeck.com/)**: Valve's landing page with specs, features, and the latest announcements.
-- **[SteamOS Recovery Instructions](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)**: Valve's official guide for creating a recovery USB and re-imaging your Deck.
+- **[SteamOS Recovery and Troubleshooting](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)**: Valve's official guide to Factory Reset, rolling back to the previous version, and erasing user data.
+- **[SteamOS Installation and Repair](https://help.steampowered.com/en/faqs/view/65B4-2AA3-5F37-4227)**: Valve's recovery image download, with instructions for repairing or re-imaging your Deck from a USB drive.
 - **[Steam Deck FAQ](https://www.steamdeck.com/en/faq)**: Valve's official answers to the most common questions.
 - **[Deck Verified](https://www.steamdeck.com/en/verified)**: How Valve's compatibility rating system works.
+
+### Under the Hood
+The projects behind the "How SteamOS Works" chapters (starting with {{ collections.posts | chapterLink('steamos-anatomy') | safe }}), for when you want to go deeper:
+- **[Gamescope (GitHub)](https://github.com/ValveSoftware/gamescope)**: Valve's compositor that runs Game Mode, with its full list of options.
+- **[RAUC Documentation](https://rauc.readthedocs.io/)**: The update framework SteamOS uses to install new images into the A/B slots.
+- **[systemd-sysext](https://www.freedesktop.org/software/systemd/man/latest/systemd-sysext.html)**: The reference for system extensions.
+- **[Arch Wiki: Polkit](https://wiki.archlinux.org/title/Polkit)**: How polkit rules work, and how to read the ones SteamOS ships.
+- **[Decky Loader (GitHub)](https://github.com/SteamDeckHomebrew/decky-loader)**: The source code behind everything in {{ collections.posts | chapterLink('customization') | safe }}'s "Under the Hood" section.
 
 ### Community
 - **[r/SteamDeck (Reddit)](https://www.reddit.com/r/SteamDeck/)**: The largest collection of Steam Deck owners. Great for news, show-off posts, and troubleshooting.
@@ -57,7 +66,7 @@ Here's a curated collection of the best places to continue your journey — orga
 - **[Flatpak Documentation](https://docs.flatpak.org/)**: The official docs for understanding how Flatpak apps work, permissions, and sandboxing.
 - **[Flathub](https://flathub.org/)**: The main app store for Flatpak apps — browse everything available from a web browser.
 - **[Homebrew Documentation](https://docs.brew.sh/)**: The official guide for the Homebrew package manager.
-- **[Nix Manual](https://nix.dev/)**: The best starting point for learning Nix (more approachable than the official NixOS manual).
+- **[nix.dev](https://nix.dev/)**: The official tutorials and guides, and the best starting point for learning Nix (more approachable than the reference manuals).
 - **[NixOS Wiki](https://wiki.nixos.org/)**: The community-maintained wiki for all things Nix.
 - **[AppImageHub](https://www.appimagehub.com/)**: A directory of apps distributed as AppImages.
 
@@ -82,7 +91,7 @@ Here's a curated collection of the best places to continue your journey — orga
 - **[OpenSSH Documentation](https://www.openssh.com/manual.html)**: The official manual for SSH — the protocol powering wireless file transfers.
 - **[WinSCP Documentation](https://winscp.net/eng/docs/start)**: Guides for the Windows SFTP client we recommended.
 - **[Tailscale Documentation](https://tailscale.com/kb/)**: Excellent, beginner-friendly guides for setting up remote access.
-- **[Tailscale on SteamOS (GitHub)](https://github.com/tailscale-dev/deck-tailscale)**: The official community-instantiated script for installing Tailscale on SteamOS.
+- **[deck-tailscale (GitHub)](https://github.com/tailscale-dev/deck-tailscale)**: The install script for Tailscale on the Steam Deck, from Tailscale's `tailscale-dev` GitHub organization.
 - **[Syncthing](https://syncthing.net/)**: Continuous, peer-to-peer file syncing between your Deck and other devices — no cloud required.
 
 ---
@@ -122,7 +131,7 @@ Sometimes it's easier to see things in action. These creators are dedicated to t
 - **[The Phawx](https://www.youtube.com/@ThePhawx)**: Deep dives into technical performance and hardware.
 - **[Retro Game Corps](https://www.youtube.com/@RetroGameCorps)**: The gold standard for emulation guides and "cozy" Steam Deck content.
 - **[GamingOnLinux](https://www.youtube.com/@GamingOnLinux)**: Keeping up with the latest SteamOS updates and Linux gaming news.
-- **[Gardiner Bryant](https://www.youtube.com/@GardinerBryant)**: Approachable Linux content for people switching from Windows.
+- **[Gardiner Bryant](https://www.youtube.com/@gardiner_bryant)**: Approachable Linux content for people switching from Windows.
 
 ---
 
