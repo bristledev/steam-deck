@@ -11,7 +11,7 @@ tags:
 
 # Fixing Games That Won't Run
 
-You install a game, press **Play**, and nothing happens. Or it crashes, or runs at 5 FPS. Most of the time, one of the five steps below gets it working. Work through them in order: each one takes a little more effort than the last.
+You install a game, press **Play**, and nothing happens. Or it crashes, or runs at 5 FPS. The five steps below cover the usual fixes. Work through them in order: each one takes a little more effort than the last.
 
 ## Step 1: Check ProtonDB
 
@@ -86,14 +86,11 @@ PULSE_LATENCY_MSEC=60 SteamDeck=0 %command%
 Some games need Windows components that Proton doesn't include, like Visual C++ runtimes, .NET or extra DirectX libraries. **[Protontricks](https://github.com/Matoking/protontricks)** installs these into a single game's prefix. Install it from Discover, then run it from Konsole:
 
 ```bash
-# Install a Visual C++ runtime for a specific game
+# Install a Visual C++ runtime into Elden Ring's prefix
 flatpak run com.github.Matoking.protontricks 1245620 vcrun2019
-
-# Install DirectX 9 libraries for an older game
-flatpak run com.github.Matoking.protontricks 1245620 d3dx9
 ```
 
-Replace `1245620` with your game's AppID; {{ collections.posts | chapterLink('proton') | safe }} shows how to find it.
+The number is the game's AppID, and {{ collections.posts | chapterLink('proton') | safe }} shows how to find yours. The last word is the component to install: `vcrun2019` here, or `d3dx9` for the DirectX 9 libraries that some older games need.
 
 > [!WARNING]
 > **Only use Protontricks when a ProtonDB report tells you to.** Installing the wrong components can make a game worse. Switching Proton versions is simpler, so try that first.
