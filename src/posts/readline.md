@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "⌨️ Keyboard Shortcuts (Readline)"
-excerpt: "The hidden shortcuts that make terminal pros look like wizards."
+excerpt: "The keyboard shortcuts for editing commands in Bash, so you can fix and reuse them without the arrow keys."
 tags:
   - posts
   - terminal
@@ -9,119 +9,115 @@ tags:
   - advanced
 ---
 
-# Keyboard Shortcuts (Readline) 
+# Keyboard Shortcuts (Readline)
 
-Have you ever watched someone blast through the terminal, editing commands at lightning speed without reaching for the mouse? They aren't typing faster — they're using **Readline shortcuts**.
+Fixing a typo at the start of a long command by holding the left arrow key gets tedious fast. Bash has keyboard shortcuts for jumping around a command, deleting whole words, and reusing parts of earlier commands. They come from a library called Readline.
 
-## What is Readline?
+## What Is Readline?
 
-**[GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)** is a tiny, invisible library built into **Bash** (and many other terminal programs) that handles everything you type at the command line. It's the reason you can press `Up Arrow` to recall your last command or hit `Tab` to auto-complete a file name.
-
-But `Up Arrow` and `Tab` are just the tip of the iceberg. Readline has dozens of keyboard shortcuts that most people never discover — and they work in more places than your shell. Python's interactive prompt (`>>>`) understands most of them too, and so do many other interactive command-line tools.
+**[GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)** is the part of Bash that handles what you type on the command line. It's why **Up Arrow** recalls your last command and **Tab** completes file names. Other interactive programs use it too, including Python's interactive prompt (`>>>`), so the same shortcuts often work there.
 
 > [!NOTE]
-> **Fish Shell Users**: Fish doesn't use GNU Readline internally — it has its own editor. However, Fish supports most of the same shortcuts listed here by default, so these habits will serve you well in either shell!
+> **Fish users:** Fish doesn't use Readline; it has its own line editor. It supports most of the shortcuts below by default, though a few behave slightly differently. For example, **Ctrl+W** in Fish deletes one part of a file path at a time rather than the whole path.
 
----
-
-## ✂️ The Essential Shortcuts
-
-These are the shortcuts you'll use every single day. They all work without a mouse and are dramatically faster than using the arrow keys.
+## The Essential Shortcuts
 
 ### Moving the Cursor
 
 | Shortcut | What it does |
 | :--- | :--- |
-| **`Ctrl+A`** | Jump to the **beginning** of the line |
+| **`Ctrl+A`** | Jump to the **start** of the line |
 | **`Ctrl+E`** | Jump to the **end** of the line |
 | **`Alt+F`** | Jump forward one **word** |
-| **`Alt+B`** | Jump backward one **word** |
+| **`Alt+B`** | Jump back one **word** |
 
 > [!TIP]
-> **Think of it this way:** `A` = stArt, `E` = End, `F` = Forward, `B` = Backward.
+> **A** is the start of the alphabet, **E** is for end, **F** for forward and **B** for back.
 
 ### Deleting Text
 
 | Shortcut | What it does |
 | :--- | :--- |
 | **`Ctrl+W`** | Delete the **word** before the cursor |
-| **`Ctrl+K`** | Delete everything **after** the cursor (to end of line) |
-| **`Ctrl+U`** | Delete everything **before** the cursor (to start of line) |
+| **`Ctrl+K`** | Delete everything **after** the cursor |
+| **`Ctrl+U`** | Delete everything **before** the cursor |
 | **`Alt+D`** | Delete the word **after** the cursor |
 
-### The "Undo" and "Paste"
+### Pasting Back and Undoing
 
-Here's the secret most people don't know: when you delete text with `Ctrl+W`, `Ctrl+K`, or `Ctrl+U`, the deleted text isn't gone — it's saved in a clipboard called the **kill ring**.
+Text you delete with **Ctrl+W**, **Ctrl+K** or **Ctrl+U** isn't thrown away. Readline keeps it in its own clipboard, called the *kill ring*.
 
 | Shortcut | What it does |
 | :--- | :--- |
-| **`Ctrl+Y`** | **Paste** (\"yank\") the last deleted text back |
-| **`Ctrl+_`** | **Undo** the last edit |
+| **`Ctrl+Y`** | Paste ("yank") the text you deleted last |
+| **`Ctrl+_`** | Undo your last edit |
 
----
+## Examples
 
-## 🎯 Real-World Examples
+### Adding sudo to the Start of a Command
 
-### Fixing a Typo at the Start of a Long Command
-You just typed a monster command and realized you forgot `sudo`:
-```
+You've typed a long command and realize it needs `sudo`:
+
+```bash
 systemctl enable --now sshd
 ```
-Instead of pressing `Home`, then typing `sudo `:
-- **`Ctrl+A`** → jump to the start
-- Type `sudo ` → done!
 
-### Editing Your Last Command Instead of Retyping It
-You just copied a file to the wrong place:
+Press **Ctrl+A** to jump to the start of the line, type `sudo `, and press **Enter**.
+
+### Fixing the End of Your Last Command
+
+You copied a file to the wrong folder:
+
 ```bash
 cp ~/Downloads/wallpaper.png ~/Pictures/screenshots/
 ```
-You actually meant to put it in `~/Pictures/wallpapers/`. Instead of retyping the whole thing:
-- Press **`Up Arrow`** to recall the command
-- Press **`Ctrl+W`** to delete the last word (`~/Pictures/screenshots/`)
-- Type the correct destination: `~/Pictures/wallpapers/`
 
-### Grabbing the Last Argument with `Alt+.`
-**`Alt+.`** pastes the **last argument** of the previous command. This is a huge time-saver whenever you're working with the same file or directory across multiple commands.
+To fix it without retyping everything:
 
-You just checked a config file:
+1. Press **Up Arrow** to bring the command back.
+2. Press **Ctrl+W** to delete the last word, `~/Pictures/screenshots/`.
+3. Type the right folder, `~/Pictures/wallpapers/`, and press **Enter**.
+
+### Reusing the Last Argument With Alt+.
+
+**Alt+.** inserts the last *argument* (the last word) of your previous command. It saves retyping long paths.
+
+You've just looked at a settings file:
+
 ```bash
 cat ~/.config/starship.toml
 ```
-Now you want to edit it. Type `nano`, then hit **`Alt+.`**:
+
+To edit it, type `nano `, then press **Alt+.**:
+
 ```bash
 nano ~/.config/starship.toml
 ```
-No retyping that long path! This works just as well for directories — after running `mkdir -p ~/Games/emulation/roms/gba`, you can type `cd` and hit **`Alt+.`** to jump straight into the new directory.
 
-### Wiping a Command You Changed Your Mind About
-You're halfway through a command and decide you don't want to run it:
-- **`Ctrl+C`** cancels and gives you a fresh prompt
-- Or **`Ctrl+U`** clears the line but keeps it in the kill ring in case you want it back with **`Ctrl+Y`**
+It works for folders too. After `mkdir -p ~/Games/emulation/roms/gba`, type `cd ` and press **Alt+.** to move into the folder you just created.
 
----
+### Abandoning a Command
 
-## 🧠 The Cheat Sheet
+If you've typed half a command and changed your mind:
 
-Here's everything in one place for quick reference:
+- **Ctrl+C** cancels it and gives you a fresh prompt.
+- **Ctrl+U** clears the line, but keeps the text in the kill ring, so **Ctrl+Y** can bring it back.
+
+## Cheat Sheet
 
 | Category | Shortcut | Action |
 | :--- | :--- | :--- |
-| **Move** | `Ctrl+A` / `Ctrl+E` | Start / End of line |
-| **Move** | `Alt+F` / `Alt+B` | Forward / Back one word |
-| **Delete** | `Ctrl+W` | Delete word before cursor |
-| **Delete** | `Ctrl+U` / `Ctrl+K` | Delete to start / end of line |
-| **Delete** | `Alt+D` | Delete word after cursor |
-| **Paste** | `Ctrl+Y` | Yank (paste) last deleted text |
-| **Undo** | `Ctrl+_` | Undo last edit |
+| **Move** | `Ctrl+A` / `Ctrl+E` | Start / end of line |
+| **Move** | `Alt+F` / `Alt+B` | Forward / back one word |
+| **Delete** | `Ctrl+W` | Word before the cursor |
+| **Delete** | `Ctrl+U` / `Ctrl+K` | Everything before / after the cursor |
+| **Delete** | `Alt+D` | Word after the cursor |
+| **Paste** | `Ctrl+Y` | Paste the last deleted text |
+| **Undo** | `Ctrl+_` | Undo the last edit |
 | **History** | `Up` / `Down` | Previous / next command |
-| **History** | `Ctrl+R` | Reverse search through history |
-| **Magic** | `Alt+.` | Insert last argument of previous command |
-| **Cancel** | `Ctrl+C` | Abort current command |
-| **Clear** | `Ctrl+L` | Clear the screen (same as `clear`) |
+| **History** | `Ctrl+R` | Search your command history |
+| **Reuse** | `Alt+.` | Insert the last argument of the previous command |
+| **Cancel** | `Ctrl+C` | Abandon the current line |
+| **Clear** | `Ctrl+L` | Clear the screen |
 
----
-
-These shortcuts take about a day to become muscle memory, and once they click, you'll wonder how you ever lived without them. The terminal stops feeling like a text box and starts feeling like an instrument.
-
-To finish, let's add two tools that make finding files, folders and old commands almost instant.
+These shortcuts speed up typing commands. The last chapter speeds up two other everyday jobs: getting to folders you use often, and finding commands you ran before.
