@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🔐 Wireless File Transfers (SSH)"
-excerpt: "Move files directly to your Deck over Wi-Fi."
+excerpt: "Turn on SSH to copy files to your Deck over Wi-Fi and run commands on it from another computer."
 tags:
   - posts
   - networking
@@ -9,13 +9,9 @@ tags:
   - intermediate
 ---
 
-#  Wireless File Transfers (SSH) 📡
+# Wireless File Transfers (SSH)
 
-Every Steam Deck owner has felt the struggle: you have a massive folder of ROMs, mods, or videos on your main PC, and you want to get them onto your Steam Deck.
-
-Do you plug in a USB-C drive? Do you mess with cloud storage like Google Drive? Do you email them to yourself?
-
-There's a better way.
+Sooner or later, you'll want to move a big folder from your PC to your Deck: mods, videos, or game files. A USB drive or cloud storage works, but there's a simpler option once it's set up: copy the files straight across your home Wi-Fi.
 
 By turning on **SSH** (Secure Shell), you can wirelessly drag and drop files from your Windows, Mac, or Linux computer directly onto the Steam Deck using your home Wi-Fi network. SSH gives you a secure connection to your Deck, and file transfer apps use a part of it called **SFTP** (SSH File Transfer Protocol) to move files over that connection.
 
@@ -23,7 +19,7 @@ By turning on **SSH** (Secure Shell), you can wirelessly drag and drop files fro
 
 By default, the Steam Deck ignores connections from other computers. We need to turn on the `sshd` background service so it starts listening.
 
-*(A **service** is a background process that starts automatically — we'll explore services in depth in a later chapter!)*
+*(A **service** is a program that runs in the background and can start automatically. You'll learn to write your own in a later chapter.)*
 
 > [!NOTE]
 > You need an admin password for this step. If you haven't set one yet, do that first in {{ collections.posts | chapterLink('bash') | safe }}.
@@ -51,36 +47,39 @@ ip -brief addr
 
 **What did that just do?** It listed your Deck's network connections, one per line. Find the line that starts with `wlan0` (your Wi-Fi). The address is the number before the `/`, like `192.168.1.50` in `192.168.1.50/24`.
 
-*(Alternatively, you can go into Game Mode -> Settings -> Internet and select your Wi-Fi connection to view it.)*
+*(You can also find it in Game Mode: go to **Settings → Internet** and select your Wi-Fi connection.)*
 
 > [!TIP]
 > **Skip the IP address entirely.** Your router can hand your Deck a different IP address after a restart, but SteamOS also announces your Deck on your home network by name. Run `hostnamectl hostname` to see its name (for example, `steamdeck`), then connect to that name plus `.local`, like `ssh deck@steamdeck.local`. This works out of the box on Mac and most Linux computers, and usually on Windows 10 and 11. If it doesn't, fall back to the IP address.
 
-## Step 3: Connect!
+## Step 3: Connect
 
 There are two main ways to connect. If you just want to run terminal commands remotely, open a terminal on your main PC (on Windows, Command Prompt or PowerShell) and run `ssh deck@192.168.x.x`, using your Deck's address.
 
 But if you want to **drag and drop files visually**, you need an SFTP app.
 
-### For Windows Users: [WinSCP](https://winscp.net/)
-WinSCP is a free, long-standing favorite for transferring files.
+### Windows: WinSCP
+**[WinSCP](https://winscp.net/)** is a free file transfer app for Windows.
+
 1. Download, install, and open WinSCP.
 2. In the "Login" screen, set the **File Protocol** to **SFTP**.
 3. In **Host name**, type your Deck's IP Address (e.g. `192.168.1.50`).
 4. Set **User name** to `deck`.
 5. Enter the admin password you set in {{ collections.posts | chapterLink('bash') | safe }}.
-6. Click **Login**!
+6. Click **Login**.
 
-### For Mac / Linux Users: [FileZilla](https://filezilla-project.org/) or [Cyberduck](https://cyberduck.io/)
+### Mac and Linux: FileZilla or Cyberduck
+Both **[FileZilla](https://filezilla-project.org/)** and **[Cyberduck](https://cyberduck.io/)** are free.
+
 1. Open the app and create a new connection.
 2. Choose **SFTP** as the protocol.
 3. Enter the IP Address, username (`deck`), and password.
-4. Click **Connect**!
+4. Click **Connect**.
 
 > [!TIP]
 > **On Linux, you may not need an app at all.** Most file managers, including Dolphin, can open your Deck directly: type `sftp://deck@192.168.x.x` into the address bar.
 
-## Welcome to the Grid
+## Your First Connection
 
 The first time you connect, your computer will ask whether you trust the Deck's "security key". This key is like an ID card that proves you're talking to *your* Deck. Click **Yes** or **Accept**.
 
@@ -89,11 +88,11 @@ The first time you connect, your computer will ask whether you trust the Deck's 
 
 In WinSCP and FileZilla, a split-screen window appears:
 - On the left is your main PC.
-- On the right is your Steam Deck's `/home/deck` folder!
+- On the right is your Steam Deck's `/home/deck` folder.
 
-You can now drag and drop gigabytes of games, mods, and ROMs across the network as if the Steam Deck was just a regular folder on your computer. Modding your games just got a lot easier!
+Drag files between the two sides to copy them across the network, the same way you'd copy between folders on your PC.
 
 > [!TIP]
 > **Want files to sync automatically?** SSH is great for one-time transfers, but if you want a folder (like your ROM library) to stay in sync across your Deck and PC continuously, check out **[Syncthing](https://syncthing.net/)**. There's no official Syncthing app in Discover, but community apps like **SyncThingy** bundle it with a tray icon, or you can install it with {{ collections.posts | chapterLink('homebrew') | safe }} later in this series. Syncthing even works outside your home network on its own: when two devices can't connect directly, it automatically passes the traffic through a relay server.
 
-But what if you want to access your Deck from *outside* your house?
+All of this only works while your PC and Deck are on the same network. The next chapter removes that limit.
