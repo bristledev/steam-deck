@@ -20,7 +20,7 @@ Some tools are meant to run all the time, like a file server or a sync tool. Sta
 
 `systemd` starts, stops and watches over the background programs on SteamOS and on most modern Linux systems. A program it manages is called a *service*.
 
-Every background program you've met so far is a systemd service: SSH (`sshd`), Tailscale (`tailscaled`), Decky Loader (`plugin_loader`), and even Game Mode itself, as you saw in {{ collections.posts | chapterLink('steamos-sessions') | safe }}. Each one has a short text file, called a *unit file*, that tells `systemd`:
+Every background program you've met so far is a systemd service: SSH (`sshd`), Tailscale (`tailscaled`), Decky Loader (`plugin_loader`) and even Game Mode itself, as you saw in {{ collections.posts | chapterLink('steamos-sessions') | safe }}. Each one has a short text file, called a *unit file*, that tells `systemd`:
 
 1. What program to run.
 2. When it should start.
