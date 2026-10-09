@@ -72,9 +72,12 @@ For our *Elden Ring* example, the saves are tucked away in `AppData/Roaming/Elde
 
 ## Non-Steam Games
 
-If you add a Non-Steam Game to your library (like an Epic Games installer or a romhack), Steam generates a completely random, massive AppID for it (like `3856193745`). 
+If you add a Non-Steam Game to your library (like an Epic Games installer or a romhack), Steam makes up a long AppID for it (like `3856193745`). 
 
 Because there's no storefront URL to check, finding these prefixes is harder. The best way is to sort the `compatdata` folder by **"Modified"** date in Dolphin immediately after playing the game. The folder that jumped to the top of the list is your game!
+
+> [!CAUTION]
+> **Removing a non-Steam game from your library deletes its prefix, saves included.** Since mid-2023, Steam cleans up a non-Steam game's prefix and shader cache when you remove it (see **[GamingOnLinux's report](https://www.gamingonlinux.com/2023/06/removing-non-steam-apps-now-cleans-up-on-steam-deck-and-linux-desktop)**). Copy your saves somewhere safe first.
 
 ## Making Shortcuts
 
@@ -84,5 +87,3 @@ Navigating to `.local/share/Steam/steamapps/compatdata` is tedious.
 ---
 
 Now that you can navigate the hardest part of the Linux filesystem, let's talk about what happens when things go wrong — and why you shouldn't worry about it.
-
-{% next_chapter %}
