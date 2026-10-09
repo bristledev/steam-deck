@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "🎮 The Proton Filesystem Maze"
-excerpt: "How to find where Steam hides your Windows game saves."
+title: "🎮 Proton Prefixes and Saves"
+excerpt: "Where Proton keeps each Windows game's fake C: drive, and how to find your saves and mod folders in it."
 tags:
   - posts
   - steamos
@@ -9,81 +9,70 @@ tags:
   - intermediate
 ---
 
-#  The Proton Filesystem Maze
+# Proton Prefixes and Saves
 
-In {{ collections.posts | chapterLink('filesystem') | safe }}, we learned that games are primarily stored in `.local/share/Steam/steamapps/common`. But what if you want to back up a save file for a game that doesn't have Steam Cloud? What if you want to drop a mod into a game's `Documents` folder?
+In {{ collections.posts | chapterLink('filesystem') | safe }}, you saw that games are installed in `~/.local/share/Steam/steamapps/common`. But say you want to back up the saves of a game that doesn't use Steam Cloud, or a mod guide tells you to put a file in the game's `Documents` folder. Your own `~/Documents` is empty, so where does the game put those files?
 
-If you navigate to `/home/deck/Documents`, it's empty. Where is the game putting those files?
+The answer is the game's *prefix*.
 
-Welcome to the **Proton Maze**.
+## What Is a Prefix?
 
-## Understanding the "Prefix"
+When you launch a Windows game, Valve's **Proton** translation layer creates a small fake Windows installation just for that game, with its own `C:` drive, user folders and settings. This is called a *Wine prefix*, or just a *prefix*. (Wine is the open-source project Proton is built on.)
 
-When you launch a Windows game on the Steam Deck, Valve's **Proton** translation layer steps in. Proton doesn't just translate code; it creates a microscopic, fake Windows operating system for *every single game*. 
+As far as a game like *Cyberpunk 2077* can tell, it's running on a Windows PC with a `C:` drive. That `C:` drive is really a folder on your Deck.
 
-This fake OS environment is called a **Wine Prefix** (or just "Prefix"). 
+## Finding a Game's Prefix
 
-To a game like *Skyrim* or *Cyberpunk 2077*, it thinks it literally lives on a `C:\` drive. But that `C:\` drive is actually just a folder hidden deep inside SteamOS!
+Each Windows game you've played gets its own prefix folder inside:
 
-## Where are the Prefixes?
-
-Every Steam game installed on your system has a dedicated prefix folder inside your `compatdata` directory.
-
-The master path is:
 `/home/deck/.local/share/Steam/steamapps/compatdata/`
 
 > [!NOTE]
-> Remember, the `.local` folder is hidden! You must press `Ctrl+H` (or toggle "Show Hidden Files" in Dolphin's menu) to see it.
+> The `.local` folder is hidden. Press **Ctrl+H** in Dolphin, or select **Show Hidden Files** from its menu, to see it.
 
-When you open the `compatdata` folder, you won't see game names. You will see a giant list of numbers.
+Inside `compatdata`, there are no game names, only folders named with numbers.
 
-### The "AppID"
+### Looking Up a Game's AppID
 
-Steam identifies every game by a unique number called an **AppID**.
-For example:
+Steam identifies every game by a number called its *AppID*, and each prefix folder is named after one. For example:
+
 - *Elden Ring* is **1245620**
 - *Cyberpunk 2077* is **1091500**
 
-To find the AppID for the game you are looking for:
-1. Open the Steam store page for the game in a web browser.
-2. Look at the URL at the top. It will look like: `store.steampowered.com/app/1245620/...`
-3. That number is the folder name inside your `compatdata`!
+To find a game's AppID:
 
-## Inside the Prefix's "Fake C: Drive"
+1. Open the game's Steam store page in a web browser.
+2. Look at the address. It looks like `store.steampowered.com/app/1245620/...`
+3. That number is the name of the game's folder in `compatdata`.
 
-Let's say you want to find your *Elden Ring* save files.
-Navigate to `/home/deck/.local/share/Steam/steamapps/compatdata/1245620/pfx/drive_c/`
+## Inside the Fake C: Drive
 
-You are now looking at the fake Windows `C:\` drive for *Elden Ring*. From here, the path is exactly identical to a real Windows PC!
+To find *Elden Ring*'s saves, open:
 
-To find your user documents:
-Go to `users` -> `steamuser`
+`/home/deck/.local/share/Steam/steamapps/compatdata/1245620/pfx/drive_c/`
 
-Inside `steamuser`, you will see your familiar Windows folders:
-- `AppData/` (where 90% of save files live)
-- `Documents/` (where most config/ini files and some saves live)
-- `Saved Games/`
+This is *Elden Ring*'s `C:` drive. From here, the folders match a real Windows PC. Your Windows user folder is in `users/steamuser`, and inside it you'll find:
 
-For our *Elden Ring* example, the saves are tucked away in `AppData/Roaming/EldenRing/`.
+- `AppData/`, where most games keep their saves
+- `Documents/`, where many games keep config files and some saves
+- `Saved Games/`, used by a smaller number of games
+
+*Elden Ring*'s saves, for example, are in `AppData/Roaming/EldenRing/`.
 
 > [!TIP]
-> **Protips for Modding:**
-> If a mod guide for Windows tells you to place a file in `%APPDATA%\GameName`, this `pfx/drive_c/users/steamuser/AppData/Roaming/GameName` directory is *exactly* where you should put it on the Steam Deck!
+> **Translating mod guides:** when a Windows guide says to put a file in `%APPDATA%\GameName`, use `pfx/drive_c/users/steamuser/AppData/Roaming/GameName` inside that game's prefix.
 
 ## Non-Steam Games
 
-If you add a Non-Steam Game to your library (like an Epic Games installer or a romhack), Steam makes up a long AppID for it (like `3856193745`). 
+When you add a non-Steam game to your library, like an Epic Games installer, Steam makes up a long AppID for it (like `3856193745`).
 
-Because there's no storefront URL to check, finding these prefixes is harder. The best way is to sort the `compatdata` folder by **"Modified"** date in Dolphin immediately after playing the game. The folder that jumped to the top of the list is your game!
+There's no store page to look that number up, so use timestamps instead: play the game, then sort the `compatdata` folder by **Modified** in Dolphin. The folder at the top is your game.
 
 > [!CAUTION]
 > **Removing a non-Steam game from your library deletes its prefix, saves included.** Since mid-2023, Steam cleans up a non-Steam game's prefix and shader cache when you remove it (see **[GamingOnLinux's report](https://www.gamingonlinux.com/2023/06/removing-non-steam-apps-now-cleans-up-on-steam-deck-and-linux-desktop)**). Copy your saves somewhere safe first.
 
-## Making Shortcuts
+## A Shortcut Worth Making
 
-Navigating to `.local/share/Steam/steamapps/compatdata` is tedious. 
-**Do yourself a favor:** Drag the `compatdata` folder over to the left sidebar in Dolphin ("Places") to pin it permanently. Your future modding self will thank you!
+Typing `.local/share/Steam/steamapps/compatdata` gets old quickly. Drag the `compatdata` folder into the **Places** section of Dolphin's sidebar, and it's always one click away.
 
----
-
-Now that you can navigate the hardest part of the Linux filesystem, let's talk about what happens when things go wrong — and why you shouldn't worry about it.
+You now know where your games keep their most important files. Next: what happens when something on the Deck goes wrong, and the safety nets Valve built in.
