@@ -1,66 +1,73 @@
 ---
 layout: base.njk
-title: "📦 The Linux Command Toolbox (GNU Coreutils)"
-excerpt: "Learn the essential tools that power every Linux terminal."
+title: "🗂️ Core Commands (GNU Coreutils)"
+excerpt: "The everyday commands for copying, moving, deleting and reading files, with a hands-on practice run."
 tags:
   - posts
   - terminal
   - intermediate
 ---
 
-# The Linux Command Toolbox (GNU Coreutils)
+# Core Commands (GNU Coreutils)
 
-In the {{ collections.posts | chapterLink('bash') | safe }} chapter, we learned that the **Terminal** is just a way to talk to your computer. But if the terminal is a conversation, the **GNU Coreutils** are the vocabulary.
+Most of the basic commands you'll type, like `ls`, `cp` and `mv`, come from one collection called the **[GNU Core Utilities](https://www.gnu.org/software/coreutils/manual/coreutils.html)**, or *Coreutils* for short. Nearly every Linux system includes them, so what you learn here works far beyond the Deck. They behave the same in Bash and in Fish.
 
-Most of the simple commands you'll use on your Steam Deck (like `ls`, `cp`, and `mv`) actually belong to a massive collection of tools called the **[GNU Core Utilities](https://www.gnu.org/software/coreutils/manual/coreutils.html)**. These tools have been standard on Linux for decades.
+## Working With Files and Folders
 
-## 🛠️ The Essential Tools
+| Command | What it does | Example |
+| :--- | :--- | :--- |
+| **`cp`** | Copies a file. Add `-r` ("recursive") to copy a folder and everything in it. | `cp -r MyMods ~/Backups/` |
+| **`mv`** | Moves a file or folder, or renames it | `mv old_name.txt new_name.txt` |
+| **`rm`** | Deletes a file. Add `-r` to delete a folder and its contents. | `rm -r OldMods` |
+| **`mkdir`** | Creates a folder | `mkdir Backups` |
+| **`rmdir`** | Deletes a folder, but only if it's empty | `rmdir Backups` |
 
-Here are the most common tools you'll find yourself using while modding or managing your Deck:
+> [!CAUTION]
+> **The terminal has no Recycle Bin.** Files you delete with `rm` are gone immediately. Check the command, especially with `-r`, before you press **Enter**.
 
-### 1. File & Directory Management
-*   **`cp` (Copy)**: Copies files. Add `-r` ("recursive") to copy a whole folder and everything in it.
-    - `cp source.txt destination.txt`
-    - `cp -r MyMods ~/Backups/`
-*   **`mv` (Move/Rename)**: Moves a file or renames it.
-    - `mv old_name.txt new_name.txt`
-*   **`rm` (Remove)**: Deletes a file. Like `cp`, it needs `-r` to delete a folder and its contents.
-    - `rm file.txt`
-    - `rm -r OldMods`
-    - > [!CAUTION]
-      > **There is no Recycle Bin in the terminal.** When you use `rm`, the file is gone. Always double-check your command!
-*   **`mkdir`**: Creates a new folder.
-*   **`rmdir`**: Deletes an *empty* folder.
+## Reading Files
 
-### 2. Viewing & Inspecting
-*   **`cat`**: Slaps the entire contents of a file onto your screen. Great for quick reads.
-*   **`head` / `tail`**: Shows only the first or last few lines of a file. (Perfect for checking large log files!)
-*   **`less`**: Lets you scroll through a large file one page at a time. (Press `q` to quit!) Strictly speaking, `less` is its own project rather than part of Coreutils, but SteamOS includes it too.
+| Command | What it does | Example |
+| :--- | :--- | :--- |
+| **`cat`** | Prints a whole file to the screen | `cat notes.txt` |
+| **`head`** / **`tail`** | Prints the first or last 10 lines; handy for long log files | `tail notes.txt` |
+| **`less`** | Opens a file you can scroll through; press `q` to quit | `less notes.txt` |
 
-### 3. Permissions
-*   **`chmod`**: Changes who can read, write, or "execute" (run) a file.
-*   **`chown`**: Changes who "owns" the file. You'll usually use this with `sudo`.
+Strictly speaking, `less` is its own project rather than part of Coreutils, but SteamOS includes it too.
 
----
+## Permissions
 
-## 🔗 Deep Diving and Documentation
+| Command | What it does | Example |
+| :--- | :--- | :--- |
+| **`chmod`** | Changes who can read, write or run a file | `chmod +x tool.AppImage` |
+| **`chown`** | Changes who owns a file; usually needs `sudo` | `sudo chown deck file.txt` |
 
-The world of Coreutils is deep. If you want to see every single tool available and exactly how it works, check out the official manual:
+`chmod +x` is the terminal version of ticking **Allow executing file as program** in Dolphin, which you did in {{ collections.posts | chapterLink('appimage') | safe }}.
 
-👉 **[The GNU Coreutils Manual (Official Documentation)](https://www.gnu.org/software/coreutils/manual/coreutils.html)**
+## A Practice Run
 
----
+This creates a practice folder, works with a file inside it, then cleans up after itself:
 
-## 🧭 Don't Forget Your Cheat Sheet!
+```bash
+mkdir ~/practice
+cd ~/practice
+echo "hello" > note.txt
+cp note.txt copy.txt
+mv copy.txt renamed.txt
+ls
+cat renamed.txt
+cd ~
+rm -r ~/practice
+```
 
-As we mentioned before, you don't have to memorize every single flag and option. If you're ever stuck on how to use a specific tool like `tar` or `grep`, just use the **Cheat.sh** trick we learned:
+**What did that just do?** It created a folder called `practice` and moved into it. `echo "hello" > note.txt` wrote the word "hello" into a new file. `cp` made a copy, `mv` renamed the copy, `ls` listed both files, and `cat` printed the copy's contents. Finally, `cd ~` went back home and `rm -r` deleted the whole practice folder.
+
+## Getting Help
+
+The **[GNU Coreutils manual](https://www.gnu.org/software/coreutils/manual/coreutils.html)** documents every tool in detail. For quick examples, the cheat.sh trick from {{ collections.posts | chapterLink('bash') | safe }} works for all of them:
 
 ```bash
 curl cht.sh/cp
 ```
 
-*(Swap `cp` for any command you're curious about!)*
-
----
-
-Coreutils are only the start. SteamOS ships with a whole toolbox of other useful commands, so let's see what's already on your Deck before you install anything.
+Coreutils are only part of what SteamOS ships. The next chapter tours the rest of the toolbox that's already on your Deck.
