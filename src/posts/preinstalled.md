@@ -169,7 +169,7 @@ fd -e sav . ~/.local/share/Steam/steamapps/compatdata
 - **`nano`**: the beginner-friendly terminal editor used throughout this series. The shortcuts are listed along the bottom of the screen.
 - **`vim`**: a powerful editor with a steep learning curve. You'll meet it sooner than you think (see below).
 - **`kate`**: KDE's graphical text editor, for when you'd rather use a mouse.
-- **`tmux`**: keeps terminal sessions running after you close the window. This is especially useful once you connect over SSH in the next chapter.
+- **`tmux`**: keeps a terminal session running in the background, so you can detach from it and come back later. Over SSH (next chapter), it needs one extra step on SteamOS; see the warning below.
 
 To try `tmux`, start a named session, run something long inside it, then detach:
 
@@ -178,6 +178,15 @@ tmux new -s download
 ```
 
 Press `Ctrl+B`, then `D`, to detach. The session keeps running in the background. Get back to it any time with `tmux attach -t download`.
+
+> [!WARNING]
+> **Over SSH, plain `tmux` dies when you disconnect.** Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True` in `/etc/systemd/logind.conf.d/killuserprocesses.conf`. When an SSH connection closes, systemd kills everything still running inside it, and that includes a tmux session started there. Start tmux outside the connection instead:
+>
+> ```bash
+> systemd-run --user --scope tmux new -s download
+> ```
+>
+> `systemd-run --user --scope` hands tmux to your user's service manager, so it keeps running after you disconnect. Reattach later with `tmux attach -t download` as usual.
 
 ### Vim Is Your Default Editor
 
