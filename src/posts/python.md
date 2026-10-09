@@ -11,7 +11,7 @@ tags:
 
 # Python on SteamOS
 
-In {{ collections.posts | chapterLink('github') | safe }}, you learned how to grab community tools from GitHub. Many of them are written in **[Python](https://www.python.org/)**, one of the world's most popular programming languages. Good news: your Steam Deck already has it.
+In {{ collections.posts | chapterLink('github') | safe }}, you learned how to grab community tools from GitHub. Many of them are written in **[Python](https://www.python.org/)**, one of the world's most popular programming languages. Your Steam Deck already has it.
 
 > [!NOTE]
 > Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2**, which includes **Python 3.14.6**.
@@ -106,7 +106,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 The installer puts `uv` in `~/.local/bin` and adds that folder to your PATH, so **open a new terminal** afterwards. Then:
 
-- `uv run some_tool.py` runs a script, creating an environment and installing what it needs automatically.
+- `uv run some_tool.py` runs a script. If the script lists the libraries it needs at the top of the file, uv creates an environment and installs them automatically. For a project that comes with a `requirements.txt` instead, run `uv run --with-requirements requirements.txt some_tool.py`.
 - `uvx some-tool` runs a Python tool without installing it permanently. You'll use this in the next chapter to run a file server.
 
 Everything uv installs lives in your home folder, so it survives SteamOS updates.
