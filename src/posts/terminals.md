@@ -22,7 +22,7 @@ To open it:
 2. Click the **Application Launcher** in the bottom-left corner.
 3. Search for **Konsole**, or find it under **System**.
 
-Konsole has tabs, split views, and settings for fonts and colors.
+Konsole has tabs, split views and settings for fonts and colors.
 
 > [!TIP]
 > **Pin it to your taskbar.** Right-click Konsole in the Application Launcher and choose **Pin to Task Manager**, so it's always one click away.
