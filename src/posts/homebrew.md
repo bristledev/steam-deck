@@ -11,7 +11,7 @@ tags:
 
 #  Homebrew (Linuxbrew) – The Power User's Secret Weapon
 
-If you've been following along, you've started to explore the Steam Deck's terminal. But you might have noticed a problem: SteamOS is "read-only." This means you can't just install any Linux app you want using the standard `pacman` command. 
+In {{ collections.posts | chapterLink('steamos-extending') | safe }}, you saw why installing terminal tools with `pacman` doesn't last: the next update replaces the system image, and your tools vanish with it. You also saw the fix: a package manager that lives on the home partition.
 
 That’s where **Homebrew** comes in.
 
@@ -35,10 +35,28 @@ To install Homebrew, you just need to run one command in your terminal. Open **K
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### The "Path" Step (Important!)
-After the installation finishes, you'll see a message at the bottom of the terminal telling you to run a few more commands. These commands tell SteamOS where to find the "brew" command. 
+**What did that just do?** `curl` downloaded Homebrew's official install script, and `/bin/bash -c` ran it. It asks for your admin password once, creates `/home/linuxbrew/.linuxbrew`, and downloads Homebrew into it.
 
-**Pro-tip:** If you followed {{ collections.posts | chapterLink('fish') | safe }} and are using **Fish Shell**, you’ll want to make sure you add Homebrew to your Fish path as well.
+### The "Path" Step (Important!)
+After the installation finishes, look for the **Next steps** section at the bottom of the terminal. It lists three commands that tell your shell where to find `brew`. For Bash, they look like this:
+
+```bash
+echo >> /home/deck/.bashrc
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"' >> /home/deck/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+```
+
+Copy them from your own terminal and run them. The first two add a line to `~/.bashrc` so every new terminal can find `brew`, and the third sets it up in the terminal you already have open.
+
+If you use {{ collections.posts | chapterLink('fish') | safe }}, Fish doesn't read `~/.bashrc`, so add Homebrew to Fish's startup file as well:
+
+```fish
+mkdir -p ~/.config/fish
+echo '/home/linuxbrew/.linuxbrew/bin/brew shellenv fish | source' >> ~/.config/fish/config.fish
+```
+
+> [!WARNING]
+> **Skip the "Install Homebrew's dependencies" step.** The installer also suggests running `sudo pacman -S base-devel`. That advice is for regular Arch Linux. On SteamOS, `pacman` can't install into the read-only system, and anything you force in gets wiped by the next update. Homebrew downloads ready-built packages, so most tools work fine without it.
 
 ## Basic Homebrew Commands
 Once installed, using Homebrew is incredibly easy. Here are the only three commands you really need to know:
@@ -48,9 +66,12 @@ Once installed, using Homebrew is incredibly easy. Here are the only three comma
 2. **To update your apps:** `brew update` followed by `brew upgrade`
 3. **To see what you've installed:** `brew list`
 
+> [!TIP]
+> **Check before you brew.** Many popular tools, like `htop`, `ncdu` and `ripgrep`, already ship with SteamOS. Run `command -v <tool>` first; if it prints a path, you already have it. See {{ collections.posts | chapterLink('preinstalled') | safe }} for the full tour.
+
 ### Why this is a Game Changer
 With Homebrew, you can install specialized developer tools, better terminal utilities, or even simple games, all while keeping your Steam Deck's operating system pristine and safe.
 
 ---
 
-Ready for a more powerful alternative? Next we'll look at **Nix (Determinate Nix)** – the powerhouse package manager!
+Ready for a more powerful alternative? There's a package manager built around instant rollbacks and reproducible setups.
