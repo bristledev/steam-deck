@@ -76,7 +76,7 @@ Why the lock? The fan controller and update client depend on the exact libraries
 ## Virtual Environments
 
 ### Option 1: `venv`
-Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time, because they'd conflict. A **virtual environment** solves this by giving each project its own private copy of Python and its libraries. SteamOS's Python stays untouched, and your scripts stay happy.
+Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time, because they'd conflict. A **virtual environment** solves this by giving each project its own private set of libraries, on top of the system's Python. SteamOS's Python stays untouched, and each script gets the versions it needs.
 
 ```bash
 # Go to the folder of your Python project
@@ -110,7 +110,5 @@ The installer puts `uv` in `~/.local/bin` and adds that folder to your PATH, so 
 - `uvx some-tool` runs a Python tool without installing it permanently. You'll use this in the next chapter to run a file server.
 
 Everything uv installs lives in your home folder, so it survives SteamOS updates.
-
----
 
 Running a script by hand is fine once. For tools you want running all the time, like a file server, the next chapter shows how to start them automatically in the background.
