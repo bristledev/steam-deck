@@ -18,8 +18,6 @@ This chapter is the map. Once you know where everything lives, a lot of earlier 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel). Every Steam Deck uses the same layout; only the size of the biggest partition changes with your storage.
 
----
-
 ## What Is SteamOS Made Of?
 
 Think of an old game console. The **cartridge** holds the game: you can play it, but you can't write to it. Your progress goes on a separate **memory card**. Swap in a new cartridge, and your memory card still works.
@@ -30,8 +28,6 @@ SteamOS works the same way:
 - **The memory card** is everything that's yours: your games, apps, settings and files.
 
 There's one twist that a cartridge can't do. SteamOS keeps **two** system images on your drive, so it can install the next version into the spare while you keep playing on the current one. More on that in the next chapter.
-
----
 
 ## The Partition Map
 
@@ -68,8 +64,6 @@ nvme0n1                      953.9G
 
 Notice the pattern: almost everything comes in an **A** and a **B**. Only one set is in use at a time. In the output above, `rootfs-B` is mounted at `/`, so this Deck is currently running from **slot B**. Your Deck might be on A.
 
----
-
 ## The Read-Only Root (`/`)
 
 The root partition (`/`) holds the operating system itself: every program in `/usr/bin`, every library, the kernel. Check how full it is:
@@ -100,8 +94,6 @@ steamos-readonly status
 
 `enabled` means the image is locked. Leave it that way. We'll cover why (and what to do instead) at the end of this phase.
 
----
-
 ## `/etc`: A Writable Layer on Top
 
 `/etc` is where Linux keeps system settings: user accounts, Wi-Fi networks, which background services start at boot. If the image is read-only, how can you change any of that? Take a look:
@@ -128,15 +120,11 @@ You'll find things like `hostname`, `passwd`, `NetworkManager` (your Wi-Fi) and 
 > [!NOTE]
 > Not everything on the tracing paper survives a SteamOS update. Valve keeps a specific list of settings and sets the rest aside. The next chapter explains exactly which ones.
 
----
-
 ## `/var`: The Per-Slot Workspace
 
 `/var` holds system data that changes all the time: logs, caches, databases, and the `/etc` tracing paper you just saw. Each slot has its own small `var` partition (256 MB), mounted at `/var`.
 
-Because it's per-slot, the `var` that goes with slot A is separate from the one that goes with slot B. When SteamOS updates, it copies your current `var` across to the other slot so nothing gets lost.
-
----
+Because it's per-slot, the `var` that goes with slot A is separate from the one that goes with slot B. When SteamOS updates, it copies your current `var` across to the other slot, so your logs and system data carry over. The one thing filtered on the way is the `/etc` tracing paper, as the note above says.
 
 ## `/home`, and the Offload Trick
 
@@ -168,8 +156,6 @@ The output, `/dev/nvme0n1p8[/.steamos/offload/nix]`, means "`/nix` is really thi
 
 That's why your Flatpaks and Nix packages survive every SteamOS update: they physically live on the home partition, the memory card that updates never touch.
 
----
-
 ## Bonus: Where Swap Lives
 
 *Swap* is space the system uses when RAM fills up. Check yours:
@@ -183,8 +169,6 @@ You'll see two entries:
 - **`/dev/zram0`**: compressed swap that lives *in RAM*. Squeezing rarely used memory is much faster than writing it to the SSD.
 - **`/home/swapfile`**: a 1 GB file on the home partition, used as a last resort.
 
----
-
 ## The Whole Picture
 
 | Location | Partition | Writable? | What happens during an update |
@@ -195,7 +179,5 @@ You'll see two entries:
 | `/home` and offloaded folders | `home` | Yes | Never touched |
 
 Keep this table in mind for the rest of the series. Whenever you install something, ask: *which row does it land in?*
-
----
 
 So SteamOS keeps two of almost everything, and only uses one at a time. Next, let's watch what happens to the spare when an update arrives.
