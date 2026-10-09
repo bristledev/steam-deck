@@ -11,7 +11,7 @@ tags:
 
 # Updates & Recovery
 
-Most new Steam Deck owners worry about breaking something. SteamOS is designed so that's hard to do: it keeps a spare copy of itself, it locks its own system files, and Valve provides several ways to recover if things still go wrong. This chapter explains each safety net and when to use it.
+Most new Steam Deck owners worry about breaking something. SteamOS is designed so that's hard to do: it keeps a spare copy of itself, it locks its own system files and Valve provides several ways to recover if things still go wrong. This chapter explains each safety net and when to use it.
 
 ## How SteamOS Updates
 
@@ -33,7 +33,7 @@ The automatic rollback only covers updates that fail to boot. An update that boo
 
 ### Checking for Updates Yourself
 
-- **Game Mode:** press the **Steam** button, go to **Settings → System**, and select **Check For Updates**.
+- **Game Mode:** press the **Steam** button, go to **Settings → System** and select **Check For Updates**.
 - **Desktop Mode:** open Konsole and run:
 
 ```bash
