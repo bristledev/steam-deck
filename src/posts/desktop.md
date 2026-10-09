@@ -20,6 +20,8 @@ To get to Desktop Mode:
 
 Your Deck will flicker for a second and then—boom—it's a desktop.
 
+To go back, double-click the **Return to Gaming Mode** icon on the desktop. Any apps you left open in Desktop Mode will close, so save your work first.
+
 ## A New Window
 SteamOS uses a desktop called **KDE Plasma**. It looks and feels very similar to Windows 11. You have a taskbar (at the bottom), a start menu (bottom-left), and your windows.
 
@@ -38,7 +40,7 @@ By default, Steam gives you a powerful set of controls to navigate the desktop:
 - **Joysticks**: Left acts as arrows; Right acts as a mouse.
 
 ## The App Store (Discover)
-In Desktop Mode, you don't download installers from websites (like .exe files). Instead, you use the **Discover Software Center**.
+In Desktop Mode, you get most apps from the **Discover Software Center** instead of downloading installers from websites (like .exe files). A few community tools, like EmuDeck and Decky Loader, do come with their own installers; we'll cover those later.
 
 Think of it like the Apple App Store or Google Play Store. Search for apps like:
 - **Discord**
@@ -55,4 +57,4 @@ The file explorer is called **Dolphin**. It's just like File Explorer, but a bit
 
 *Self-care tip*: If you're coming from Windows, don't worry about the weird file paths (like /home/deck). Just know that everything you need is usually in your **Home** folder.
 
-{% next_chapter %}
+Speaking of those weird paths, let's figure out where everything actually lives on your Deck.
