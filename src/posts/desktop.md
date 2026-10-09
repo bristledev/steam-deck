@@ -44,7 +44,7 @@ Steam gives the Deck's buttons a desktop layout by default:
 | **L1** / **R1** | Ctrl / Alt |
 | **R4** / **R5** | Page Up / Page Down |
 
-You'll need the on-screen keyboard often, so **Steam** + **X** is the one to remember. A USB or Bluetooth mouse and keyboard also work, and make longer sessions much more comfortable.
+You'll need the on-screen keyboard often. **X** shows it in Desktop Mode, but **Steam** + **X** is a Steam button shortcut that works in Game Mode too, so that's the one to remember. A USB or Bluetooth mouse and keyboard also work, and make longer sessions much more comfortable.
 
 ## Getting Apps: Discover
 
