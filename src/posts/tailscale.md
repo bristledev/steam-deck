@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🌐 Remote Access with Tailscale"
-excerpt: "Reach your Deck securely from anywhere, run commands on it remotely, and send files to it with Taildrop."
+excerpt: "Reach your Deck securely from anywhere, run commands on it remotely and send files to it with Taildrop."
 tags:
   - posts
   - networking
@@ -42,7 +42,7 @@ Tailscale needs a background service with admin rights, which an app from Discov
 5. **Log out and back in.** The installer adds Tailscale to your PATH with a file in `/etc/profile.d`, which is only read when you log in, so a new Konsole window isn't enough. Switch to Game Mode and back to Desktop Mode, or restart the Deck. To use it in the terminal you already have open, run `. /etc/profile.d/tailscale.sh` (in Fish, `set -gx PATH $PATH /opt/tailscale`). After that, plain `tailscale` commands work without `sudo`.
 6. **Install Tailscale on your other devices** from **[tailscale.com/download](https://tailscale.com/download)**, and sign in with the same account.
 
-**What did that just do?** In step 4, `up` connects your Deck to your Tailscale network. `--qr` shows the login link as a QR code, `--operator=deck` lets your `deck` user control Tailscale without `sudo` afterwards, and `--ssh` turns on Tailscale SSH.
+**What did that just do?** In step 4, `up` connects your Deck to your Tailscale network. `--qr` shows the login link as a QR code, `--operator=deck` lets your `deck` user control Tailscale without `sudo` afterwards and `--ssh` turns on Tailscale SSH.
 
 > [!NOTE]
 > **Why the long `/opt/tailscale/tailscale` path?** For safety, `sudo` only looks for programs in a short, fixed list of folders, and `/opt/tailscale` isn't one of them. Plain `sudo tailscale` would fail with "command not found". The **[deck-tailscale instructions](https://github.com/tailscale-dev/deck-tailscale#readme)** use the full path for the same reason.
