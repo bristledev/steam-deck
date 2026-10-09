@@ -17,7 +17,7 @@ These are the places worth bookmarking once you've finished the series, grouped 
 ### From Valve
 
 - **[Steam Deck Official Site](https://www.steamdeck.com/)**: Valve's page for the Deck, with specs, features and announcements.
-- **[SteamOS Recovery and Troubleshooting](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)**: Valve's official guide to Factory Reset, rolling back to the previous version, and erasing user data.
+- **[SteamOS Recovery and Troubleshooting](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)**: Valve's official guide to Factory Reset, rolling back to the previous version and erasing user data.
 - **[SteamOS Installation and Repair](https://help.steampowered.com/en/faqs/view/65B4-2AA3-5F37-4227)**: Valve's recovery image download, with instructions for repairing or re-imaging your Deck from a USB drive.
 - **[Steam Deck FAQ](https://www.steamdeck.com/en/faq)**: Valve's answers to common questions.
 - **[Deck Verified](https://www.steamdeck.com/en/verified)**: How Valve's compatibility ratings work.
