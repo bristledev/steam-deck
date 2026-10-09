@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "🎎 Customization with Decky Loader"
+title: "🔌 Customization with Decky Loader"
 excerpt: "Add plugins to Game Mode with Decky Loader, and understand exactly what it changes on your Deck."
 tags:
   - posts
@@ -11,7 +11,7 @@ tags:
 
 # Customization with Decky Loader
 
-Game Mode looks great, but it isn't built to be modded. You can't add your own buttons, themes or tools to it. The community's answer is **[Decky Loader](https://decky.xyz/)**, a plugin system for Game Mode, and it's hugely popular: its top plugins each have over a million downloads.
+Game Mode isn't built to be modded: you can't add your own buttons, themes or tools to it. The community's answer is **[Decky Loader](https://decky.xyz/)**, a plugin system for Game Mode. It's widely used; its top plugins each have over a million downloads.
 
 It's also unofficial, and it works by reaching deep into Steam itself. This chapter covers both sides: how to install and use it, and exactly what it changes, so you can decide whether it's right for you.
 
@@ -20,9 +20,9 @@ It's also unofficial, and it works by reaching deep into Steam itself. This chap
 
 ---
 
-## 🔌 What Is Decky Loader?
+## What Is Decky Loader?
 
-Think of **browser extensions**. A website is built by its owner, but an extension can add buttons and features to it on your computer.
+Decky works like a **browser extension**. A website is built by its owner, but an extension can add buttons and features to it on your computer.
 
 Steam's Game Mode interface is built the same way as a website. Steam draws it with a built-in web browser engine, the `steamwebhelper` process. Decky Loader is an extension for *that*: it adds its own code to Steam's interface, which gives you a new **plugin menu** inside the Quick Access (**...**) menu.
 
@@ -30,9 +30,9 @@ Plugins can then add almost anything: custom artwork, themes, game-length estima
 
 ---
 
-## ⚖️ Before You Install: The Trade-Offs
+## Before You Install: The Trade-Offs
 
-Decky works by doing things SteamOS's sealed, read-only design normally prevents. None of that makes it dangerous by default, but you should know what you're agreeing to:
+Decky works by doing things SteamOS's read-only design normally prevents. That doesn't make it dangerous by default, but you should know what you're agreeing to:
 
 - **It's unofficial.** Valve doesn't make or support it. If something breaks, Decky's community is who you ask.
 - **Updates can break it.** Decky's own README admits that "Sometimes Decky will disappear on SteamOS updates." Steam updates can break individual plugins too, because they hook into Steam's interface, which Valve changes freely. The fix is usually to re-run the installer, or wait for the plugin's author to catch up.
@@ -45,9 +45,9 @@ Decky works by doing things SteamOS's sealed, read-only design normally prevents
 
 ---
 
-## 📥 Installing Decky Loader
+## Installing Decky Loader
 
-You'll need to set this up in Desktop Mode. A mouse and keyboard make it much easier, but the trackpad and **Steam + X** for the on-screen keyboard work fine.
+You'll need to set this up in Desktop Mode. A mouse and keyboard make it easier, but the trackpad and **Steam** + **X** for the on-screen keyboard work fine.
 
 1. Switch to **Desktop Mode** (from {{ collections.posts | chapterLink('desktop') | safe }}).
 2. Open **[decky.xyz](https://decky.xyz/)** in a web browser and download the installer file, `decky_installer.desktop`.
@@ -57,13 +57,13 @@ You'll need to set this up in Desktop Mode. A mouse and keyboard make it much ea
 5. Choose **Latest Release**. (If you're on SteamOS's Beta or Preview update channel, the installer suggests the pre-release instead.)
 6. Double-click **Return to Gaming Mode** on your desktop.
 
-Back in Game Mode, press the **...** button. You'll see a new **plug** icon: that's Decky's menu.
+Back in Game Mode, press the **"..."** button. You'll see a new **plug** icon: that's Decky's menu.
 
 ---
 
-## 🧩 Plugins Worth Trying
+## Plugins Worth Trying
 
-Open Decky's menu and select the **store** icon to browse plugins. Here are some popular, well-maintained ones, several of which pair with earlier chapters:
+Open Decky's menu and select the **store** icon to browse plugins. These are some of the most popular, and several pair with earlier chapters:
 
 | Plugin | What it does |
 | :--- | :--- |
@@ -79,7 +79,7 @@ Open Decky's menu and select the **store** icon to browse plugins. Here are some
 
 ---
 
-## 🔬 Under the Hood
+## Under the Hood
 
 You don't need any of this to *use* Decky. But if you're curious, or once you've learned the terminal later in this series, here's exactly what the installer changes:
 
@@ -116,9 +116,9 @@ Why does Decky usually survive SteamOS updates? Its files live in your home fold
 
 ---
 
-## 🗑️ Uninstalling
+## Uninstalling
 
-If you decide Decky isn't for you, removing it is clean:
+To remove Decky:
 
 1. Switch to **Desktop Mode**.
 2. Run the same `decky_installer.desktop` file again.
@@ -130,4 +130,4 @@ Either way, the installer stops the service, deletes it, and turns Steam's debug
 
 ---
 
-Customizing Game Mode is fun, but the real power of your Deck lives one layer deeper. Next, we'll meet the most powerful tool on your Deck: the terminal.
+This chapter mentioned the terminal a few times. The next phase teaches it from scratch, starting with where to find one.
