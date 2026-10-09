@@ -15,37 +15,56 @@ In the {{ collections.posts | chapterLink('ssh') | safe }} chapter, you learned 
 
 That’s where remote access tools come in.
 
-## The Magic Way: Tailscale
-If you want the ultimate, painless remote experience, **[Tailscale](https://tailscale.com/)** is the answer. It’s a "Zero Config" VPN that creates a secure, private hallway between your devices—your phone, your laptop, and your Steam Deck—no matter where they are in the world. 
+## What Is Tailscale?
+**[Tailscale](https://tailscale.com/)** is a VPN that links your devices into one private network, no matter where they are in the world. Think of it as a secure, private hallway between your phone, your laptop and your Steam Deck. There's no port forwarding to set up and no router settings to touch.
 
-Normally, remote connections require setting up scary network rules. **Tailscale does all of that for you.**
+Once your Deck is connected, you get two extras:
 
-- **Tailscale SSH**: The gold standard for remote access. No passwords, no keys, just pure secure magic from your PC to your Deck.
-- **Easy File Transfers**: Drag and drop files directly between your devices (more on this below).
+- **Tailscale SSH**: Log in to your Deck from your other devices using your Tailscale account instead of an SSH password. By default, Tailscale occasionally asks you to confirm it's you in a web browser, and that confirmation lasts 12 hours (see **[Tailscale's SSH guide](https://tailscale.com/kb/1193/tailscale-ssh)**).
+- **Taildrop**: Send files between your own devices (more on this below).
 
 ## How to Install Tailscale
-Because SteamOS is a unique, "read-only" system, we shouldn't just install Tailscale from a standard app store. Instead, we’ll use a special community-made script called **[deck-tailscale](https://github.com/tailscale-dev/deck-tailscale)** that makes Tailscale "survive" even when Valve updates your Steam Deck.
+Tailscale needs a background service with admin rights, which an app from Discover can't provide. Instead, we'll use **[deck-tailscale](https://github.com/tailscale-dev/deck-tailscale)**, an install script from the `tailscale-dev` project on GitHub, based on **[Tailscale's own Steam Deck guide](https://tailscale.com/blog/steam-deck)**. It puts Tailscale in places that SteamOS updates leave alone, so it keeps working after every update. (You'll see exactly how in {{ collections.posts | chapterLink('steamos-extending') | safe }}.)
 
-1. Open **Konsole** (from {{ collections.posts | chapterLink('bash') | safe }}).
-2. Type this command to download the installer:
+1. Open **Konsole**. You'll need your admin password from {{ collections.posts | chapterLink('bash') | safe }}.
+2. Download the installer:
    ```bash
    git clone https://github.com/tailscale-dev/deck-tailscale.git ~/deck-tailscale
    ```
-3. Now, enter the folder and run the installer:
+3. Enter the folder and run the installer:
    ```bash
    cd ~/deck-tailscale
    sudo bash tailscale.sh
    ```
-   *(You'll need your admin password from {{ collections.posts | chapterLink('bash') | safe }}!)*
-
-4. **Close Konsole and open a new window.** The installer adds Tailscale to your PATH, but only terminals opened afterwards pick that up.
-5. Finally, start Tailscale and log in:
+4. Start Tailscale and log in:
    ```bash
-   sudo tailscale up --qr --operator=deck --ssh
+   sudo /opt/tailscale/tailscale up --qr --operator=deck --ssh
    ```
-   A **QR Code** will appear in your terminal. Scan it with your phone, log in, and your Steam Deck is officially on your private network!
+   A **QR Code** will appear in your terminal. Scan it with your phone and sign in to Tailscale (or create a free account). Your Steam Deck is now on your private network!
+5. **Close Konsole and open a new window.** The installer adds Tailscale to your PATH, but only terminals opened afterwards pick that up. From now on, plain `tailscale` commands work without `sudo`.
+6. **Install Tailscale on your other devices** from **[tailscale.com/download](https://tailscale.com/download)**, and sign in with the same account.
 
-   This first run needs `sudo`. The `--operator=deck` flag then lets your `deck` user run later `tailscale` commands without it.
+**What did that just do?** In step 4, `up` connects your Deck to your Tailscale network. `--qr` shows the login link as a QR code, `--operator=deck` lets your `deck` user control Tailscale without `sudo` afterwards, and `--ssh` turns on Tailscale SSH.
+
+> [!NOTE]
+> **Why the long `/opt/tailscale/tailscale` path?** For safety, `sudo` only looks for programs in a short, fixed list of folders, and `/opt/tailscale` isn't one of them. Plain `sudo tailscale` would fail with "command not found". The **[deck-tailscale instructions](https://github.com/tailscale-dev/deck-tailscale#readme)** use the full path for the same reason.
+
+## Connecting to Your Deck from Anywhere
+On your Deck, list the devices on your Tailscale network:
+
+```bash
+tailscale status
+```
+
+**What did that just do?** It showed every device signed in to your account, each with a private address starting with `100.` and a device name. Your Deck's name is usually the same as its hostname.
+
+Now, from your PC, wherever you are, connect with the Deck's Tailscale name (or its `100.` address):
+
+```bash
+ssh deck@steamdeck
+```
+
+Replace `steamdeck` with your Deck's name from `tailscale status`. The first time, Tailscale may print a link to confirm it's you in a web browser. After that, you're in.
 
 ## Optional: The "KTailctl" GUI
 If you prefer a visual interface over the terminal, you can install **[KTailctl](https://flathub.org/en/apps/org.fkoehler.KTailctl)**. This is a community-made app that lets you see your other devices and manage your connection right from the desktop.
@@ -54,21 +73,49 @@ If you prefer a visual interface over the terminal, you can install **[KTailctl]
 2. Search for **KTailctl** and click **Install**.
 3. Now you have a Tailscale icon in your system tray that you can use to toggle the connection on and off!
 
-## 🪄 Superpowered Remote Commands
-Now that you have an SSH connection to your Deck (either via Tailscale or OpenSSH), you can perform "magic tricks" from your laptop while the Deck stays exactly where it is:
+According to **[KTailctl's README](https://github.com/f-koehler/KTailctl)**, it needs Tailscale's "operator" permission to change settings, and the `--operator=deck` flag from step 4 already took care of that.
 
-- **Switch to Desktop Mode Remotely**: Type `steamos-session-select plasma` and hit Enter. The Deck restarts its session (no full reboot) and comes back up in Desktop Mode. (To force it back to Game Mode, use `steamos-session-select gamescope`).
-- **Install Apps Invisibly**: Browsing Flathub on your phone? Type `flatpak install flathub com.discordapp.Discord` to quietly install an app directly to your Deck. It will be ready and waiting in your library.
-- **The Ultimate PC Benchmark**: Type `btop` and hit Enter. You now have a live, real-time dashboard of exactly what your Deck's CPU and RAM are doing. Run a game, look at your laptop screen, and see what's eating your memory!
-- **Reboot & Shutdown**: Need a quick restart from the couch? `sudo steamos-reboot` (or `sudo steamos-poweroff` to shut down) works instantly.
+## 🪄 Superpowered Remote Commands
+Now that you have an SSH connection to your Deck (either via Tailscale or regular SSH), you can do a lot from your laptop while the Deck stays exactly where it is:
+
+- **Switch to Desktop Mode Remotely**: Run `steamosctl switch-to-desktop-mode`. The Deck restarts its session (no full reboot) and comes back up in Desktop Mode. To return to Game Mode, run `steamosctl switch-to-game-mode`. You'll learn what's happening behind the scenes in {{ collections.posts | chapterLink('steamos-sessions') | safe }}. *(Older guides use `steamos-session-select plasma`, which still works too.)*
+- **Install Apps Remotely**: Found an app on Flathub? Run `sudo flatpak install flathub com.discordapp.Discord` to install it straight onto your Deck. Because you're not sitting at the Deck, SteamOS asks for your admin password, hence the `sudo`. The app will be waiting in Desktop Mode's application menu.
+- **Live System Monitor**: Run `btop` (it comes with SteamOS). You get a live dashboard of exactly what your Deck's CPU and RAM are doing. Run a game, look at your laptop screen, and see what's eating your memory!
+- **Reboot & Shutdown**: Need a quick restart from the couch? `sudo steamos-reboot` restarts the Deck, and `sudo steamos-poweroff` shuts it down.
 
 ## Remote File Transfers (Taildrop)
-Once Tailscale is on your phone and your Deck, you can use "Taildrop" to send files. 
-- **On your phone/laptop**: Right-click a file, select 'Send with Tailscale', and pick your **Steam Deck**.
-- **On your Deck**: Received files wait in Tailscale's inbox until you collect them. Run `tailscale file get ~/Downloads` to move them into your `Downloads` folder, or let **KTailctl** (above) pick them up for you.
+Once Tailscale is on your phone or laptop and your Deck, you can use **Taildrop** to send files between them.
+
+> [!NOTE]
+> Taildrop is still an early (alpha) feature, and it only sends files between your *own* devices. Before using it, turn on **Send Files** in Tailscale's online admin console. See **[Tailscale's Taildrop guide](https://tailscale.com/kb/1106/taildrop)** for details.
+
+- **To send a file**: On Windows, right-click the file and choose **Send with Tailscale**. On a Mac, iPhone or Android phone, use the **Share** menu and choose **Tailscale**. Then pick your **Steam Deck**.
+- **To receive it on your Deck**: Received files wait in Tailscale's inbox until you collect them. Run `tailscale file get ~/Downloads` to move them into your `Downloads` folder.
 
 No more USB drives or cloud uploads!
 
+## Keeping Tailscale Updated
+Tailscale doesn't come from Discover, so Discover won't update it. Update it from Konsole instead:
+
+```bash
+sudo /opt/tailscale/tailscale update
+```
+
+To have it update itself automatically from now on, run `tailscale set --auto-update`.
+
+> [!WARNING]
+> **Run updates from your Deck's own Konsole, or over regular SSH.** The **[deck-tailscale README](https://github.com/tailscale-dev/deck-tailscale#readme)** warns that updating over a Tailscale SSH connection will most likely fail.
+
+It's also worth refreshing the install script now and then, since it gets fixes too:
+
+```bash
+cd ~/deck-tailscale
+git pull
+sudo bash tailscale.sh
+```
+
+To remove Tailscale completely, run `sudo bash uninstall.sh` from the same folder.
+
 ---
 
-Tailscale is the ultimate bridge between your main computer and your Deck. Now that we can control the Deck remotely, let's look at how to expand its capabilities with **Homebrew**!
+Tailscale is the ultimate bridge between your main computer and your Deck. You've now used SteamOS from every angle, so it's time to open the hood and see how it actually works, starting with a map of everything on your drive.
