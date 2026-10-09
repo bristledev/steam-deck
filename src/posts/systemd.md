@@ -118,17 +118,17 @@ If the server isn't reachable, `systemctl --user status copyparty` is the first 
 > [!TIP]
 > Add `-f` to follow the log live: `journalctl --user -u copyparty -f`. Press **Ctrl+C** to stop following.
 
-## Keeping It Running Across Mode Switches
+## Mode Switches and Lingering
 
-By default, Linux only runs your `--user` services while the `deck` user is logged in. As you saw in {{ collections.posts | chapterLink('steamos-sessions') | safe }}, Game Mode and Desktop Mode are *both* login sessions: the Deck logs you in automatically either way. But switching modes ends one session and starts another, and if there's a moment with no session at all, systemd may stop your background services along with it.
+Your service keeps running when you switch between Game Mode and Desktop Mode. As {{ collections.posts | chapterLink('steamos-sessions') | safe }} explains, systemd waits 10 seconds after your last session ends before it stops your user services, and a mode switch starts the next session within a second.
 
-The fix is a one-time setting called *lingering*. SteamOS ships with it switched off, so you have to turn it on yourself:
+What would stop it is having no session at all for longer than that. A one-time setting called *lingering* covers that case. SteamOS ships with it switched off:
 
 ```bash
 loginctl enable-linger deck
 ```
 
-**What did that just do?** It told systemd to start the `deck` user's services at boot and keep them running even when no session is open. Your services now stay up through reboots and mode switches.
+**What did that just do?** It told systemd to start the `deck` user's services at boot, before the Deck logs you in, and to keep them running even when no session is open. On a Deck that logs you in automatically, that rarely matters, so lingering is optional insurance rather than a requirement.
 
 > [!TIP]
 > The setting is permanent. To check it, run `loginctl show-user deck | grep Linger`, which should print `Linger=yes`. To undo it, run `loginctl disable-linger deck`.
