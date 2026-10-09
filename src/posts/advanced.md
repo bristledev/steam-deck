@@ -26,12 +26,12 @@ Once it's installed, you can download all your GOG and Epic games. After downloa
 ## Emulation: The EmuDeck Magic 
 If you want to play games from your childhood (Nintendo, PlayStation, etc.), **[EmuDeck](https://www.emudeck.com/)** is exactly what you need. 
 
-1. Head to [EmuDeck.com](https://emudeck.com).
+1. Head to **[EmuDeck.com](https://www.emudeck.com/)** in Desktop Mode.
 2. Download the installer.
 3. Run it and choose 'Easy Mode'.
 4. It'll automatically set up all the complicated stuff for you.
 
-*Disclaimer*: Emulation is legal, but downloading games you don't own (ROMs) is not. Make sure you use your own legally-owned backups!
+*Disclaimer*: Emulators themselves are legal, but downloading game files (ROMs) from the internet generally isn't, even for games you own. Make backups from your own cartridges and discs instead.
 
 ## Non-Steam Games (The 'Secret' Menu)
 You can even add regular programs to Steam.
@@ -39,6 +39,4 @@ You can even add regular programs to Steam.
 2. Find the app you want (like Discord or Firefox).
 3. Now it shows up in your library like any other game!
 
-That’s it! You’ve gone from a SteamOS ‘Noob’ to someone who knows more than 90% of most people who own a Deck. But the journey doesn't end here!
-
-{% next_chapter %}
+Between Discover, Heroic, and EmuDeck, you can already play almost anything. But some apps aren't in any store at all. For those, Linux has its own take on the "download and double-click" app.
