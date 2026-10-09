@@ -57,15 +57,19 @@ Never run a command you don't understand! Here are two amazing ways to learn wha
 ### 1. Explainshell.com (The Translator)
 If you find a long, confusing command online, copy and paste it into **[Explainshell.com](https://explainshell.com/)**. It breaks the command down into parts and explains exactly what each argument (the bits after the main command) is doing. It’s the ultimate safety tool for beginners.
 
-### 2. Cheat.sh (The Local Helper)
+### 2. Cheat.sh (Help Right in Your Terminal)
 Need a quick reminder of how to use `ls` or `tar`? You don't even have to leave the terminal. Just type:
 ```bash
 curl cht.sh/ls
 ```
 *(Replace `ls` with any command you're curious about!)*
 
+### 3. `--help` (Built Into Most Commands)
+Most commands explain themselves if you add `--help`, like `ls --help`.
+
+> [!NOTE]
+> **Why doesn't `man` work?** On most Linux systems, `man ls` opens the full manual for a command. SteamOS includes the `man` program but leaves out the manuals themselves, so you'll just see `No entry for ls in the manual`. Use `--help` or cheat.sh instead.
+
 ---
 
-Learning the terminal is like learning to drive a manual car—it takes a second to get the hang of it, but once you do, you'll never want to go back.
-
-{% next_chapter %}
+Learning the terminal is like learning to drive a manual car—it takes a second to get the hang of it, but once you do, you'll never want to go back. And Bash isn't your only choice of shell: next, let's meet one that's a lot friendlier to beginners.
