@@ -30,7 +30,7 @@ Scroll down past the files, and you'll almost always see a `README.md` document 
 
 ## Method 1: The "Curl" Script
 
-The most common way developers distribute mods for the Steam Deck is via a "curl" script. This is the method used by Decky Loader.
+The most common way developers distribute mods for the Steam Deck is via a "curl" script. Decky Loader's README, for example, offers one as a faster alternative to the installer file you used in {{ collections.posts | chapterLink('customization') | safe }}.
 
 > [!CAUTION]
 > Always verify you are on the legitimate GitHub page before copying a curl script. A malicious script can do serious harm to your system.
@@ -51,6 +51,17 @@ Let's break it down so it's not just black magic:
 2. Paste the command and hit `Enter`.
 3. If you haven't set a `sudo` password yet, the script might ask you to set one (refer back to {{ collections.posts | chapterLink('bash') | safe }}).
 
+### The Safer Way: Read It First
+Piping straight into `sh` runs the script before you've seen a single line of it. For anything that asks for your admin password, split it into three steps instead:
+
+```bash
+curl -L https://github.com/DeveloperName/CoolDeckMod/raw/main/install.sh -o install.sh
+less install.sh
+bash install.sh
+```
+
+**What did that just do?** `-o install.sh` saves the script to a file instead of running it. `less` lets you scroll through it (press `q` to quit). You don't need to understand every line, but watch for anything that touches files outside the mod's own folder, or runs `steamos-readonly disable`. Only then does `bash` run it.
+
 ## Method 2: GitHub Releases
 
 Sometimes, a mod is a compiled application or a ZIP file containing assets. You won't use a curl command for this; you need to download it from the **Releases** page.
@@ -65,11 +76,11 @@ Sometimes, a mod is a compiled application or a ZIP file containing assets. You 
 > **Understanding file extensions:**
 > - `.zip` and `.tar.gz` are compressed folders. Right-click and Extract them.
 > - `.AppImage` is a portable app. Right-click it, go to Properties -> Permissions, and check "Is executable" before running it.
-> - `.sh` is a shell script. Double-click it or run it from Konsole using `./scriptname.sh`.
+> - `.sh` is a shell script. Read it first (see above), then run it from Konsole with `bash scriptname.sh`.
 
 ## Method 3: Git Clone
 
-Very rarely, a project might not have a release or a curl script. Instead, they tell you to "clone the repo". To do this, you need the `git` tool. 
+Some projects don't have a release or a curl script. Instead, they tell you to "clone the repo", which downloads the project's whole folder. You already did this for the Tailscale installer in {{ collections.posts | chapterLink('tailscale') | safe }}, and many Python tools work the same way. To do this, you need the `git` tool. 
 
 Thankfully, the Steam Deck has `git` pre-installed!
 
@@ -84,8 +95,8 @@ Thankfully, the Steam Deck has `git` pre-installed!
    ```
 4. This will create a new folder called `CoolDeckMod`. You can then `cd` into it and follow the developer's instructions!
 
-With these three methods under your belt, the entire world of Steam Deck community mods is now at your fingertips!
+To get the author's latest changes later, open the folder in Konsole and run `git pull`.
 
 ---
 
-{% next_chapter %}
+With these three methods under your belt, the entire world of Steam Deck community mods is now at your fingertips! Many of those community tools are written in one programming language in particular, and your Deck already speaks it.
