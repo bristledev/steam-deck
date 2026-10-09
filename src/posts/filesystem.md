@@ -1,56 +1,67 @@
 ---
 layout: base.njk
-title: "📁 File System"
-excerpt: "Where are my games and my SD card?"
+title: "📁 Where Your Files Live"
+excerpt: "Where SteamOS keeps your files, your games and your SD card, and three rules that differ from Windows."
 tags:
   - posts
   - steamos
   - beginner
 ---
 
-#  SteamOS File System (Where is my stuff?) 
+# Where Your Files Live
 
-If you're from Windows, Linux's file system looks like a puzzle. Let's break it down into things you actually need to know.
+If you're coming from Windows, Linux organizes files differently. There are no drive letters, and your games aren't in `Program Files`. This chapter covers the handful of locations you'll actually use.
 
 > [!NOTE]
-> **Slashes go the other way!** On Windows, file paths use backslashes (`C:\Users\Name`). On Linux, file paths use forward slashes (`/home/deck`).
+> **Slashes go the other way.** Windows paths use backslashes (`C:\Users\Name`). Linux paths use forward slashes (`/home/deck`).
 
-## The 'Home' (Your Sanctuary)
-Everything you do is in `/home/deck`.
-- It contains your usual 'Documents', 'Downloads', and 'Desktop' folders, just like a Windows user profile.
-- Unlike Windows (`C:\Users\Name`), everything for the user lives here.
-- Steam games are hidden here: `.local/share/Steam/steamapps/common`.
+## Your Home Folder
 
-## Where is my SD Card?
-This is the \#1 question for noobs. It's not `D:\`.
-In SteamOS, your SD card is 'mounted' in:
-`/run/media/deck/<card name>`, where the folder is named after the card's label (for example, `/run/media/deck/SN512`).
+Almost everything that belongs to you lives in `/home/deck`, your *home folder*. It's the Linux equivalent of `C:\Users\Name` on Windows:
 
-### Pro-Tip: Shortcuts
-In the file manager (**Dolphin**), your SD card usually shows up on the left sidebar under 'Removable Devices'. You can drag it to 'Places' to make it a permanent shortcut!
+- It contains the usual **Documents**, **Downloads** and **Desktop** folders.
+- Your app settings and game data live here too, in hidden folders (more on those below).
+- Your Steam games are installed in `/home/deck/.local/share/Steam/steamapps/common`.
 
-## The 'Hidden' Space-Eaters
-Ever wonder why your 'Other' storage is full? 
-- **Shader Cache**: Shaders are small programs that tell your GPU how to draw each effect. Steam downloads them already compiled, so games stutter less.
-- **Compatdata**: Since Steam uses 'Proton' to run Windows games, it creates a 'Fake Windows C: Drive' for *every single game*. 
-They live in: `/home/deck/.local/share/Steam/steamapps/shadercache` and `compatdata`.
+You'll often see the home folder written as `~` for short, so `~/Downloads` means `/home/deck/Downloads`.
 
-## 3 Critical Linux Rules to Remember
-Moving from Windows to Linux means rewiring your brain slightly. Keep these three rules in mind:
+## Where Is My SD Card?
 
-### 1. The "Dot" Means Hidden
-You might notice the folder above is named `.local`. In Linux, simply adding a dot `.` to the beginning of a file or folder name makes it invisible! 
-- **How to see them:** In the Dolphin file manager, click the menu in the top right and select "Show Hidden Files" (or press `Ctrl+H` on a keyboard). 
+There's no `D:\` drive. SteamOS *mounts* your SD card (connects it to the folder tree) at `/run/media/deck/<card name>`, where the folder is named after the card's label. For example, a card labeled `SN512` appears at `/run/media/deck/SN512`.
 
-### 2. Case Matters. A Lot. 
-On Windows, a folder named `Mods` and a folder named `mods` are treated exactly the same. 
-**On Linux, they are two completely different folders.** If a game guide tells you to put files in the `mods` folder, but you name it `Mods`, the game will completely ignore it. Pay close attention to capital letters!
+In **Dolphin**, the file manager, your SD card shows up in the left sidebar under **Removable Devices**. Drag it up to **Places** to keep a permanent shortcut.
 
-### 3. 'Look, But Don't Touch' (The Immutable OS)
-Unlike a normal Windows PC, the Steam Deck's core system files (outside of your `/home/deck` folder) are "locked" down. This is called an **Immutable Filesystem**. Valve does this so a rogue program or a slip of the keyboard can't damage the operating system. (Protection against a *bad update* is a separate safety net, which we'll cover in {{ collections.posts | chapterLink('recovery') | safe }}.) You can explore those folders, but you can't write to them. Stick to `/home/deck`! Later in this series, {{ collections.posts | chapterLink('steamos-anatomy') | safe }} shows exactly how the lock works and the few system folders that *are* writable.
+## Two Folders That Eat Space
 
-## Dolphin Tips
-- **Splitting the view**: Press `F3` to see two folders side-by-side. Great for moving files!
-- **Opening terminal here**: Press `F4` if you ever need to type a command in a specific folder. (Don't be scared!)
+Two hidden folders tend to take up more space than you'd expect:
 
-Understanding your files is the key to becoming a Steam Deck master. Now that you're an explorer, let's talk about managing your storage and getting the most out of your SD card.
+- **Shader cache**: *shaders* are small programs that tell your GPU how to draw each effect. Steam downloads them already compiled, so games stutter less. They're stored in `~/.local/share/Steam/steamapps/shadercache`.
+- **Compatdata**: to run a Windows game, Steam's Proton layer creates a fake Windows `C:` drive for each game. These live in `~/.local/share/Steam/steamapps/compatdata`.
+
+You'll learn how to check and clean up both in the next chapter.
+
+## Three Rules That Differ From Windows
+
+### 1. A Leading Dot Means Hidden
+
+The folder above is named `.local`. On Linux, any file or folder whose name starts with a dot is hidden. To see hidden files in Dolphin, open the menu in the top-right corner and select **Show Hidden Files**, or press **Ctrl+H** on a keyboard.
+
+### 2. Capital Letters Matter
+
+On Windows, `Mods` and `mods` are the same folder. On Linux, they're two different folders. If a mod guide tells you to put files in `mods` and you create `Mods`, the game won't find them, so copy names exactly.
+
+### 3. The System Is Read-Only
+
+Outside your home folder, the Steam Deck's core system files are locked. This design is called an *immutable* system, and it means a misbehaving program or a typo can't damage the operating system. You can look around those folders, but you can't change them, so keep your own files in `/home/deck`.
+
+Protection against a bad *update* is a separate safety net, which we'll cover in {{ collections.posts | chapterLink('recovery') | safe }}. Later in this series, {{ collections.posts | chapterLink('steamos-anatomy') | safe }} shows exactly how the lock works, and the few system folders that *are* writable.
+
+## Dolphin Shortcuts
+
+| Key | What it does |
+| :--- | :--- |
+| **F3** | Splits the window to show two folders side by side, handy for moving files |
+| **F4** | Opens a terminal panel inside the current folder (covered in the terminal chapters) |
+| **Ctrl+H** | Shows or hides hidden files |
+
+Your games, saves and app data all take up space somewhere in these folders. Next, let's see how much, and how to get some of it back.
