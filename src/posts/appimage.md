@@ -22,7 +22,7 @@ An **AppImage** is a single file that contains everything an app needs to run.
 ## How to use an AppImage
 This is the part that trips up most beginners. Because Linux is secure, you can't just run any file you download. You have to tell the computer that it’s "allowed" to run.
 
-1. **Download**: Download your `.AppImage` file (like **[Kdenlive](https://kdenlive.org/)**, **[OBS](https://obsproject.com/)**, or **[balenaEtcher](https://etcher.balena.io/)**).
+1. **Download**: Download your `.AppImage` file (like **[Kdenlive](https://kdenlive.org/)**, **[Krita](https://krita.org/)**, or **[balenaEtcher](https://etcher.balena.io/)**).
 2. **Right-Click**: Right-click the file and select **Properties**.
 3. **Permissions**: Go to the **Permissions** tab.
 4. **Make Executable**: Check the box that says **"Is executable"**.
@@ -34,6 +34,11 @@ AppImages are fantastic because they:
 - **Can be grouped**: You can make a folder called `Applications` in your home directory and keep all your AppImages there.
 - **Work anywhere**: You can even put them on a USB drive and run them on another Linux PC!
 
+> [!WARNING]
+> **AppImages are not sandboxed.** A Flatpak runs inside a container with limited permissions, but an AppImage runs with full access to everything your `deck` user can touch, including all your files. Only run AppImages from the app's official website or GitHub page.
+
+AppImages also don't update through Discover. Some include their own updater; for the rest, download the new version and replace the old file.
+
 ## Pro-Tip: Adding to Steam
 Just like with Flatpaks, you can add an AppImage to your Steam library so you can launch it in **Game Mode**. 
 
@@ -44,4 +49,4 @@ Just like with Flatpaks, you can add an AppImage to your Steam library so you ca
 
 ---
 
-AppImages bring that familiar "download and run" feeling to Linux. Now that you know the two main ways to get apps on your Deck—**Flatpaks** and **AppImages**—let's optimize how your Deck performs in {{ collections.posts | chapterLink('performance') | safe }}!
+AppImages bring that familiar "download and run" feeling to Linux. Now that you know the two main ways to get apps on your Deck—**Flatpaks** and **AppImages**—let's squeeze more speed and battery life out of it.
