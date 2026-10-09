@@ -85,7 +85,7 @@ grep -vE '^\s*(#|$)' /usr/lib/rauc/atomic-update-keep.conf
 - **Enabled, disabled and custom background services** (`systemd/system`)
 - **Your hostname, timezone and DNS settings**
 - **Your update channel** (`steamos-atomupd/preferences.conf`)
-- **WireGuard VPN configs** (`wireguard`)
+- **WireGuard VPN configs** (`wireguard`, from {{ collections.posts | chapterLink('wireguard') | safe }})
 - **Your login screen and input method settings** (`sddm.conf.d` and `dconf`)
 
 That's why `sudo systemctl enable sshd` from {{ collections.posts | chapterLink('ssh') | safe }} keeps working after updates: enabled services are on the list. A hand-edited config file elsewhere in `/etc` isn't, and it quietly reverts to Valve's version.
