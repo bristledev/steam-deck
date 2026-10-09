@@ -18,8 +18,6 @@ It's also unofficial, and it works by reaching deep into Steam itself. This chap
 > [!NOTE]
 > The technical details here were checked against the source code of **Decky Loader v3.2.10** and its official installer, as of October 2026.
 
----
-
 ## What Is Decky Loader?
 
 Decky works like a **browser extension**. A website is built by its owner, but an extension can add buttons and features to it on your computer.
@@ -27,8 +25,6 @@ Decky works like a **browser extension**. A website is built by its owner, but a
 Steam's Game Mode interface is built the same way as a website. Steam draws it with a built-in web browser engine, the `steamwebhelper` process. Decky Loader is an extension for *that*: it adds its own code to Steam's interface, which gives you a new **plugin menu** inside the Quick Access (**...**) menu.
 
 Plugins can then add almost anything: custom artwork, themes, game-length estimates, quick toggles and more.
-
----
 
 ## Before You Install: The Trade-Offs
 
@@ -43,8 +39,6 @@ Decky works by doing things SteamOS's read-only design normally prevents. That d
 > [!TIP]
 > If you only want one feature, look through Steam's own Quick Access menu and Settings first; it may already be built in. A built-in option is updated together with Steam, so it can't fall out of step with Steam the way a plugin can.
 
----
-
 ## Installing Decky Loader
 
 You'll need to set this up in Desktop Mode. A mouse and keyboard make it easier, but the trackpad and **Steam** + **X** for the on-screen keyboard work fine.
@@ -58,8 +52,6 @@ You'll need to set this up in Desktop Mode. A mouse and keyboard make it easier,
 6. Double-click **Return to Gaming Mode** on your desktop.
 
 Back in Game Mode, press the **"..."** button. You'll see a new **plug** icon: that's Decky's menu.
-
----
 
 ## Plugins Worth Trying
 
@@ -76,8 +68,6 @@ Open Decky's menu and select the **store** icon to browse plugins. These are som
 
 > [!CAUTION]
 > **Pay attention to plugins that need root.** The store marks many of them with a `root` tag. They aren't bad, but they can change anything on your system, so install them only from authors you trust.
-
----
 
 ## Under the Hood
 
@@ -114,8 +104,6 @@ Why does Decky usually survive SteamOS updates? Its files live in your home fold
 > [!TIP]
 > Decky talks to Steam's debugger on port **8080**. If you ever run your own server software on your Deck, keep it off port 8080, or Steam's debugger can't use it and Decky won't load.
 
----
-
 ## Uninstalling
 
 To remove Decky:
@@ -127,7 +115,5 @@ To remove Decky:
    - **wipe decky loader** removes Decky *and* deletes the whole `~/homebrew` folder.
 
 Either way, the installer stops the service, deletes it, and turns Steam's debugger back off.
-
----
 
 This chapter mentioned the terminal a few times. The next phase teaches it from scratch, starting with where to find one.
