@@ -67,7 +67,7 @@ Open **Discover** and search for **Yakuake**.
 Press **F12** from anywhere in Desktop Mode. The terminal drops down from the top of the screen. Press **F12** again and it vanishes. No window management, no alt-tabbing — it's just *there* whenever you need it.
 
 > [!TIP]
-> Yakuake runs in the background after launch. To make it start automatically every time you boot into Desktop Mode, open Yakuake's settings and check **Open on login**, or add it to KDE's autostart via **System Settings → Autostart**.
+> Yakuake runs in the background after launch, so `F12` only works once you've opened it. To have it ready every time you enter Desktop Mode, add it in **System Settings → Autostart**.
 
 ---
 
@@ -78,12 +78,12 @@ This is the one most people don't know about, and the one that saves you when ev
 A **TTY** (TeleTYpewriter) is a text-only terminal that runs *outside* of Desktop Mode entirely. It doesn't need KDE Plasma, Dolphin, or any graphical interface to work. If Desktop Mode freezes, crashes, or won't load — the TTY still works.
 
 **How to access it:**
-Press **Ctrl+Alt+F2**.
+Press **Ctrl+Alt+F2** on a physical keyboard (USB or Bluetooth). The on-screen keyboard can't help you here, so it's worth keeping a cheap keyboard around.
 
 You'll see a plain black screen with a login prompt. Type `deck` as the username, then enter your password. You're now in a raw terminal session on tty2 with full access to your system.
 
 **To get back to Desktop Mode:**
-Press **Ctrl+Alt+F1** (SteamOS typically runs the graphical session on tty1).
+Press **Ctrl+Alt+F1**. SteamOS runs its graphical session, Game Mode or Desktop Mode, on tty1.
 
 ### When You'd Use This
 - Desktop Mode froze and won't respond to anything
@@ -91,7 +91,7 @@ Press **Ctrl+Alt+F1** (SteamOS typically runs the graphical session on tty1).
 - You accidentally broke your display settings and can't see anything
 - SSH isn't set up yet and you have no other way in
 
-> [!IMPORTANT]
+> [!WARNING]
 > **Remember your password!** The TTY requires your `deck` user password. If you haven't set one yet (we'll do that in the next chapter), do it soon — it's your lifeline when things go sideways.
 
 ---
@@ -127,5 +127,3 @@ It's not a replacement for Konsole, but it's the fastest way to launch something
 ---
 
 Now that you know where to find a terminal, let's learn what to type into it.
-
-{% next_chapter %}
