@@ -11,14 +11,14 @@ tags:
 
 # How Updates Really Work
 
-In {{ collections.posts | chapterLink('recovery') | safe }}, you learned the short version: SteamOS installs updates into a spare copy and switches over on reboot. Now that you've seen the A/B partitions for yourself in {{ collections.posts | chapterLink('steamos-anatomy') | safe }}, let's follow an update from start to finish, and learn how to take control of it.
+In {{ collections.posts | chapterLink('recovery') | safe }}, you learned the short version: SteamOS installs updates into a spare copy and switches over on reboot. With the A/B partitions from {{ collections.posts | chapterLink('steamos-anatomy') | safe }} in mind, this chapter follows an update from start to finish, and shows where you can take control of it.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel).
 
 ---
 
-## 💾 What Is an Atomic Update?
+## What Is an Atomic Update?
 
 Imagine a game that autosaves by overwriting your only save file. If the power cuts out halfway through, the save is corrupted and your progress is gone. Smart games write the new save into a **separate slot** first, check it, and only then mark it as the one to load.
 
@@ -26,7 +26,7 @@ SteamOS updates the same way. It never edits the system you're running. It write
 
 ---
 
-## 📡 Update Channels
+## Update Channels
 
 Valve publishes SteamOS on several *channels*, also called *branches*:
 
@@ -52,7 +52,7 @@ cat /etc/steamos-atomupd/manifest.json
 
 ---
 
-## 🔁 An Update, Step by Step
+## An Update, Step by Step
 
 When you press **Apply** on an update, here's what happens behind the progress bar:
 
@@ -73,9 +73,9 @@ grep -A2 '^\[slot.rootfs' /etc/rauc/system.conf
 
 ---
 
-## 📋 Which Settings Survive?
+## Which Settings Survive?
 
-Here's the part that surprises most people. Valve's own config file opens with this rule:
+Most people assume all of `/etc` is kept. It isn't: Valve's own config file opens with this rule:
 
 > "When an atomic update is applied, all changes made in /etc will be lost."
 
@@ -123,7 +123,7 @@ If you followed {{ collections.posts | chapterLink('tailscale') | safe }} or {{ 
 
 ---
 
-## ⏪ Rolling Back to the Previous Version
+## Rolling Back to the Previous Version
 
 The automatic rollback only covers updates that fail to boot. If an update boots fine but breaks something you care about, you can pick the previous version yourself. Valve's official steps for the Steam Deck are:
 
