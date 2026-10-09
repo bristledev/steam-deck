@@ -11,16 +11,16 @@ tags:
 
 # Game Mode vs Desktop Mode, Under the Hood
 
-Every time you power on your Deck, you land in Game Mode without ever seeing a login screen. Press **Switch to Desktop**, and a few seconds later you're on a full Linux desktop. It feels like flipping between two apps. It isn't.
+Every time you power on your Deck, you land in Game Mode without ever seeing a login screen. Press **Switch to Desktop**, and a few seconds later you're on a full Linux desktop. It feels like flipping between two apps, but a lot more happens underneath.
 
-In this chapter, we'll follow your Deck from power button to Game Mode, meet **Gamescope** (the piece that makes Game Mode feel like a console), and see what actually happens when you switch modes.
+This chapter follows your Deck from power button to Game Mode, look at **Gamescope** (the piece that makes Game Mode feel like a console), and see what actually happens when you switch modes.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel), in Game Mode.
 
 ---
 
-## 🖥️ What Is a Session?
+## What Is a Session?
 
 When you log in to a computer, Linux starts a **session**: your desktop, your apps, and the background services that go with them. Log out, and the session ends.
 
@@ -28,7 +28,7 @@ Game Mode and Desktop Mode are two *different sessions* for the same `deck` user
 
 ---
 
-## 🚀 From Power Button to Game Mode
+## From Power Button to Game Mode
 
 Here's the chain of events every time your Deck starts:
 
@@ -64,15 +64,15 @@ systemctl --user list-units --type=service | grep -E 'gamescope|steam'
 
 ---
 
-## 🪟 Meet Gamescope
+## Gamescope, Game Mode's Compositor
 
 A **compositor** is the program that takes every window and draws them all onto your screen. Every desktop has one. In Game Mode, that job belongs to **Gamescope**, Valve's compositor built specifically for games.
 
 Gamescope sits between your game and the screen, which lets it do things the game never has to know about:
 
-- **Frame rate limits** — it holds back frames so a game runs at a steady 40 or 30 FPS.
-- **Scaling and FSR** — it renders the game at a lower resolution and upscales it to fit the screen.
-- **Overlays** — the Steam menu, the Quick Access menu and the performance overlay are drawn on top of your game without the game being involved.
+- **Frame rate limits**: it holds back frames so a game runs at a steady 40 or 30 FPS.
+- **Upscaling**: it renders the game at a lower resolution and scales it up to fit the screen.
+- **Overlays**: the Steam menu, the Quick Access menu and the performance overlay are drawn on top of your game without the game being involved.
 
 Those are the controls you used in {{ collections.posts | chapterLink('performance') | safe }}. They work on every game for exactly this reason. Peek at how Gamescope was started:
 
@@ -92,7 +92,7 @@ Look for `-gamepadui` (the controller-friendly interface) and `-steamos3` (tells
 
 ---
 
-## ⚙️ SteamOS Manager: The Settings Engine
+## SteamOS Manager: The Settings Engine
 
 When you drag the **TDP Limit** slider in the Quick Access menu, Steam doesn't touch the hardware itself. It asks a background service, **SteamOS Manager**, to do it. You can talk to the same service from the terminal with `steamosctl`:
 
@@ -107,7 +107,7 @@ It prints something like `TDP limit: 15`, the current power limit in watts. Try 
 
 ---
 
-## 🔀 What Happens When You Switch Modes
+## What Happens When You Switch Modes
 
 When you choose **Switch to Desktop**, the switch is handled by SteamOS Manager. You can ask it to do the same thing yourself:
 
@@ -135,11 +135,11 @@ It prints `game`. If you'd rather boot straight to the desktop, perhaps for a De
 
 ---
 
-## 🛂 Who Gets to Do Admin Things?
+## Who Gets to Do Admin Things?
 
-Here's a puzzle. Out of the box, your `deck` user has no password. Yet Discover installs apps, you can save Wi-Fi networks, and Steam can eject your SD card, all without asking. But type `sudo` in Konsole and it demands a password. What's going on?
+Out of the box, your `deck` user has no password. Yet Discover installs apps, you can save Wi-Fi networks, and Steam can eject your SD card, all without asking. Type `sudo` in Konsole, though, and it demands a password. The difference comes down to two separate systems.
 
-SteamOS has two separate gatekeepers:
+SteamOS has two gatekeepers:
 
 - **`sudo`** runs a whole command as `root`, the all-powerful system account. It always asks for your password, which is why you set one in {{ collections.posts | chapterLink('bash') | safe }}.
 - **polkit** handles requests from apps (like Discover, the Wi-Fi settings or Steam) to do one *specific* admin task. Instead of always asking, it follows a set of rules.
@@ -185,10 +185,10 @@ pkcheck --action-id org.freedesktop.Flatpak.app-install --process $$
 
 ---
 
-## 🔌 Why This Matters for Background Services
+## Why This Matters for Background Services
 
 Because Game Mode and Desktop Mode are separate sessions, anything tied to your session stops when you switch. That includes apps you started in Konsole and, by default, user services. This is exactly the problem the `loginctl enable-linger` trick solves later in this series: it keeps your services running no matter which session is open.
 
 ---
 
-Now you know what's running on your Deck and how it all starts. In the final chapter of this phase, let's put that knowledge to work: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
+The last chapter of this phase puts the map, the update rules and the session model together: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
