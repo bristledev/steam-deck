@@ -42,6 +42,7 @@ The site deploys under `/steam-deck/`. This is set via `pathPrefix: "/steam-deck
 - `linkify: true` — bare URLs auto-link.
 - `markdown-it-github-alerts` — enables `> [!NOTE]`, `> [!TIP]`, etc.
 - `markdown-it-anchor` — auto-generates heading permalink anchors.
+- Tables render inside `<div class="table-wrap">` (custom `table_open`/`table_close` rules) so wide tables scroll sideways on small screens. Keep the wrapper if you change the renderer.
 
 ## Pass-Through Copies
 
