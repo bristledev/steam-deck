@@ -9,7 +9,9 @@ tags:
   - intermediate
 ---
 
-Fish gave you a smarter shell. But your **prompt** — the text that appears to the left of your cursor every time you type a command (by default, something forgettable like `deck@steamdeck ~$`) — is still pretty plain. What if that little line could show you your current Git branch, your Python version, your battery level, and more, all in a sleek modern design?
+# The Ultimate Terminal Prompt (Starship)
+
+Back in {{ collections.posts | chapterLink('fish') | safe }}, you gave yourself a smarter shell. But your **prompt** — the text that appears to the left of your cursor every time you type a command (by default on SteamOS, something forgettable like `(deck@steamdeck ~)$`) — is still pretty plain. What if that little line could show you your current Git branch, your Python version, your battery level, and more, all in a sleek modern design?
 
 Meet **[Starship](https://starship.rs/)**.
 
@@ -47,7 +49,11 @@ This method works without any extra tools. It downloads Starship directly into y
 3. After it finishes, verify the install worked: `starship --version`
 
 > [!TIP]
-> If you see `command not found` after installing, `~/.local/bin` may not be on your PATH yet. Run `echo $PATH` to check. If it's missing, add `export PATH="$HOME/.local/bin:$PATH"` to the bottom of your `~/.bashrc`.
+> If you see `command not found`, `~/.local/bin` isn't on your PATH yet. SteamOS doesn't include it by default; installing `uv` in {{ collections.posts | chapterLink('python') | safe }} adds it for you. Otherwise, add it yourself and open a new terminal:
+> ```bash
+> echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+> ```
+> If you use Fish, run `fish_add_path ~/.local/bin` instead.
 
 ---
 
@@ -61,7 +67,7 @@ Open your Fish configuration file:
 nano ~/.config/fish/config.fish
 ```
 Add this line at the very bottom:
-```bash
+```fish
 starship init fish | source
 ```
 Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `source ~/.config/fish/config.fish`) and your new prompt appears immediately.
@@ -84,8 +90,11 @@ Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `so
 By default, Starship looks great, but the real magic is in the presets. 
 
 1. Visit the **[Starship Presets Gallery](https://starship.rs/presets/)**.
-2. Find a design you like (like "Pastel Powerline" or "Nerd Fonts Symbols").
-3. Follow the simple instructions to copy the configuration into your `~/.config/starship.toml` file.
+2. Find a design you like (like "Pastel Powerline" or "Nerd Font Symbols").
+3. Each preset page shows a one-line command that writes it to `~/.config/starship.toml`. For Pastel Powerline, it's:
+   ```bash
+   starship preset pastel-powerline -o ~/.config/starship.toml
+   ```
 
 > [!TIP]
 > **Need Icons?**
@@ -99,5 +108,3 @@ By default, Starship looks great, but the real magic is in the presets.
 ---
 
 Now that your terminal prompt looks like it belongs in the future, let's make the *rest* of the terminal match.
-
-{% next_chapter %}
