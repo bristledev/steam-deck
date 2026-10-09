@@ -32,7 +32,8 @@
       "terminals",
       "bash",
       "fish",
-      "coreutils"
+      "coreutils",
+      "preinstalled"
     ]
   },
   {
@@ -43,14 +44,23 @@
     ]
   },
   {
-    "name": "Phase 6: Package Managers",
+    "name": "Phase 6: How SteamOS Works",
+    "slugs": [
+      "steamos-anatomy",
+      "steamos-updates",
+      "steamos-sessions",
+      "steamos-extending"
+    ]
+  },
+  {
+    "name": "Phase 7: Package Managers",
     "slugs": [
       "homebrew",
       "nix"
     ]
   },
   {
-    "name": "Phase 7: Scripting & Services",
+    "name": "Phase 8: Scripting & Services",
     "slugs": [
       "github",
       "python",
@@ -58,14 +68,14 @@
     ]
   },
   {
-    "name": "Phase 8: Containers & Sandboxing",
+    "name": "Phase 9: Containers & Sandboxing",
     "slugs": [
       "podman",
       "distrobox"
     ]
   },
   {
-    "name": "Phase 9: Power User Extras",
+    "name": "Phase 10: Power User Extras",
     "slugs": [
       "starship",
       "ricing",
