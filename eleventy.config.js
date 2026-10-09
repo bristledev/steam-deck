@@ -81,6 +81,8 @@ export default function(eleventyConfig) {
     .use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
     });
+  // Only auto-link URLs that include a protocol, so names like pipes.sh stay plain text
+  mdLib.linkify.set({ fuzzyLink: false });
   // Wrap tables so wide ones scroll sideways instead of breaking the layout
   mdLib.renderer.rules.table_open = () => '<div class="table-wrap">\n<table>\n';
   mdLib.renderer.rules.table_close = () => '</table>\n</div>\n';
