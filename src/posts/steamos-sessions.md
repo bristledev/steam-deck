@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🎛️ Game Mode vs Desktop Mode, Under the Hood"
-excerpt: "How your Deck boots straight into Game Mode, what Gamescope does, and what really happens when you switch modes."
+excerpt: "How your Deck boots straight into Game Mode, what Gamescope does and what really happens when you switch modes."
 tags:
   - posts
   - steamos
@@ -13,14 +13,14 @@ tags:
 
 Every time you power on your Deck, you land in Game Mode without ever seeing a login screen. Press **Switch to Desktop**, and a few seconds later you're on a full Linux desktop. It feels like flipping between two apps, but a lot more happens underneath.
 
-This chapter follows your Deck from the power button to Game Mode, looks at **Gamescope** (the piece that makes Game Mode feel like a console), and shows what actually happens when you switch modes.
+This chapter follows your Deck from the power button to Game Mode, looks at **Gamescope** (the piece that makes Game Mode feel like a console) and shows what actually happens when you switch modes.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel), in Game Mode.
 
 ## What Is a Session?
 
-When you log in to a computer, Linux starts a **session**: your desktop, your apps, and the background services that go with them. Log out, and the session ends.
+When you log in to a computer, Linux starts a **session**: your desktop, your apps and the background services that go with them. Log out, and the session ends.
 
 Game Mode and Desktop Mode are two *different sessions* for the same `deck` user. They're like two consoles plugged into the same TV, sharing one memory card. Switching modes means logging out of one and logging straight into the other. That's why the screen goes dark for a moment and why apps you left open in Desktop Mode are gone when you come back.
 
@@ -125,14 +125,14 @@ It prints `game`. If you'd rather boot straight to the desktop, perhaps for a De
 
 ## Who Gets to Do Admin Things?
 
-Out of the box, your `deck` user has no password. Yet Discover installs apps, you can save Wi-Fi networks, and Steam can eject your SD card, all without asking. Type `sudo` in Konsole, though, and it demands a password. The difference comes down to two separate systems.
+Out of the box, your `deck` user has no password. Yet Discover installs apps, you can save Wi-Fi networks and Steam can eject your SD card, all without asking. Type `sudo` in Konsole, though, and it demands a password. The difference comes down to two separate systems.
 
 SteamOS has two gatekeepers:
 
 - **`sudo`** runs a whole command as `root`, the all-powerful system account. It needs your password, which is why you set one in {{ collections.posts | chapterLink('bash') | safe }}.
 - **polkit** handles requests from apps (like Discover, the Wi-Fi settings or Steam) to do one *specific* admin task. Instead of always asking, it follows a set of rules.
 
-Think of polkit as a bouncer with a guest list. For each kind of request, it checks who's asking and where they are, then either lets them in, asks for ID (your password), or turns them away.
+Think of polkit as a bouncer with a guest list. For each kind of request, it checks who's asking and where they are, then either lets them in, asks for ID (your password) or turns them away.
 
 ### SteamOS's Guest List
 
@@ -173,8 +173,8 @@ pkcheck --action-id org.freedesktop.Flatpak.app-install --process $$
 
 ## Why This Matters for Background Services
 
-Because Game Mode and Desktop Mode are separate sessions, the apps you opened close when you switch modes, along with anything running inside them. Your *user services* keep running, though. systemd only stops a user's services 10 seconds after their last session ends (the `UserStopDelaySec` setting), and a mode switch starts the next session within a second of ending the last one.
+Game Mode and Desktop Mode are separate sessions, so switching modes shuts down Gamescope or the Plasma desktop, and the apps whose windows it was drawing close with it. Your *user services* keep running, though. systemd only stops a user's services 10 seconds after their last session ends (the `UserStopDelaySec` setting), and a mode switch starts the next session within a second of ending the last one.
 
-SteamOS adds one stricter rule. Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True`, so when a session ends, systemd kills every process still running inside it. An SSH connection is a session too, which is why a plain `tmux` started over SSH dies when you disconnect. One started in Konsole survives a closed window and a mode switch, because apps you open on the desktop run under your user's service manager, not inside the login session. {{ collections.posts | chapterLink('preinstalled') | safe }} shows how to get the same result over SSH.
+SteamOS adds one stricter rule. Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True`, so when a session ends, systemd kills every process still running inside it. An SSH connection is a session too, which is why a plain `tmux` started over SSH dies when you disconnect. One started in Konsole survives a closed window and a mode switch. tmux keeps its sessions in a background process that doesn't need a window. Apps you open on the desktop, and anything they start, run under your user's service manager rather than inside the login session, so `KillUserProcesses` doesn't reach them. {{ collections.posts | chapterLink('preinstalled') | safe }} shows how to get the same result over SSH.
 
 The last chapter of this phase puts the map, the update rules and the session model together: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
