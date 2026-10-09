@@ -112,4 +112,4 @@ sudo bash tailscale.sh
 
 To remove Tailscale completely, run `sudo bash uninstall.sh` from the same folder.
 
-You've now used SteamOS from the couch, the desk and the other side of the world. The next phase looks at how it works underneath, starting with a map of everything on your drive.
+Tailscale is built on WireGuard, and SteamOS includes WireGuard itself. The next chapter uses it directly, for when a router or VPN provider gives you a config file instead.
