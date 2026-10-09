@@ -87,6 +87,7 @@ The projects behind the "How SteamOS Works" chapters (starting with {{ collectio
 - **[WinSCP Documentation](https://winscp.net/eng/docs/start)**: Guides for the Windows file transfer app from {{ collections.posts | chapterLink('ssh') | safe }}.
 - **[Tailscale Documentation](https://tailscale.com/kb/)**: Guides for setting up and using Tailscale.
 - **[deck-tailscale (GitHub)](https://github.com/tailscale-dev/deck-tailscale)**: The install script for Tailscale on the Steam Deck, from Tailscale's `tailscale-dev` GitHub organization.
+- **[WireGuard](https://www.wireguard.com/)**: The protocol's official site, with a quick start and an explanation of how its keys and peers work.
 - **[Syncthing](https://syncthing.net/)**: Keeps folders in sync between your Deck and other devices directly, without a cloud service.
 
 ## Containers
