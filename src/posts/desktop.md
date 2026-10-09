@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🖥️ Desktop Mode"
-excerpt: "How to switch to Desktop Mode, control it with the Deck's buttons, and install your first apps."
+excerpt: "How to switch to Desktop Mode, control it with the Deck's buttons and install your first apps."
 tags:
   - posts
   - steamos
