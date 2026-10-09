@@ -60,7 +60,7 @@ cd ~
 rm -r ~/practice
 ```
 
-**What did that just do?** It created a folder called `practice` and moved into it. `echo "hello" > note.txt` wrote the word "hello" into a new file. `cp` made a copy, `mv` renamed the copy, `ls` listed both files, and `cat` printed the copy's contents. Finally, `cd ~` went back home and `rm -r` deleted the whole practice folder.
+**What did that just do?** It created a folder called `practice` and moved into it. `echo "hello" > note.txt` wrote the word "hello" into a new file. `cp` made a copy, `mv` renamed the copy, `ls` listed both files and `cat` printed the copy's contents. Finally, `cd ~` went back home and `rm -r` deleted the whole practice folder.
 
 ## Getting Help
 
