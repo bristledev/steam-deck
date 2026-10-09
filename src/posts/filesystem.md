@@ -31,7 +31,7 @@ In the file manager (**Dolphin**), your SD card usually shows up on the left sid
 
 ## The 'Hidden' Space-Eaters
 Ever wonder why your 'Other' storage is full? 
-- **Shader Cache**: These are pre-rendered graphics that Steam downloads to make games run smoother.
+- **Shader Cache**: Shaders are small programs that tell your GPU how to draw each effect. Steam downloads them already compiled, so games stutter less.
 - **Compatdata**: Since Steam uses 'Proton' to run Windows games, it creates a 'Fake Windows C: Drive' for *every single game*. 
 They live in: `/home/deck/.local/share/Steam/steamapps/shadercache` and `compatdata`.
 
@@ -47,12 +47,10 @@ On Windows, a folder named `Mods` and a folder named `mods` are treated exactly 
 **On Linux, they are two completely different folders.** If a game guide tells you to put files in the `mods` folder, but you name it `Mods`, the game will completely ignore it. Pay close attention to capital letters!
 
 ### 3. 'Look, But Don't Touch' (The Immutable OS)
-Unlike a normal Windows PC, the Steam Deck's core system files (outside of your `/home/deck` folder) are "locked" down. This is called an **Immutable Filesystem**. Valve does this so a rogue program or a slip of the keyboard can't damage the operating system. (Protection against a *bad update* is a separate safety net, which we'll cover in {{ collections.posts | chapterLink('recovery') | safe }}.) You can explore those folders, but you can't write to them. Stick to `/home/deck`!
+Unlike a normal Windows PC, the Steam Deck's core system files (outside of your `/home/deck` folder) are "locked" down. This is called an **Immutable Filesystem**. Valve does this so a rogue program or a slip of the keyboard can't damage the operating system. (Protection against a *bad update* is a separate safety net, which we'll cover in {{ collections.posts | chapterLink('recovery') | safe }}.) You can explore those folders, but you can't write to them. Stick to `/home/deck`! Later in this series, {{ collections.posts | chapterLink('steamos-anatomy') | safe }} shows exactly how the lock works and the few system folders that *are* writable.
 
 ## Dolphin Tips
 - **Splitting the view**: Press `F3` to see two folders side-by-side. Great for moving files!
 - **Opening terminal here**: Press `F4` if you ever need to type a command in a specific folder. (Don't be scared!)
 
 Understanding your files is the key to becoming a Steam Deck master. Now that you're an explorer, let's talk about managing your storage and getting the most out of your SD card.
-
-{% next_chapter %}
