@@ -1,21 +1,21 @@
 ---
 layout: base.njk
 title: "Start Here"
-excerpt: "Your beginner-friendly roadmap to mastering the Steam Deck."
+excerpt: "The reading order for the whole series, and what each chapter covers."
 eleventyNavigation:
   key: Start Here
   order: 0
 ---
 
-# Start Here 🎮
+# Start Here
 
-Welcome! This guide is the beginner-friendly roadmap for the whole site. You do not need any Linux or programming experience to follow it.
+Welcome! This page lists every chapter in reading order. You don't need any Linux or programming experience to follow them.
 
-If you want the practical everyday Steam Deck path, start with **Phases 1–3**. Those chapters cover the basics most people actually need.
+For everyday Steam Deck use, **Phases 1 to 3** cover what most people need.
 
 ## Recommended Starter Path
 
-Work through these phases in order. By the end, you will know your way around SteamOS, install software confidently, and recover from the most common problems without panicking.
+Work through these phases in order. By the end, you'll know your way around SteamOS, be able to install software, and know how to recover from the most common problems.
 
 ### Phase 1: Get Comfortable
 | # | Chapter | What You'll Learn |
@@ -37,13 +37,13 @@ Work through these phases in order. By the end, you will know your way around St
 ### Phase 3: Performance & Customization
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 10 | {{ collections.posts | chapterLink('performance') | safe }} | Squeezing more battery life, smoother frame rates, and better thermals from your Deck |
-| 11 | {{ collections.posts | chapterLink('troubleshooting') | safe }} | Fixing games that will not launch or run well under Proton |
+| 10 | {{ collections.posts | chapterLink('performance') | safe }} | Trading frame rate for battery life with the Quick Access settings |
+| 11 | {{ collections.posts | chapterLink('troubleshooting') | safe }} | Fixing games that won't launch or run well under Proton |
 | 12 | {{ collections.posts | chapterLink('customization') | safe }} | Adding plugins to Game Mode with Decky Loader, and what it changes on your Deck |
 
-## Optional Power User Path
+## Going Deeper
 
-Once the basics feel comfortable, these phases unlock the deeper Linux side of the Steam Deck. They are optional, but they are where the platform starts to feel ridiculously capable.
+Once the basics feel comfortable, these phases cover the Linux side of the Steam Deck: the terminal, remote access, how SteamOS works underneath, and the tools for extending it. They're optional, and they build on each other, so read them in order.
 
 ### Phase 4: Learn the Terminal
 | # | Chapter | What You'll Learn |
@@ -87,17 +87,17 @@ Once the basics feel comfortable, these phases unlock the deeper Linux side of t
 | 29 | {{ collections.posts | chapterLink('podman') | safe }} | Running isolated app containers |
 | 30 | {{ collections.posts | chapterLink('distrobox') | safe }} | Using a full Linux distro inside your Deck |
 
-### Phase 10: Power User Extras
+### Phase 10: Terminal Extras
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 31 | {{ collections.posts | chapterLink('starship') | safe }} | Building a beautiful, smart terminal prompt |
-| 32 | {{ collections.posts | chapterLink('ricing') | safe }} | Adding terminal eye candy without losing usability |
-| 33 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts that make the terminal feel dramatically faster |
-| 34 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Fuzzy finding and instant directory jumping like a power user |
+| 31 | {{ collections.posts | chapterLink('starship') | safe }} | A more informative terminal prompt |
+| 32 | {{ collections.posts | chapterLink('ricing') | safe }} | Tools that make the terminal nicer to look at and easier to read |
+| 33 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts for editing commands quickly |
+| 34 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Jumping to folders and searching your command history in a few keystrokes |
 
 ## Appendix
 
-When you want extra tools, communities, and references, keep this one bookmarked.
+Documentation, communities and channels for going further.
 
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
@@ -105,4 +105,4 @@ When you want extra tools, communities, and references, keep this one bookmarked
 
 ---
 
-Ready? Start with {{ collections.posts | chapterLink('intro') | safe }}, then follow the phases in order.
+Start with {{ collections.posts | chapterLink('intro') | safe }}, then follow the phases in order.
