@@ -143,7 +143,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 rsync -avP ~/ROMs/ /run/media/deck/<card-name>/ROMs/
 ```
 
-**What did that just do?** `-a` keeps everything (subfolders, timestamps, permissions), `-v` lists each file as it goes, and `-P` shows progress and lets you rerun the same command to pick up where it stopped. Replace `<card-name>` with your SD card's folder name from {{ collections.posts | chapterLink('filesystem') | safe }}.
+**What did that just do?** `-a` keeps everything (subfolders, timestamps, permissions) and `-v` lists each file as it goes. `-P` shows progress and lets you rerun the same command to pick up where it stopped. Replace `<card-name>` with your SD card's folder name from {{ collections.posts | chapterLink('filesystem') | safe }}.
 
 ## Finding and Handling Files
 
