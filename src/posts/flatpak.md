@@ -35,7 +35,7 @@ Most of Discover's apps come from **[Flathub](https://flathub.org/)**, the main 
 
 ## Why Some Apps Can't See Your Files
 
-Because Flatpaks are sandboxed, some can't see your SD card or other folders by default. If an app, like a video player, can't find your files, install **Flatseal** from Discover. It lists each app's permissions, and you can switch on access to your SD card or a specific folder with a checkbox.
+Because Flatpaks are sandboxed, some can't see your SD card or other folders by default. If an app, like a video player, can't find your files, install **Flatseal** from Discover. It lists each app's permissions, and you can turn on access to your SD card or a specific folder there.
 
 ## Apps Worth Installing
 
