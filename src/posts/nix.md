@@ -20,16 +20,13 @@ Specifically, we're talking about the **[Determinate Nix Installer](https://dete
 
 On the Steam Deck, Nix is particularly amazing because it's designed from the ground up to work on systems that are 'read-only' or immutable.
 
-> [!IMPORTANT]
-> ### The SteamOS 3.5 Advantage: /nix is Here!
-> For a long time, installing Nix on the Steam Deck was a bit of a "pro-only" move because you had to "unlock" your read-only file system just to create the necessary `/nix` folder. 
-> 
-> Starting with **SteamOS 3.5**, Valve officially included a `/nix` directory (or the symlink required to create it) in the system's root. This means you can now install Nix **without ever touching your file system's write lock**, keeping your Deck's OS official and secure while enjoying the power of the Nix ecosystem.
+> [!NOTE]
+> **Valve made room for Nix.** Nix needs a folder called `/nix` at the very top of the system, which used to mean unlocking the read-only image just to create it. Since SteamOS 3.5 (2023), Valve ships `/nix` as one of the *offloaded* folders you met in {{ collections.posts | chapterLink('steamos-anatomy') | safe }}: it's really a folder on your home partition. The installer detects this and uses it, so you can install Nix **without ever touching the read-only lock**, and everything you install survives updates.
 
 ## Why Choose Nix over Homebrew?
 While **Homebrew** is simpler to understand, **Nix** offers some unique benefits:
-- **Rock-Solid Stability**: If an update breaks something, you can often just 'roll back' to the previous version instantly.
-- **Reproducibility**: You can take your Nix configuration to *any* other PC and get the exact same environment in seconds.
+- **Rock-Solid Stability**: If an update breaks something, you can roll back to the previous version with one command.
+- **Reproducibility**: The same package from Nix is built the same way on every computer, so a setup that works on one PC works on the next.
 - **Huge Repository**: Nix has one of the largest collections of software in the world (even bigger than Homebrew!).
 
 ## How to Install (Determinate Nix)
@@ -45,13 +42,18 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 Unlike Homebrew, which requires you to manually manage your 'path', the Nix installer handles most of the plumbing for you. Once you restart your terminal, you'll have access to the powerful `nix` command.
 
 ## Basic Nix Commands
-Nix works a bit differently than other package managers. The easiest way to use it is with `nix-shell` or the new `nix profile` commands.
+Nix works a bit differently than other package managers. The easiest way to use it is with the `nix shell` and `nix profile` commands.
 
 | Action | Command |
 |---|---|
 | **Install permanently** | `nix profile add nixpkgs#app-name` |
 | **Try without installing** | `nix shell nixpkgs#app-name` |
+| **See what you've installed** | `nix profile list` |
+| **Remove an app** | `nix profile remove app-name` |
 | **Update everything** | `nix profile upgrade --all` |
+| **Undo the last change** | `nix profile rollback` |
+
+`nix profile rollback` is the safety net from the list above: if an upgrade breaks something, it puts your apps back exactly as they were before.
 
 > [!NOTE]
 > Older guides use `nix profile install`. Newer versions of Nix renamed it to `nix profile add`; the old name still works but prints a deprecation warning.
@@ -85,7 +87,7 @@ set -Ux LOCALE_ARCHIVE /home/deck/.nix-profile/lib/locale/locale-archive
 ```
 
 > [!TIP]
-> set -Ux is a Fish command that sets a universal environment variable, which means it will be available in all your Fish sessions and persist across restarts. This is perfect for something like LOCALE_ARCHIVE, which needs to be set every time you start a new terminal session. No need to add it to your config file; once you run that command, it's set for good.
+> `set -Ux` is a Fish command that sets a universal environment variable, which means it will be available in all your Fish sessions and persist across restarts. This is perfect for something like `LOCALE_ARCHIVE`, which needs to be set every time you start a new terminal session. No need to add it to your config file; once you run that command, it's set for good.
 
 ## Optional Fix: Unfree Packages (`NIXPKGS_ALLOW_UNFREE`)
 Some packages in `nixpkgs` are marked as unfree (for example, software with licenses that are not fully open source). If Nix blocks one of these installs, you need to allow unfree packages first.
@@ -124,4 +126,4 @@ NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#app-name
 
 ---
 
-{% next_chapter %}
+Package managers cover the big, well-known tools. But a lot of the Steam Deck's best community tools aren't in any package manager at all. Next, let's learn how to find them on GitHub and run them safely.
