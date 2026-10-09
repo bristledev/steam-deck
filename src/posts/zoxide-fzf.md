@@ -67,7 +67,7 @@ Open a new terminal, and `z` is ready to use. zoxide also adds `zi`, a searchabl
 
 ## fzf: Search as You Type
 
-**[fzf](https://github.com/junegunn/fzf)** is a *fuzzy finder*: give it a list, start typing, and it narrows the list to the entries that match, even if you only type a few letters from the middle of a word.
+**[fzf](https://github.com/junegunn/fzf)** is a *fuzzy finder*: give it a list, start typing and it narrows the list to the entries that match, even if you only type a few letters from the middle of a word.
 
 ### Searching Your Command History
 
