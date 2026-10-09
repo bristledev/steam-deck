@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "🔍 Terminal Superpowers (zoxide & fzf)"
-excerpt: "Navigate like a pro and fuzzy-find anything in seconds."
+title: "🔍 Faster Navigation (zoxide & fzf)"
+excerpt: "Jump to folders you use often with a few letters, and search your command history and files as you type."
 tags:
   - posts
   - terminal
@@ -9,121 +9,122 @@ tags:
   - advanced
 ---
 
-# Terminal Superpowers (zoxide & fzf) ⚡
+# Faster Navigation (zoxide & fzf)
 
-You've made your terminal beautiful with {{ collections.posts | chapterLink('starship') | safe }} and fast to type in with {{ collections.posts | chapterLink('readline') | safe }}. Now let's make it *smart*. These two tools will fundamentally change how you interact with the command line — and they're especially powerful on the Steam Deck, where navigating deep, hidden paths is a daily struggle.
+Steam Deck paths are long. Typing `cd /home/deck/.local/share/Steam/steamapps/compatdata/` more than once is enough to want a shortcut. This chapter adds two small tools: **zoxide**, which remembers the folders you visit, and **fzf**, which lets you search lists (your command history, your files) by typing a few letters.
 
-## 🚀 zoxide — "Your Terminal Remembers"
+## zoxide: A cd That Remembers
 
-Ever get tired of typing out full paths to get where you want to go?
-```bash
-cd /home/deck/.local/share/Steam/steamapps/compatdata/
-```
+**[zoxide](https://github.com/ajeetdsouza/zoxide)** adds a command called `z`. Instead of typing a full path, you type part of a folder's name:
 
-What if you could just type:
 ```bash
 z compat
 ```
 
-That's **[zoxide](https://github.com/ajeetdsouza/zoxide)**. It's a smarter replacement for `cd` that *learns* which directories you visit most often. The more you use it, the smarter it gets.
+That jumps straight to `~/.local/share/Steam/steamapps/compatdata`, as long as you've been there before.
 
-### How it Works
-Every time you navigate to a folder (using `cd` or `z`), zoxide silently records it in a tiny database. When you type `z` followed by *any part* of a directory name you've visited before, it fuzzy-matches against your history and jumps to the best result.
+### How It Works
 
-- `z down` → jumps to `/home/deck/Downloads`
-- `z compat` → jumps to `.local/share/Steam/steamapps/compatdata`
-- `z mine` → jumps to `~/minecraft-data`, the server folder from {{ collections.posts | chapterLink('podman') | safe }}
+Every time you change folders, with `cd` or `z`, zoxide records it in a small database, along with how often and how recently you went there. When you type `z` and a word, it picks the best match from the folders it remembers:
 
-The key thing to understand: **zoxide only knows about directories you've already visited.** The first time you navigate somewhere, use `cd` or `z` with the full path. After that, zoxide remembers it and you can use a short keyword forever.
+- `z down` goes to `/home/deck/Downloads`.
+- `z compat` goes to `~/.local/share/Steam/steamapps/compatdata`.
+- `z mine` goes to `~/minecraft-data`, the server folder from {{ collections.posts | chapterLink('podman') | safe }}.
+
+zoxide only knows folders you've already visited. The first time, use `cd` with the full path; after that, a few letters are enough.
 
 ### Installing zoxide
 
 **Via Homebrew** (from {{ collections.posts | chapterLink('homebrew') | safe }}):
+
 ```bash
 brew install zoxide
 ```
 
 **Via Nix** (from {{ collections.posts | chapterLink('nix') | safe }}):
+
 ```bash
 nix profile add nixpkgs#zoxide
 ```
 
-### Setting it Up
-After installing, you need to tell your shell to use it.
+### Turning It On
 
-**For Bash** — add to `~/.bashrc`:
+Your shell needs one line in its startup file.
+
+**For Bash**, add to `~/.bashrc`:
+
 ```bash
 eval "$(zoxide init bash)"
 ```
 
-**For Fish** — add to `~/.config/fish/config.fish`:
+**For Fish**, add to `~/.config/fish/config.fish`:
+
 ```fish
 zoxide init fish | source
 ```
 
-Open a new terminal, and `z` is ready to use. zoxide also adds `zi` (zoxide interactive), a searchable menu of every folder it remembers. That one needs fzf, which is next.
+Open a new terminal, and `z` is ready to use. zoxide also adds `zi`, a searchable menu of every folder it remembers. That one needs fzf, which comes next.
 
----
+## fzf: Search as You Type
 
-## 🔍 fzf — "Fuzzy-Find Everything"
+**[fzf](https://github.com/junegunn/fzf)** is a *fuzzy finder*: give it a list, start typing, and it narrows the list to the entries that match, even if you only type a few letters from the middle of a word.
 
-**[fzf](https://github.com/junegunn/fzf)** is a general-purpose fuzzy finder. It lets you interactively search through *anything* — files, folders, command history, running processes — by just typing a few characters.
+### Searching Your Command History
 
-### The Killer Feature: History Search
-By default, pressing `Up Arrow` in your terminal scrolls through commands one at a time. With fzf set up, you can press **`Ctrl+R`** and get an instant, searchable list of every command you've ever typed.
-
-Start typing `podman` and it will instantly filter down to every Podman command you've ever run. Select one and press `Enter` to put it back on your command line, ready to run or edit. No more scrolling through hundreds of commands!
+Normally, **Up Arrow** steps back through your commands one at a time. With fzf set up, **Ctrl+R** opens a searchable list of every command you've run. Type `podman`, and the list shrinks to your Podman commands. Select one and press **Enter** to put it back on your command line, ready to run or edit.
 
 ### Installing fzf
 
 **Via Homebrew:**
+
 ```bash
 brew install fzf
 ```
 
 **Via Nix:**
+
 ```bash
 nix profile add nixpkgs#fzf
 ```
 
-### Setting it Up
+### Turning It On
+
 Like zoxide, fzf's shortcuts only work once your shell loads them.
 
-**For Bash** — add to `~/.bashrc`:
+**For Bash**, add to `~/.bashrc`:
+
 ```bash
 eval "$(fzf --bash)"
 ```
 
-**For Fish** — add to `~/.config/fish/config.fish`:
+**For Fish**, add to `~/.config/fish/config.fish`:
+
 ```fish
 fzf --fish | source
 ```
 
-### More fzf Tricks
+Open a new terminal, and you have three new shortcuts:
 
-Open a new terminal, and fzf gives you three new shortcuts:
+| Shortcut | What it does |
+| :--- | :--- |
+| **Ctrl+R** | Search your command history |
+| **Ctrl+T** | Search for a file below the current folder and paste its path |
+| **Alt+C** | Search for a folder below the current one and `cd` into it |
 
-- **`Ctrl+R`**: Fuzzy search your command history.
-- **`Ctrl+T`**: Fuzzy search for a file in the current directory and paste its path.
-- **`Alt+C`**: Fuzzy search for a directory and `cd` into it.
+### Example: Finding a Mod File
 
-### Example: Finding a Mod File Instantly
-Imagine you downloaded a mod somewhere in your home folder but can't remember where. Instead of clicking through folders in Dolphin, just type:
+You downloaded a mod somewhere in your home folder but can't remember where. With `fd` (the file finder from {{ collections.posts | chapterLink('preinstalled') | safe }}) and fzf together:
 
 ```bash
-find ~ -name "*.pak" | fzf
+fd -e pak . ~ | fzf
 ```
 
-This searches your entire home directory for `.pak` files and lets you interactively filter the results. Select the file you want and its full path is printed — ready to copy!
+**What did that just do?** `fd -e pak . ~` listed every `.pak` file in your home folder, and the `|` sent that list to fzf. Type part of the mod's name to narrow it down, and press **Enter** to print the file's full path.
 
----
+## Using Them Together
 
-## 🤝 Better Together
+With both installed, `zi` opens zoxide's list of remembered folders in fzf, so you can pick a folder by typing a few letters of its name.
 
-The real magic happens when zoxide and fzf are both installed. zoxide can use fzf as its interactive picker, which means `zi` (zoxide interactive) gives you a beautiful fuzzy-searchable list of all your frequently visited directories.
+Both tools are small (zoxide is written in Rust, fzf in Go) and work the same way in Bash and Fish.
 
-Both tools are lightweight (zoxide is written in Rust, fzf in Go), install in seconds, and work with both Bash and Fish. Once you've used them for a day, plain `cd` will feel like going back to dial-up.
-
----
-
-Now that your terminal is beautiful, smart, *and* fast, you've truly completed the power user journey!
+That's the end of the main series. The appendix collects official documentation, communities and channels for when you want to go further.
