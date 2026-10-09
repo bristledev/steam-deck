@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "💾 Storage & SD Cards"
-excerpt: "Where your space goes, how to set up an SD card, and how to get space back safely."
+excerpt: "Where your space goes, how to set up an SD card and how to get space back safely."
 tags:
   - posts
   - steamos
