@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "📦 Flatpaks & Discover"
-excerpt: "The App Store of the Steam Deck desktop."
+excerpt: "How to install, update and remove apps with Discover, and what a Flatpak actually is."
 tags:
   - posts
   - apps
@@ -9,45 +9,46 @@ tags:
   - beginner
 ---
 
-#  Flatpaks & The Discover Store
+# Flatpaks & Discover
 
-If you’ve explored **Desktop Mode** (from {{ collections.posts | chapterLink('desktop') | safe }}), you might have noticed an app called **Discover**. This is your gateway to thousands of apps, and on SteamOS, almost everything you install through it is a **[Flatpak](https://flatpak.org/)**.
+In {{ collections.posts | chapterLink('desktop') | safe }}, you met **Discover**, SteamOS's app store. Almost everything you install through it on SteamOS is a **[Flatpak](https://flatpak.org/)**, and knowing what that means explains why some apps behave the way they do.
 
-## What is a Flatpak?
-Think of a **Flatpak** as a self-contained "shipping container" for an app. 
-- It includes everything the app needs to run.
-- It doesn't mess with the rest of your SteamOS files.
-- It stays strictly inside its own container for security and stability.
+## What Is a Flatpak?
 
-This is exactly why Flatpaks are the preferred way to install software on the Steam Deck!
+A Flatpak is an app packaged together with everything it needs to run, like a shipping container for software.
 
-## Using the Discover Store
-The **Discover Store** is like an App Store for your Steam Deck. You can find it in the bottom taskbar or the applications menu.
+- It brings its own libraries, so it doesn't depend on what SteamOS has installed.
+- It installs outside the read-only system, so it can't change SteamOS.
+- It runs in a *sandbox*: by default, it can only reach the files and devices it has been given permission to use.
 
-1. **Search**: Use the search bar in the top-left to find apps like **Discord**, **Spotify**, or even **Office** tools.
-2. **Install**: Just click the big **Install** button. 
-3. **Updates**: In the bottom-left of Discover, you'll see an "Update" section. Check this regularly to keep your apps fresh!
+That combination is why Flatpaks are the recommended way to install desktop apps on the Deck.
+
+## Using Discover
+
+You'll find Discover in the taskbar and in the Application Launcher.
+
+1. **Search** with the search bar in the top-left, for apps like **Discord**, **Spotify** or **LibreOffice**.
+2. **Install** with the **Install** button on the app's page.
+3. **Update** from the **Updates** section in the bottom-left. Discover doesn't update apps on its own, so check it now and then.
 
 Most of Discover's apps come from **[Flathub](https://flathub.org/)**, the main Flatpak app store. You can browse it in a web browser too, and you'll see its name again later in this series.
 
-## Why some apps ask for "Permissions"
-Since Flatpaks are in a container, they sometimes can't "see" your SD card or other parts of your system by default. 
+## Why Some Apps Can't See Your Files
 
-**Pro-tip:** If you install an app (like a video player) and it can't find your files, you might need a tool called **Flatseal** (also available in Discover). Flatseal lets you check boxes to give specific apps permission to see your SD card or specific folders.
+Because Flatpaks are sandboxed, some can't see your SD card or other folders by default. If an app, like a video player, can't find your files, install **Flatseal** from Discover. It lists each app's permissions, and you can switch on access to your SD card or a specific folder with a checkbox.
 
-## My Favorite Flatpaks for the Steam Deck
-If you aren't sure where to start in the Discover store, here are a few absolute essentials I highly recommend:
+## Apps Worth Installing
 
-1. **[Yakuake](https://apps.kde.org/yakuake/)**: If you've ever played *Quake* or classic PC games, you know the iconic drop-down developer console. Yakuake brings exactly that to your Steam Deck desktop! Press `F12` (or bind it to a Deck button), and a terminal sleekly drops down from the top of your screen, no matter what app you're in. Press it again, and it instantly hides. It is the ultimate tool for feeling like a true Linux wizard.
-2. **[Flatseal](https://github.com/tchx84/Flatseal)**: As mentioned above, this is the master control panel for fixing app permission issues when a Flatpak can't find your files.
-3. **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)**: An absolute must-have for gamers. It's the easiest way to install custom versions of Proton (like GE-Proton), which can magically fix stubborn Windows games that won't run on standard SteamOS.
-4. **[Prism Launcher](https://prismlauncher.org/)**: The absolute best way to play *Minecraft: Java Edition* on the Steam Deck. It lets you easily manage multiple accounts and download mods right from the app, including popular performance mods like Sodium that can make the game run much smoother.
+If you aren't sure where to start, these are popular with Deck owners:
 
-## Managing Your Apps
-To uninstall an app, just head back to Discover, find the app, and click **Remove**. The app is gone, and it never touched SteamOS itself.
+1. **[Flatseal](https://github.com/tchx84/Flatseal)**: manages app permissions, as described above.
+2. **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)**: installs community versions of Proton, like GE-Proton, which can get some stubborn Windows games running. You'll use it in {{ collections.posts | chapterLink('troubleshooting') | safe }}.
+3. **[Prism Launcher](https://prismlauncher.org/)**: a launcher for *Minecraft: Java Edition* that manages multiple accounts and installs mods for you, including performance mods like Sodium.
+
+## Removing Apps
+
+To uninstall an app, open its page in Discover and click **Remove**. The app is gone, and SteamOS itself was never touched.
 
 Discover does keep the app's settings and saved data (in `~/.var/app`), in case you reinstall it later. To delete those too, open the app's page in Discover again and click **Delete settings and user data**.
 
----
-
-Now that you know how to install apps from the Discover store, let's look at one of the best ways to play games from other stores and even older consoles.
+Discover covers most apps, but not every game store or emulator. Next, we'll look at the tools for playing games from Epic, GOG and older consoles.
