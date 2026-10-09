@@ -11,14 +11,12 @@ tags:
 
 # What's Already Installed
 
-Before you install anything with Homebrew or Nix, it's worth knowing what Valve already put on your Deck. SteamOS ships with more than a thousand packages, and plenty of them are genuinely useful: system monitors, a battery health checker, a lightning-fast file finder, even a full video converter.
+Before you install anything with Homebrew or Nix, it's worth knowing what Valve already put on your Deck. SteamOS ships with more than a thousand packages, and plenty of them are useful on their own: system monitors, a battery health checker, a fast file finder, even a full video converter.
 
-This chapter is a guided tour of the best ones, grouped by job. More importantly, it shows you how to check for a tool yourself, because the list shifts a little with every SteamOS update.
+This chapter is a guided tour of the best ones, grouped by job. It also shows you how to check for a tool yourself, which matters because the list shifts a little with every SteamOS update.
 
 > [!NOTE]
 > Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel). Version numbers on your Deck may differ. If a command is missing, use the checks in the next section to confirm.
-
----
 
 ## Where Do These Tools Come From?
 
@@ -26,9 +24,7 @@ SteamOS is built on Arch Linux, and Arch installs software with a package manage
 
 Think of it like a game console's system software: every Deck on the same version gets exactly the same tools, and an update swaps the whole set at once. That's also why you can't add to the list with `pacman` yourself. The next update replaces the image, and your additions go with it.
 
-The good news: even though you can't *change* the package list, you can freely *read* it.
-
----
+You can't *change* the package list, but you can *read* it.
 
 ## Check Before You Install
 
@@ -67,8 +63,6 @@ pacman -Qi ncdu
 > [!TIP]
 > **Want the whole list?** `pacman -Qe` prints every package SteamOS installs on purpose (238 on our test Deck), and `pacman -Q` adds all of their dependencies (1,206). Pipe either one into `less` to scroll through it: `pacman -Qe | less`.
 
----
-
 ## Watching Your System
 
 | Command | What it does | Example |
@@ -106,8 +100,6 @@ Run `sensors` and you'll get a block for each part of the Deck. The lines worth 
 - `Composite` under `nvme`: the SSD temperature.
 - `slowPPT`: how many watts the chip is drawing, next to its current limit (`cap`). This is the number the **TDP Limit** slider from {{ collections.posts | chapterLink('performance') | safe }} controls.
 
----
-
 ## Disks and Storage
 
 | Command | What it does | Example |
@@ -134,8 +126,6 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 **What did that just do?** It showed the two halves of your Deck's drive. `/` is the read-only SteamOS image: only about 5 GB, nearly full, and that's normal. You never write to it. `/home` is everything else, and it's where your games, apps, Flatpaks and Homebrew installs all live. When people say their Deck is "full", it's this one.
 
----
-
 ## Network
 
 | Command | What it does | Example |
@@ -154,8 +144,6 @@ rsync -avP ~/ROMs/ /run/media/deck/<card-name>/ROMs/
 ```
 
 **What did that just do?** `-a` keeps everything (subfolders, timestamps, permissions), `-v` lists each file as it goes, and `-P` shows progress and lets you rerun the same command to pick up where it stopped. Replace `<card-name>` with your SD card's folder name from {{ collections.posts | chapterLink('filesystem') | safe }}.
-
----
 
 ## Finding and Handling Files
 
@@ -176,8 +164,6 @@ fd -e sav . ~/.local/share/Steam/steamapps/compatdata
 
 **What did that just do?** `-e sav` means "files ending in `.sav`", the `.` means "any name", and the last part is where to search. Swap `sav` for any extension a game uses for its saves.
 
----
-
 ## Editors and Long-Running Sessions
 
 - **`nano`**: the beginner-friendly terminal editor used throughout this series. The shortcuts are listed along the bottom of the screen.
@@ -197,7 +183,6 @@ Press `Ctrl+B`, then `D`, to detach. The session keeps running in the background
 
 Here's a SteamOS quirk worth knowing: when a program opens an editor *for* you, it opens **vim**, not nano. Valve's own setup file, `/etc/profile.d/holo.sh`, makes vim the default whenever you haven't picked one yourself. You'll run into it when:
 
-- `git pull` needs a message to combine your changes with the author's.
 - `git commit` runs without a `-m "message"`.
 - `sudoedit` or `systemctl --user edit` opens a file.
 
@@ -209,9 +194,6 @@ If you land in vim, these are the only keys you need:
 | **`Esc`** | Stop typing |
 | **`:wq`** then `Enter` | Save and quit |
 | **`:q!`** then `Enter` | Quit without saving |
-
-> [!TIP]
-> When `git pull` opens vim, the message is already written for you. Just type `:wq` and press `Enter`.
 
 ### Make nano the Default Instead
 
@@ -232,16 +214,12 @@ echo 'set -gx EDITOR nano' >> ~/.config/fish/config.fish
 
 In Desktop Mode, Fish inherits vim from the session just like Bash does. But Fish never reads `holo.sh` itself, so if you made Fish your login shell and connect over SSH (next chapter), it starts with no default editor at all. Then `git` looks for `vi`, which SteamOS doesn't include, and stops with an error. This line fixes both cases.
 
----
-
 ## Gaming and Graphics
 
 - **`mangohud`**: the performance overlay you switch on from the Quick Access menu is drawn by MangoHud. In Desktop Mode you can add it to any game with the launch option `mangohud %command%`.
 - **`gamescope`**: the compositor that runs Game Mode. The frame rate limit and upscaling from {{ collections.posts | chapterLink('performance') | safe }} are Gamescope features.
 - **`vulkaninfo`**: reports your GPU and driver. Run `vulkaninfo --summary` and look for `deviceName`; on an LCD Deck it shows `AMD Custom GPU 0405 (RADV VANGOGH)`.
 - **`ffmpeg`**: a full video and audio converter. For example, `ffmpeg -i clip.mkv clip.mp4` converts a recording into a format your phone can play.
-
----
 
 ## SteamOS's Own Commands
 
@@ -257,12 +235,10 @@ Valve includes a set of commands that only exist on SteamOS:
 | **`steamos-add-to-steam <file>`** | Adds a program to your Steam library as a non-Steam game |
 
 > [!NOTE]
-> Peek behind the curtain with `ls -l /usr/bin/steamos-update`. It's a shortcut (a *symlink*) pointing to `/usr/bin/holo-update`. "Holo" is the name of the Valve-built base that SteamOS sits on, and every `steamos-*` command is a friendly alias for a `holo-*` tool.
+> Peek behind the curtain with `ls -l /usr/bin/steamos-update`. It's a shortcut (a *symlink*) pointing to `/usr/bin/holo-update`. "Holo" is the name of the Valve-built base that SteamOS sits on, and most `steamos-*` commands are aliases for a `holo-*` tool. Run `ls -l /usr/bin/steamos-*` to see which.
 
 > [!WARNING]
 > **Change update channels from Settings → System, not the terminal.** `steamos-select-branch` can also switch you to `main`, Valve's internal testing branch, which is not meant for everyday use.
-
----
 
 ## What's Not Included
 
@@ -274,7 +250,5 @@ Knowing what's missing saves you from hunting for it:
 - **None of the terminal eye candy** (`fastfetch`, `starship`, `zoxide`, `fzf`). The later chapters show you how to install each one.
 
 That's the pattern for the rest of this series: check what SteamOS already gives you, and only reach for a package manager to fill the gaps.
-
----
 
 You now know what's in the toolbox. But typing on the Deck's screen is nobody's idea of fun, so let's control your Deck from a real keyboard on another computer.
