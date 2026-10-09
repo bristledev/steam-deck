@@ -20,7 +20,7 @@ This chapter lays out every sanctioned way to extend SteamOS, takes apart a real
 
 ---
 
-## 🏗️ What Does "Extending" Mean?
+## What Does "Extending" Mean?
 
 Think of SteamOS like a rented apartment. You can't knock down walls (the read-only image), but you can bring in furniture, hang pictures and add shelves. The trick is putting things where the landlord's renovations won't sweep them away.
 
@@ -28,7 +28,7 @@ SteamOS gives you five such places. Each one maps to a row of the "Whole Picture
 
 ---
 
-## ✅ The Five Safe Places
+## The Five Safe Places
 
 | Method | Where it lives | Survives updates? | Good for |
 | :--- | :--- | :--- | :--- |
@@ -42,9 +42,9 @@ The first four don't need anything beyond what this series has already shown you
 
 ---
 
-## 🔬 Case Study: How Tailscale Survives Updates
+## Case Study: How Tailscale Survives Updates
 
-In {{ collections.posts | chapterLink('tailscale') | safe }}, a community script installed a VPN service that keeps working through every SteamOS update. It isn't magic. It uses exactly the pieces you've learned about, one for each job. Let's take it apart. (If you skipped the Tailscale chapter, these files won't exist on your Deck, so just read along.)
+In {{ collections.posts | chapterLink('tailscale') | safe }}, a community script installed a VPN service that keeps working through every SteamOS update. It uses exactly the pieces you've learned about, one for each job. Let's take it apart. (If you skipped the Tailscale chapter, these files won't exist on your Deck, so just read along.)
 
 **1. The programs live in `/opt`, which is offloaded to the home partition:**
 
@@ -82,7 +82,7 @@ That's the full recipe for a system service that survives updates: **programs in
 
 ---
 
-## 🧱 The Advanced Option: System Extensions
+## The Advanced Option: System Extensions
 
 There's one more official mechanism, built into systemd itself: **system extensions** (*sysext*). A system extension is a sealed image that gets layered over `/usr` or `/opt`, a bit like the `/etc` tracing paper from the Anatomy chapter but for programs.
 
@@ -96,7 +96,7 @@ On most Decks, including our test Deck, it shows `none` for both `/usr` and `/op
 
 ---
 
-## ❌ The One Way That Always Gets Wiped
+## The One Way That Always Gets Wiped
 
 You'll find guides online that start like this:
 
@@ -118,7 +118,7 @@ The same message then recommends packaging apps with Flatpak and building softwa
 
 ---
 
-## 🧭 Which Method Should You Use?
+## Which Method Should You Use?
 
 | You want… | Use |
 | :--- | :--- |
