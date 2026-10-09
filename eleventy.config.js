@@ -104,38 +104,6 @@ export default function(eleventyConfig) {
     return (posts || []).find(p => p.fileSlug === slug);
   });
 
-  eleventyConfig.addShortcode("next_chapter", function() {
-    const posts = this?.ctx?.collections?.posts || [];
-    const currentUrl = this?.page?.url;
-    const currentSlug = this?.page?.fileSlug;
-    const isDev = process.env.ELEVENTY_RUN_MODE === "serve" || process.env.NODE_ENV === "development";
-
-    const currentIndex = posts.findIndex((post) => {
-      return post.url === currentUrl || post.fileSlug === currentSlug;
-    });
-
-    if (currentIndex === -1) {
-      if (isDev) {
-        throw new Error(`[next_chapter shortcode] Could not resolve current post in collections.posts (url: '${currentUrl}', slug: '${currentSlug}')`);
-      }
-      return "";
-    }
-
-    if (currentIndex >= posts.length - 1) {
-      return "";
-    }
-
-    const nextPost = posts[currentIndex + 1];
-    const nextTitle = (nextPost?.data?.title || nextPost?.fileSlug || "").trim();
-    const nextUrl = nextPost?.url || "";
-
-    if (!nextTitle || !nextUrl) {
-      return "";
-    }
-
-    return `Next we'll look at **[${nextTitle}](${nextUrl})**!`;
-  });
-
   eleventyConfig.addTransform("asciinemaEmbeds", (content, outputPath) => {
     if (!outputPath || !outputPath.endsWith(".html")) {
       return content;
