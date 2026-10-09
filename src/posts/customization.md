@@ -114,6 +114,6 @@ To remove Decky:
    - **uninstall decky loader** removes Decky but keeps your plugins and settings, in case you reinstall later.
    - **wipe decky loader** removes Decky *and* deletes the whole `~/homebrew` folder.
 
-Either way, the installer stops the service, deletes it, and turns Steam's debugger back off.
+Either way, the installer stops the service, deletes it and turns Steam's debugger back off.
 
 This chapter mentioned the terminal a few times. The next phase teaches it from scratch, starting with where to find one.
