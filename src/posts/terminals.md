@@ -25,7 +25,7 @@ To open it:
 Konsole has tabs, split views, and settings for fonts and colors.
 
 > [!TIP]
-> **Pin it to your taskbar.** Right-click Konsole in the Application Launcher and choose **Add to Panel** or **Add to Favorites**, so it's always one click away.
+> **Pin it to your taskbar.** Right-click Konsole in the Application Launcher and choose **Pin to Task Manager**, so it's always one click away.
 
 ## Dolphin's Terminal Panel
 
