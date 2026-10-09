@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "⭐ The Ultimate Terminal Prompt (Starship)"
-excerpt: "Make your terminal beautiful and informative across any shell."
+title: "⭐ A Better Prompt (Starship)"
+excerpt: "Replace the plain terminal prompt with one that shows your Git branch, Python version and more, in Bash or Fish."
 tags:
   - posts
   - customization
@@ -9,44 +9,45 @@ tags:
   - intermediate
 ---
 
-# The Ultimate Terminal Prompt (Starship)
+# A Better Prompt (Starship)
 
-Back in {{ collections.posts | chapterLink('fish') | safe }}, you gave yourself a smarter shell. But your **prompt** — the text that appears to the left of your cursor every time you type a command (by default on SteamOS, something forgettable like `(deck@steamdeck ~)$`) — is still pretty plain. What if that little line could show you your current Git branch, your Python version, your battery level, and more, all in a sleek modern design?
+Your *prompt* is the text to the left of your cursor in the terminal. On SteamOS, it's `(deck@steamdeck ~)$` by default: your username, your Deck's name and the current folder. **[Starship](https://starship.rs/)** replaces it with a prompt that also shows useful context when it's relevant, like the Git branch of the project you're in, the Python version it uses, or a warning when your battery drops below 10%.
 
-Meet **[Starship](https://starship.rs/)**.
+Starship is a single program, configured with one text file, and it works in Bash, Fish and many other shells.
 
-Starship is a minimal, blazing-fast, and infinitely customizable prompt that works with *any* shell — Bash, Fish, or anything else.
+## Step 1: Install Starship
 
-## 🛠️ Step 1: Installation (Choose Your Weapon)
+Pick whichever option matches the tools you already use.
 
-Choose the option that matches where you are in the curriculum.
+### Option 1: Homebrew (Recommended)
 
-### Option 1: The Homebrew Way (Recommended)
-If you've already set up **{{ collections.posts | chapterLink('homebrew') | safe }}**, this is the cleanest option — one command, easy updates, and no scripts to worry about.
+If you've set up {{ collections.posts | chapterLink('homebrew') | safe }}, this is the simplest option, and `brew upgrade` keeps it up to date:
 
 ```bash
 brew install starship
 ```
 
-### Option 2: The Nix Way
-If you're using the **{{ collections.posts | chapterLink('nix') | safe }}** package manager, just run:
+### Option 2: Nix
+
+If you use {{ collections.posts | chapterLink('nix') | safe }}:
 
 ```bash
 nix profile add nixpkgs#starship
 ```
 
-### Option 3: The Direct Way (Haven't done Homebrew or Nix yet?)
-This method works without any extra tools. It downloads Starship directly into your home folder's `bin` directory, which stays safe across SteamOS updates.
+### Option 3: The Install Script
+
+This works without Homebrew or Nix. It downloads Starship into `~/.local/bin`, inside your home folder, so it survives SteamOS updates.
 
 > [!WARNING]
-> This command pipes a script from the internet directly into your shell, which means you're trusting it to run unseen code. It's a common pattern and Starship is a reputable project, but it's worth knowing what you're doing. If you'd rather not, come back after setting up Homebrew (Option 1).
+> **This pipes a script from the internet straight into your shell.** Starship is a well-known project, but you're still running code you haven't read. {{ collections.posts | chapterLink('github') | safe }} shows how to download and read a script first, or you can use Option 1 instead.
 
 1. Open **Konsole**.
-2. Run this command:
+2. Run:
    ```bash
    curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin
    ```
-3. After it finishes, verify the install worked: `starship --version`
+3. Check that it worked with `starship --version`.
 
 > [!TIP]
 > If you see `command not found`, `~/.local/bin` isn't on your PATH yet. SteamOS doesn't include it by default; installing `uv` in {{ collections.posts | chapterLink('python') | safe }} adds it for you. Otherwise, add it yourself and open a new terminal:
@@ -55,56 +56,59 @@ This method works without any extra tools. It downloads Starship directly into y
 > ```
 > If you use Fish, run `fish_add_path ~/.local/bin` instead.
 
----
+## Step 2: Turn It On
 
-## ⚙️ Step 2: Configuration
+Your shell needs one line in its startup file to use Starship.
 
-Now that Starship is installed, we need to tell your shells to use it.
+### Fish
 
-### For Fish Users
-Open your Fish configuration file:
+Open Fish's startup file:
+
 ```bash
 nano ~/.config/fish/config.fish
 ```
+
 Add this line at the very bottom:
+
 ```fish
 starship init fish | source
 ```
-Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `source ~/.config/fish/config.fish`) and your new prompt appears immediately.
 
-### For Bash Users
-Open your `~/.bashrc` file:
+Save with **Ctrl+O**, then **Enter**, and exit with **Ctrl+X**. Open a new terminal, and the new prompt appears.
+
+### Bash
+
+Open Bash's startup file:
+
 ```bash
 nano ~/.bashrc
 ```
+
 Add this line at the very bottom:
+
 ```bash
 eval "$(starship init bash)"
 ```
-Save with `Ctrl+O` → **Enter** → `Ctrl+X`. Restart your terminal (or run `source ~/.bashrc`) and your new prompt appears immediately.
 
----
+Save with **Ctrl+O**, then **Enter**, and exit with **Ctrl+X**. Open a new terminal, and the new prompt appears.
 
-## 🎨 Step 3: Making it Yours
+## Step 3: Pick a Style
 
-By default, Starship looks great, but the real magic is in the presets. 
+Starship's look is set in `~/.config/starship.toml`. The easiest way to change it is with a *preset*, a ready-made style:
 
-1. Visit the **[Starship Presets Gallery](https://starship.rs/presets/)**.
-2. Find a design you like (like "Pastel Powerline" or "Nerd Font Symbols").
+1. Browse the **[Starship Presets Gallery](https://starship.rs/presets/)**.
+2. Find a design you like, such as "Pastel Powerline" or "Nerd Font Symbols".
 3. Each preset page shows a one-line command that writes it to `~/.config/starship.toml`. For Pastel Powerline, it's:
    ```bash
    starship preset pastel-powerline -o ~/.config/starship.toml
    ```
 
 > [!TIP]
-> **Need Icons?**
-> Many Starship presets use special icons. If you see weird squares instead of icons, install a Nerd Font:
-> 1. Download a font like **[JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)**.
+> **Seeing squares instead of icons?** Many presets use icons from a *Nerd Font*, a font with extra symbols added. To install one:
+> 1. Download a font such as **[JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)**.
 > 2. Extract the `.zip` file.
 > 3. Copy the `.ttf` files into `~/.local/share/fonts/` (create the folder if needed).
 > 4. Rebuild the font cache with `fc-cache -fv`.
-> 5. In Konsole, go to **Settings -> Edit Current Profile -> Appearance**, then pick your new Nerd Font.
+> 5. In Konsole, go to **Settings → Edit Current Profile → Appearance** and pick the new font.
 
----
-
-Now that your terminal prompt looks like it belongs in the future, let's make the *rest* of the terminal match.
+The prompt is one part of the terminal's look. The next chapter covers tools that make the rest of it, from file listings to system monitors, easier to read.
