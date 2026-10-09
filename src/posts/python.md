@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🐍 Python"
-excerpt: "The secret programming language already on your Deck."
+excerpt: "The programming language SteamOS itself runs on, and how to use it without breaking anything."
 tags:
   - posts
   - scripting
@@ -9,83 +9,108 @@ tags:
   - intermediate
 ---
 
-#  Python – The Hidden Scripting Engine
+#  Python on SteamOS
 
-If you’ve been following our path from the **Terminal** to **Homebrew** and **Nix**, you’re already a power user. But did you know that your Steam Deck comes pre-installed with one of the world's most popular programming languages?
+In {{ collections.posts | chapterLink('github') | safe }}, you learned how to grab community tools from GitHub. Many of them are written in **[Python](https://www.python.org/)**, one of the world's most popular programming languages. Good news: your Steam Deck already has it.
 
-That’s right: **[Python](https://www.python.org/)** is already there, waiting for you.
+> [!NOTE]
+> Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2**, which includes **Python 3.14.6**.
 
-## Why is Python on my Steam Deck?
-Most modern Linux systems (including SteamOS) use Python for a variety of background tasks. Because it’s so versatile, Valve includes it by default so that different parts of the operating system can talk to each other and run scripts.
+## Why Is Python on My Steam Deck?
+Python isn't just there for you. Parts of SteamOS itself are written in it, including your Deck's **fan controller** and the **update client** from {{ collections.posts | chapterLink('steamos-updates') | safe }}. You can see it for yourself:
 
-## How to find Python
-You don't need to install anything. Just open your terminal (**Konsole**) and type:
+```bash
+systemctl cat jupiter-fan-control | grep ExecStart
+```
+
+**What did that just do?** It showed the command the fan-control service runs: `/usr/share/jupiter-fan-control/fancontrol.py`. The `.py` ending means it's a Python script. Every time your Deck's fan speeds up, Python is behind it.
+
+The update client is Python too. Look at the first line of its program:
+
+```bash
+head -1 /usr/bin/steamos-atomupd-client
+```
+
+It prints `#!/usr/bin/python3`. That first line (called a *shebang*) tells Linux which program should run the script.
+
+So Python is always there, because SteamOS needs it. That's also exactly why you shouldn't change it, as you'll see below.
+
+## Checking Your Version
+Open **Konsole** and run:
 
 ```bash
 python --version
 ```
 
-You’ll likely see something like `Python 3.x.x`. This is the "standard" version used by developers all over the world.
+You'll see something like `Python 3.14.6`. Typing `python` on its own opens an interactive prompt (`>>>`) where you can try out Python code, or just use it as a calculator. Type `exit()` to leave.
 
-## Using Python as a Super-Calculator
-The easiest way for a 'noob' to use Python is as an interactive calculator. Just type `python` in your terminal and hit Enter. You’ll see a `>>>` prompt. Now try these:
+## 🐙 Running Community Scripts
+Most community Python tools follow the same pattern:
 
-- `2 + 2`
-- `10 * 5`
-- `import math; math.sqrt(25)`
+1. Download the project with `git clone`, as in the GitHub chapter.
+2. Read its `README` for anything it needs installed first.
+3. Run it with `python`, for example `python some_tool.py`.
 
-To exit this mode, just type `exit()` or press **Ctrl+D**.
+To update a project later, open its folder in Konsole and run `git pull`, which downloads the author's latest changes.
 
-## Why does this matter for a Gamer?
-While you might not be writing the next big indie hit in the terminal, having Python means you can run **community-made scripts**. 
+Step 2 is where many scripts hit a snag: they need extra Python *libraries* (add-on code packages), and SteamOS won't let you install those the usual way.
 
-Many tools for the Steam Deck (like advanced save-game managers or specialized performance scripts) are written in Python. Since it's already installed, you can run them directly without needing a fancy installer.
+## 🔒 Why There's No `pip`
+On most computers, Python libraries are installed with a tool called `pip`. On SteamOS, try it:
 
-## 🐙 Downloading Community Scripts
-If you want to use community-made Python scripts, you'll often find them on GitHub. We covered exactly how to download and update projects using `git clone` and `git pull` in the {{ collections.posts | chapterLink('github') | safe }} chapter — those same techniques are how you'll grab Python scripts too!
+```bash
+python -m pip --version
+```
 
-## 🐍 Don't Break Your System: Use Environments!
-Python is great, but installing packages directly into the system's Python is usually a bad idea. On the Steam Deck, it might even fail because the core system is "read-only." 
+You'll get `No module named pip`. SteamOS deliberately leaves `pip` out, and it marks its Python as *externally managed*, meaning only the operating system is allowed to change it. You can read the notice yourself:
+
+```bash
+cat /usr/lib/python3*/EXTERNALLY-MANAGED
+```
+
+Why the lock? The fan controller and update client depend on the exact libraries SteamOS ships. If you swapped one out for a different version, they could break.
+
+> [!WARNING]
+> The notice suggests installing packages with `pacman -S`. That advice comes from Arch Linux, which SteamOS is built on, but on SteamOS anything installed with `pacman` is wiped by the next update (see {{ collections.posts | chapterLink('steamos-extending') | safe }}). Follow its *other* suggestion instead: a virtual environment.
+
+## 🐍 The Right Way: Virtual Environments
 
 ### 1. The Standard Way: `venv`
-Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time — they'd conflict. A **Virtual Environment** solves this by giving each project its own private sandbox, completely isolated from everything else. The system Python stays untouched, your scripts stay happy.
+Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time — they'd conflict. A **virtual environment** solves this by giving each project its own private copy of Python and its libraries. SteamOS's Python stays untouched, and your scripts stay happy.
+
 ```bash
-# Make sure you're in the folder of your Python project
+# Go to the folder of your Python project
 cd ~/MyPythonProject
 # Create a new virtual environment in the current folder
 python -m venv .venv
+# Switch to it
 source .venv/bin/activate
 ```
-Once activated, any packages you install with `pip` go into that sandbox, not the system. When you're done, just type `deactivate`.
+
+Once activated, you have a working `pip` again, and anything you install goes into that project's environment, not the system. Many projects list everything they need in a `requirements.txt` file, which you can install in one go:
+
+```bash
+pip install -r requirements.txt
+```
+
+When you're done, just type `deactivate`.
+
+*(If you use Fish, activate with `source .venv/bin/activate.fish` instead.)*
 
 ### 2. The Modern Choice: uv ⚡
-If you want the fastest and easiest experience, check out **[uv](https://github.com/astral-sh/uv)**. It's a "blazingly fast" Python package manager that manages your environments and packages automatically. You can install it with just one command:
+**[uv](https://github.com/astral-sh/uv)** is a very fast Python tool that creates and manages environments for you. Install it with one command:
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-Once installed, you can use `uv run [script.py]` and it will handle everything—from creating the environment to installing the right versions—automatically. It's widely considered the "best-in-class" tool for Python right now!
 
-## 🎓 Honorable Mentions: Perl & Ruby
-While Python is the king of community scripts, your Deck has other secret languages too:
-- **[Perl](https://www.perl.org/)**: Pre-installed on every Steam Deck. It's a "classic" used for heavy text processing and system automation. You probably won't use it for gaming, but it's there if you need a "swiss army knife"!
-- **[Ruby](https://www.ruby-lang.org/)**: Highly popular with developers and available via **Homebrew**. It powers many web tools and is known for being elegant and easy to read.
+The installer puts `uv` in `~/.local/bin` and adds that folder to your PATH, so **open a new terminal** afterwards. Then:
 
-## 🦀 The Performance King: Rust
-If you want to write the fastest software possible, you need **[Rust](https://www.rust-lang.org/)**. Many of the modern terminal tools we've mentioned (like `uv`) are built with Rust. 
+- `uv run some_tool.py` runs a script, creating an environment and installing what it needs automatically.
+- `uvx some-tool` runs a Python tool without installing it permanently. You'll use this in the next chapter to run a file server.
 
-To install **Cargo** (Rust's package manager) and the Rust compiler:
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-**Try your first Rust project:**
-1. Type `cargo new hello_deck`
-2. `cd hello_deck`
-3. `cargo run`
-You've just compiled and run a high-performance program on your handheld!
+Everything uv installs lives in your home folder, so it survives SteamOS updates.
 
 ---
 
-Now that we've unlocked the power of the terminal and its secret languages, let's learn how to make your scripts run automatically in the background.
-
-{% next_chapter %}
+Now that you can run Python scripts safely, let's learn how to make them run automatically in the background.
