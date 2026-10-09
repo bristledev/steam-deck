@@ -136,6 +136,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 | **`ping`** | Is a website reachable? | `ping -c 4 steampowered.com` |
 | **`curl`** / **`wget`** | Download a file from the terminal | `wget https://example.com/file.zip` |
 | **`rsync`** | Copy big folders, and resume if interrupted | See below |
+| **`wg`** | WireGuard VPN status (needs `sudo`; see {{ collections.posts | chapterLink('wireguard') | safe }}) | `sudo wg show` |
 
 `rsync` is the best way to copy a large folder, like a ROM collection, to your SD card:
 
