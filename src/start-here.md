@@ -31,7 +31,7 @@ Work through these phases in order. By the end, you'll know your way around Stea
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
 | 7 | {{ collections.posts | chapterLink('flatpak') | safe }} | Installing apps from the Discover store |
-| 8 | {{ collections.posts | chapterLink('advanced') | safe }} | Installing apps that are not in the store |
+| 8 | {{ collections.posts | chapterLink('advanced') | safe }} | Games from Epic, GOG and Amazon, emulators, and adding any app to Steam |
 | 9 | {{ collections.posts | chapterLink('appimage') | safe }} | Portable apps that run without a full install |
 
 ### Phase 3: Performance & Customization
