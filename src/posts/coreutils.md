@@ -19,12 +19,14 @@ Most of the simple commands you'll use on your Steam Deck (like `ls`, `cp`, and 
 Here are the most common tools you'll find yourself using while modding or managing your Deck:
 
 ### 1. File & Directory Management
-*   **`cp` (Copy)**: Copies files or folders.
+*   **`cp` (Copy)**: Copies files. Add `-r` ("recursive") to copy a whole folder and everything in it.
     - `cp source.txt destination.txt`
+    - `cp -r MyMods ~/Backups/`
 *   **`mv` (Move/Rename)**: Moves a file or renames it.
     - `mv old_name.txt new_name.txt`
-*   **`rm` (Remove)**: Deletes a file.
+*   **`rm` (Remove)**: Deletes a file. Like `cp`, it needs `-r` to delete a folder and its contents.
     - `rm file.txt`
+    - `rm -r OldMods`
     - > [!CAUTION]
       > **There is no Recycle Bin in the terminal.** When you use `rm`, the file is gone. Always double-check your command!
 *   **`mkdir`**: Creates a new folder.
@@ -33,7 +35,7 @@ Here are the most common tools you'll find yourself using while modding or manag
 ### 2. Viewing & Inspecting
 *   **`cat`**: Slaps the entire contents of a file onto your screen. Great for quick reads.
 *   **`head` / `tail`**: Shows only the first or last few lines of a file. (Perfect for checking large log files!)
-*   **`less`**: Lets you scroll through a large file one page at a time. (Press `q` to quit!)
+*   **`less`**: Lets you scroll through a large file one page at a time. (Press `q` to quit!) Strictly speaking, `less` is its own project rather than part of Coreutils, but SteamOS includes it too.
 
 ### 3. Permissions
 *   **`chmod`**: Changes who can read, write, or "execute" (run) a file.
@@ -61,6 +63,4 @@ curl cht.sh/cp
 
 ---
 
-Now that you've got the vocabulary, it's time to make the conversation look a lot better. 
-
-{% next_chapter %}
+Coreutils are only the start. SteamOS ships with a whole toolbox of other useful commands, so let's see what's already on your Deck before you install anything.
