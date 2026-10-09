@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "🐳 Podman"
+title: "🐳 Containers with Podman"
 excerpt: "The container engine that comes with SteamOS, and how to host game servers with it."
 tags:
   - posts
@@ -9,21 +9,21 @@ tags:
   - advanced
 ---
 
-#  Podman – Containers Without the Complexity
+# Containers with Podman
 
-If you’ve made it this far, you’ve seen how **Flatpaks**, **Homebrew**, and **Nix** let you install apps without touching the core SteamOS files. But there’s one more powerful tool that comes pre-installed on every Steam Deck: **Podman**.
+Flatpaks, Homebrew and Nix all install programs without touching SteamOS's read-only system. **Podman** goes a step further: it runs programs inside *containers*, each with its own set of files, separate from the rest of your Deck. It comes preinstalled on every Steam Deck.
 
 > [!NOTE]
 > Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2** with **Podman 6.0.2**.
 
-## What is Podman?
+## What Is Podman?
 **[Podman](https://podman.io/)** is a tool for running *containers*. If you've ever heard of **[Docker](https://www.docker.com/)**, Podman uses almost exactly the same commands. The big difference is that Podman is **[rootless](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md)** by default: containers run as your `deck` user, with no `sudo` and no access to the read-only system.
 
-Think of a container as a **shipping container for software**. Everything a program needs (its files, libraries and settings) is packed inside, sealed off from the rest of your Deck. You can even run the tools of a whole different Linux distribution, like Ubuntu or Fedora, inside one.
+A container works like a **shipping container for software**. Everything a program needs (its files, libraries and settings) is packed inside, sealed off from the rest of your Deck. You can even run the tools of a whole different Linux distribution, like Ubuntu or Fedora, inside one.
 
 Unlike a full virtual machine, a container doesn't boot its own operating system. It shares your Deck's Linux kernel, which is why containers start in seconds.
 
-## Why is Podman on my Steam Deck?
+## Why Is Podman on My Steam Deck?
 Podman is the engine behind **Distrobox**, which you'll meet in the next chapter. Valve itself recommends that route: SteamOS's `steamos-devmode` command tells developers to build software in containers with Distrobox instead of modifying the system.
 
 Your containers and their images are stored in `~/.local/share/containers/storage`, inside your home folder. Like Flatpaks, they survive every SteamOS update (see {{ collections.posts | chapterLink('steamos-anatomy') | safe }} for why).
@@ -35,14 +35,14 @@ You don't need to install anything. Open **Konsole** and run:
 podman run hello-world
 ```
 
-Podman downloads a tiny test image, runs it, and prints a short greeting. All without needing `sudo`!
+Podman downloads a tiny test *image* (the packaged files a container starts from), runs it, and prints a short greeting, all without `sudo`.
 
-## 🎥 See it in Action
-Check out how fast Podman starts up and runs a container!
+### See It in Action
+This recording shows a container starting and running:
 
 [![asciicast](https://asciinema.org/a/6QpATU4wRtFkFPW0.svg)](https://asciinema.org/a/6QpATU4wRtFkFPW0)
 
-## 🏷️ Always Use Full Image Names
+## Always Use Full Image Names
 Container images are downloaded from online libraries called *registries*. The two you'll see most are Docker Hub (`docker.io`) and GitHub's registry (`ghcr.io`).
 
 Most guides online use short names like `itzg/minecraft-server`. On SteamOS, that fails:
@@ -56,11 +56,11 @@ SteamOS doesn't set a default registry, so Podman doesn't know where to look. (`
 > [!TIP]
 > **Copying a command from a Docker guide?** Change `docker` to `podman`, and if the image name has no registry in front, add `docker.io/`. For example, `itzg/minecraft-server` becomes `docker.io/itzg/minecraft-server`.
 
-## 🎮 Hosting Game Servers
-While most gamers won't need Podman daily, it opens up some amazing possibilities. The best example? **Hosting your own game servers directly on your Deck.**
+## Hosting Game Servers
+Most Deck owners won't need Podman every day, but it's a practical way to host your own game servers on your Deck.
 
-### Example: Running a Minecraft Server in 1 Command
-Instead of downloading Java, configuring paths, and messing with system files, you can use a pre-built container like the popular **[itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server)**.
+### Example: A Minecraft Server
+Instead of installing Java and configuring a server by hand, you can use a ready-made container image like the popular **[itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server)**.
 
 Create a folder for your world, then launch a fully functional Minecraft (Java Edition) server:
 
@@ -77,7 +77,7 @@ podman run -d -it -p 25565:25565 -e EULA=TRUE -v ~/minecraft-data:/data --name m
 - `-v ~/minecraft-data:/data`: Saves your world to a folder on your Deck, so it isn't lost when the container stops.
 - `--name mc-server`: Gives the container a name you can use in later commands.
 
-To stop the server later, just type `podman stop mc-server`. To start it again, `podman start mc-server`. It’s that easy!
+To stop the server later, run `podman stop mc-server`. To start it again, run `podman start mc-server`.
 
 [![asciicast](https://asciinema.org/a/qo924SpN5D5TBh68.svg)](https://asciinema.org/a/qo924SpN5D5TBh68)
 
@@ -101,7 +101,7 @@ To stop the server later, just type `podman stop mc-server`. To start it again, 
 > [!TIP]
 > Check each server's own page before you host anything big. Some servers are too demanding for a handheld: Palworld's server, for example, lists 16 GB of RAM as its *minimum*, which is your Deck's entire memory.
 
-## 🧰 Managing Your Containers
+## Managing Your Containers
 These commands cover everyday container housekeeping:
 
 | Command | What it does |
@@ -133,10 +133,10 @@ podman unshare rm -rf ~/minecraft-data
 - **After a reboot**, containers don't start on their own. Run `podman start mc-server` again.
 - **If a server stops when you switch** between Game Mode and Desktop Mode, enable lingering from {{ collections.posts | chapterLink('systemd') | safe }}. It keeps your user's background programs alive no matter which mode is open.
 
-## 🤝 Letting Friends Connect
+## Letting Friends Connect
 - **On your home network**, friends connect to your Deck's IP address. You learned how to find it in {{ collections.posts | chapterLink('ssh') | safe }}.
 - **From outside your home**, avoid opening ports on your router. Instead, use {{ collections.posts | chapterLink('tailscale') | safe }}'s **[device sharing](https://tailscale.com/kb/1084/sharing)**: share your Deck from the **Machines** page of Tailscale's admin console. Your friend needs a free Tailscale account and the Tailscale app, and then connects to your Deck's Tailscale address.
 
 ---
 
-Typing out long `podman` commands for every tool gets tedious, though. Next, let's meet the tool that turns Podman into a full Linux playground with a single command.
+Podman containers are deliberately cut off from the rest of your Deck. The next chapter covers Distrobox, which uses Podman to build containers that share your home folder, so you can work inside another Linux distribution as if it were installed.
