@@ -29,4 +29,4 @@ Absolutely. SteamOS is designed to work right out of the box. Most games will 'j
 ### The 'Proton' Magic Layer
 You might have heard that most games are made for Windows. How do they run on Linux? That's thanks to **[Proton](https://github.com/ValveSoftware/Proton)**, a layer developed by Valve that translates Windows code into something Linux can understand.
 
-Stay tuned for {{ collections.posts | chapterLink('desktop') | safe }}, where we unlock the desktop and show you how to treat your Deck like a real PC!
+Next, we'll unlock the desktop and show you how to treat your Deck like a real PC!
