@@ -11,7 +11,7 @@ tags:
 
 # Distrobox
 
-In {{ collections.posts | chapterLink('podman') | safe }}, you ran containers with Podman directly. That takes long commands, and each container is cut off from the rest of your Deck. **[Distrobox](https://github.com/89luca89/distrobox)** is a tool that uses Podman to let you run almost any Linux distribution (like **[Ubuntu](https://ubuntu.com/)**, **[Fedora](https://fedoraproject.org/)**, or **[Arch](https://archlinux.org/)**) right inside your Steam Deck terminal, as if it were natively installed.
+In {{ collections.posts | chapterLink('podman') | safe }}, you ran containers with Podman directly. That takes long commands, and each container is cut off from the rest of your Deck. **[Distrobox](https://github.com/89luca89/distrobox)** is a tool that uses Podman to let you run almost any Linux distribution (like **[Ubuntu](https://ubuntu.com/)**, **[Fedora](https://fedoraproject.org/)** or **[Arch](https://archlinux.org/)**) right inside your Steam Deck terminal, as if it were natively installed.
 
 > [!NOTE]
 > Everything in this chapter was checked on a Steam Deck running **SteamOS 3.9.2** with **Distrobox 1.8.2.5**.
@@ -29,7 +29,7 @@ Because SteamOS's system is read-only, you can't install everything you might ne
 - **Throw it away**: Mess up a box? Delete it and make a fresh one in minutes.
 
 > [!TIP]
-> Wondering exactly *which* Linux distributions you can run? Check out the **[Official Distrobox Compatibility List](https://distrobox.it/compatibility/#containers-distros)**.
+> **[Distrobox's compatibility list](https://distrobox.it/compatibility/#containers-distros)** shows exactly which Linux distributions you can run in a box.
 
 ## A Box Is Not a Sandbox
 This is the most important thing to understand about Distrobox. Its own documentation says it plainly: "Isolation and sandboxing are **not** the main aims of the project."
@@ -52,7 +52,7 @@ distrobox create -i ubuntu:latest -n my-ubuntu
 
 The short name `ubuntu` works even though {{ collections.posts | chapterLink('podman') | safe }} said to use full names: like `hello-world`, it's on Podman's built-in list of shortcuts, and so are `debian` and `archlinux` (used below). Images that aren't on the list, like `itzg/minecraft-server`, still need the full name.
 
-Now "enter" your new Linux world:
+Now enter your new box:
 
 ```bash
 distrobox enter my-ubuntu
@@ -124,7 +124,7 @@ Run these from SteamOS, outside any box:
 | :--- | :--- |
 | **`distrobox list`** | Shows all your boxes and whether they're running |
 | **`distrobox stop my-ubuntu`** | Stops a box that's still running in the background |
-| **`distrobox rm my-ubuntu`** | Deletes a box, its system files, and any apps you exported from it |
+| **`distrobox rm my-ubuntu`** | Deletes a box, its system files and any apps you exported from it |
 | **`distrobox upgrade --all`** | Updates the software inside every box |
 
 Deleting a box never touches your home folder, so your own files stay put. To see how much space your boxes take up, use `podman system df` from the previous chapter.
