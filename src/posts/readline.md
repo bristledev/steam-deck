@@ -15,7 +15,7 @@ Fixing a typo at the start of a long command by holding the left arrow key gets 
 
 ## What Is Readline?
 
-**[GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)** is the part of Bash that handles what you type on the command line. It's why **Up Arrow** recalls your last command and **Tab** completes file names. Other interactive programs use it too, including Python's interactive prompt (`>>>`), so the same shortcuts often work there.
+**[GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)** is the part of Bash that handles what you type on the command line. It's why **Up Arrow** recalls your last command and **Tab** completes file names. Many other terminal programs copy its shortcuts, including Python's interactive prompt (`>>>`), so they often work there too.
 
 > [!NOTE]
 > **Fish users:** Fish doesn't use Readline; it has its own line editor. It supports most of the shortcuts below by default, though a few behave slightly differently. For example, **Ctrl+W** in Fish deletes one part of a file path at a time rather than the whole path.
