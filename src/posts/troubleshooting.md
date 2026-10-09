@@ -136,6 +136,4 @@ Most games are fixed by step 2 or 3. If a game still doesn't work after all five
 
 ---
 
-Now that you know how to get even the stubbornest games running, let's make your Deck *look* as good as it plays.
-
-{% next_chapter %}
+Now that you know how to get even the stubbornest games running, let's add brand-new features to Game Mode itself.
