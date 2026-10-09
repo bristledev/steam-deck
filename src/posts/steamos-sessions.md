@@ -175,6 +175,6 @@ pkcheck --action-id org.freedesktop.Flatpak.app-install --process $$
 
 Because Game Mode and Desktop Mode are separate sessions, the apps you opened close when you switch modes, along with anything running inside them. Your *user services* keep running, though. systemd only stops a user's services 10 seconds after their last session ends (the `UserStopDelaySec` setting), and a mode switch starts the next session within a second of ending the last one.
 
-SteamOS adds one stricter rule. Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True`, so when a session ends, systemd kills every process still running inside it. An SSH connection is a session too, which is why a plain `tmux` started over SSH dies when you disconnect. {{ collections.posts | chapterLink('preinstalled') | safe }} shows the fix.
+SteamOS adds one stricter rule. Valve's `jupiter-legacy-support` package sets `KillUserProcesses=True`, so when a session ends, systemd kills every process still running inside it. An SSH connection is a session too, which is why a plain `tmux` started over SSH dies when you disconnect. One started in Konsole survives a closed window and a mode switch, because apps you open on the desktop run under your user's service manager, not inside the login session. {{ collections.posts | chapterLink('preinstalled') | safe }} shows how to get the same result over SSH.
 
 The last chapter of this phase puts the map, the update rules and the session model together: the right ways to add your own software to SteamOS, and the one way that always gets wiped.
