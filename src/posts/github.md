@@ -32,7 +32,7 @@ Scroll down past the list of files, and you'll almost always see a document call
 Many Deck tools are installed by pasting a single `curl` command into Konsole. Decky Loader's README, for example, offers one as a faster alternative to the installer file you used in {{ collections.posts | chapterLink('customization') | safe }}.
 
 > [!CAUTION]
-> **Check that you're on the project's real GitHub page before copying a script.** An install script can do anything your password allows, including deleting your files.
+> **Check that you're on the project's real GitHub page before copying a script.** An install script can do anything you can do, including deleting your files, and with your admin password it can change anything on the system.
 
 A typical install command looks like this:
 
