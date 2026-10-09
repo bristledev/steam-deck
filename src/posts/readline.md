@@ -11,7 +11,7 @@ tags:
 
 # Keyboard Shortcuts (Readline)
 
-Fixing a typo at the start of a long command by holding the left arrow key gets tedious fast. Bash has keyboard shortcuts for jumping around a command, deleting whole words, and reusing parts of earlier commands. They come from a library called Readline.
+Fixing a typo at the start of a long command by holding the left arrow key gets tedious fast. Bash has keyboard shortcuts for jumping around a command, deleting whole words and reusing parts of earlier commands. They come from a library called Readline.
 
 ## What Is Readline?
 
@@ -62,7 +62,7 @@ You've typed a long command and realize it needs `sudo`:
 systemctl enable --now sshd
 ```
 
-Press **Ctrl+A** to jump to the start of the line, type `sudo `, and press **Enter**.
+Press **Ctrl+A** to jump to the start of the line, type `sudo ` and press **Enter**.
 
 ### Fixing the End of Your Last Command
 
