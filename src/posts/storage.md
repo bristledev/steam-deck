@@ -20,8 +20,8 @@ Between game installs, shader caches, and Proton's fake Windows drives, storage 
 The easiest way to manage your game installs is the tool Steam gives you for free:
 
 1. Press the **Steam Button** → **Settings** → **Storage**.
-2. You'll see a bar chart showing how your space is used — games, updates, shader cache, and "other."
-3. Select any game and hit **X** to uninstall, or choose **Move** to relocate it between your internal drive and SD card.
+2. You'll see a bar chart showing how your space is used: games, DLC, updates, shaders and non-Steam content.
+3. Select one or more games, then choose **Uninstall**, or **Move** to relocate them between your internal drive and SD card.
 
 > [!TIP]
 > **The "Move" feature is magic.** You don't need to uninstall and re-download a game to switch it between your internal SSD and SD card. Just highlight it, tap **Move**, and pick the destination. Steam handles everything.
@@ -33,7 +33,9 @@ The easiest way to manage your game installs is the tool Steam gives you for fre
 Popping in a microSD card is the single best upgrade for your Steam Deck. Here's what you need to know:
 
 ### Formatting
-When you insert a new SD card, SteamOS will prompt you to format it. **Say yes.** SteamOS formats the card as **ext4** (a Linux file system), which gives you better performance and compatibility than the FAT32 or exFAT format it probably came with.
+A brand-new SD card needs to be formatted before Steam can use it: Steam's **Storage** settings will show the card with a prompt to format it, or you can go to **Settings → System → Format SD Card**. **Go ahead.** SteamOS formats the card as **ext4**, a Linux file system. Unlike the FAT32 or exFAT format the card probably came with, ext4 supports everything Linux and Proton expect, like file permissions and links between files.
+
+The catch: Windows can't read ext4 without extra software. If you pop the card into a Windows PC, it will offer to format it. Don't!
 
 > [!CAUTION]
 > **Formatting erases everything on the card.** If you're reusing a card from a camera or phone, back up those files first!
@@ -59,19 +61,24 @@ Steam pre-downloads compiled shaders so games don't stutter on first launch. The
 
 **Where they live:** `~/.local/share/Steam/steamapps/shadercache/`
 
-**How to clear them:** In **Settings → Shader Pre-Caching**, you can toggle this off, or delete individual game caches from the storage manager. They'll re-download next time you play.
+**How to clear them:** The folders inside `shadercache` are named by AppID (more on those in the next chapter). You can delete a game's folder by hand, and Steam rebuilds it the next time you play. You can also switch pre-caching off entirely in **Settings → Downloads → Shader Pre-Caching**, but expect more stutter in return.
 
 ### 2. Compatdata (Proton Prefixes)
-As we'll cover in {{ collections.posts | chapterLink('proton') | safe }}, every Windows game creates a fake `C:\` drive. Some of these prefixes can be **2-5 GB each** — and they **don't get deleted when you uninstall the game**.
+As we'll cover in {{ collections.posts | chapterLink('proton') | safe }}, every Windows game creates a fake `C:\` drive, called a *prefix*. Most are a few hundred megabytes, but big games can grow to 2 GB or more.
 
 **Where they live:** `~/.local/share/Steam/steamapps/compatdata/`
 
-**How to clean up:** After uninstalling a game, you can safely delete its folder from `compatdata`. Sort by **size** in Dolphin to find the biggest offenders. Just make sure you back up any save files first if the game doesn't use Steam Cloud!
+**How to clean up:** Sort the folder by **size** in Dolphin to find the biggest ones. A prefix for a game that's no longer installed anywhere is safe to delete, once you've copied out any save files you want to keep.
+
+> [!CAUTION]
+> **A prefix can hold your only copy of a game's saves.** If a game doesn't use Steam Cloud, back up its saves *before* you uninstall it: Steam may delete the prefix along with the game. And before deleting a prefix by hand, check the game isn't installed on your SD card. Prefixes for SD card games can still live here, on the internal drive.
 
 ### 3. Flatpak Data
-Flatpak apps (from the Discover store) store their data separately from the apps themselves. Over time, old app data can pile up.
+Flatpak apps (from the Discover store) store their settings and data separately from the apps themselves. When you remove an app, its data stays behind in case you reinstall, so old app data can pile up.
 
 **Where it lives:** `~/.var/app/`
+
+**How to clean up:** Open the removed app's page in Discover. It shows a message that the app still has data, with a **Delete settings and user data** button.
 
 ---
 
@@ -93,11 +100,6 @@ ncdu /home/deck
 ```
 It gives you a navigable, sorted view of every folder on your system — biggest first. It's the fastest way to find surprise space hogs.
 
-> [!TIP]
-> **Quick rule of thumb:** If you've uninstalled a game but its AppID folder still lives in `compatdata`, it's safe to delete — just grab any save files you want to keep first!
-
 ---
 
 Now that you know where your space goes and how to manage it, let's dive into the fascinating world of how Windows games actually run on your Linux-powered Deck.
-
-{% next_chapter %}
