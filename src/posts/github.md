@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🐙 GitHub & Community Mods"
-excerpt: "How to find community tools on GitHub, read them before running them, and install them three common ways."
+excerpt: "How to find community tools on GitHub, read them before running them and install them three common ways."
 tags:
   - posts
   - scripting
@@ -11,7 +11,7 @@ tags:
 
 # GitHub & Community Mods
 
-Many Steam Deck tools are made by the community rather than Valve: scripts that fix specific games, tools that manage shader caches, and Decky Loader itself. Most of them are published on GitHub. This chapter shows how to find what you need on a GitHub page, check it, and install it in Desktop Mode.
+Many Steam Deck tools are made by the community rather than Valve: scripts that fix specific games, tools that manage shader caches and Decky Loader itself. Most of them are published on GitHub. This chapter shows how to find what you need on a GitHub page, check it and install it in Desktop Mode.
 
 ## What Is GitHub?
 
@@ -75,7 +75,7 @@ What to do next depends on the file type:
 | File | What to do |
 | :--- | :--- |
 | `.zip`, `.tar.gz` | Compressed folders. Right-click and choose **Extract**. |
-| `.AppImage` | A portable app. Right-click it, go to **Properties → Permissions**, and tick **Allow executing file as program** before running it. |
+| `.AppImage` | A portable app. Right-click it, go to **Properties → Permissions** and tick **Allow executing file as program** before running it. |
 | `.sh` | A shell script. Read it first (see above), then run it from Konsole with `bash scriptname.sh`. |
 
 ## Method 3: Git Clone
