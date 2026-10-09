@@ -108,6 +108,8 @@ In Bash, set this variable:
 export NIXPKGS_ALLOW_UNFREE=1
 ```
 
+This lasts until you close the terminal. To make it permanent, add the same line to your `~/.bashrc`.
+
 In Fish, use this instead:
 
 ```fish
