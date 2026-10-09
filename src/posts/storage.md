@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "💾 Storage & SD Cards"
-excerpt: "Where your space goes and how to get it back."
+excerpt: "Where your space goes, how to set up an SD card, and how to get space back safely."
 tags:
   - posts
   - steamos
@@ -9,97 +9,92 @@ tags:
   - beginner
 ---
 
-#  Storage & SD Cards
+# Storage & SD Cards
 
-After a few weeks with your Steam Deck, you'll inevitably open **Settings → Storage** and ask: *"Where did all my space go?"*
+After a few weeks with your Steam Deck, the storage bar starts filling up faster than your game list suggests. Game installs are only part of it: shader caches and Proton's fake Windows drives take space too. This chapter shows you where the space goes and how to get it back without losing anything important.
 
-Between game installs, shader caches, and Proton's fake Windows drives, storage fills up fast. Let's take control of it.
+## Steam's Storage Manager
 
-## 📦 Steam's Built-In Storage Manager
+Steam's own tool is the easiest place to start:
 
-The easiest way to manage your game installs is the tool Steam gives you for free:
-
-1. Press the **Steam Button** → **Settings** → **Storage**.
-2. You'll see a bar chart showing how your space is used: games, DLC, updates, shaders and non-Steam content.
-3. Select one or more games, then choose **Uninstall**, or **Move** to relocate them between your internal drive and SD card.
+1. Press the **Steam** button, then go to **Settings → Storage**.
+2. A bar chart shows how your space is used: games, DLC, updates, shaders and non-Steam content.
+3. Select one or more games, then choose **Uninstall**, or **Move** to send them between your internal drive and SD card.
 
 > [!TIP]
-> **The "Move" feature is magic.** You don't need to uninstall and re-download a game to switch it between your internal SSD and SD card. Just highlight it, tap **Move**, and pick the destination. Steam handles everything.
+> **Moving is better than reinstalling.** **Move** transfers a game to the other drive as it is, so you don't have to download it again.
 
----
+## Setting Up an SD Card
 
-## 🗂️ Setting Up an SD Card
-
-Popping in a microSD card is the single best upgrade for your Steam Deck. Here's what you need to know:
+A microSD card is the easiest way to add space to a Deck: no tools, no reinstalling.
 
 ### Formatting
-A brand-new SD card needs to be formatted before Steam can use it: Steam's **Storage** settings will show the card with a prompt to format it, or you can go to **Settings → System → Format SD Card**. **Go ahead.** SteamOS formats the card as **ext4**, a Linux file system. Unlike the FAT32 or exFAT format the card probably came with, ext4 supports everything Linux and Proton expect, like file permissions and links between files.
 
-The catch: Windows can't read ext4 without extra software. If you pop the card into a Windows PC, it will offer to format it. Don't!
+A brand-new SD card has to be formatted before Steam can use it. Steam's **Storage** settings show the card with a prompt to format it, or you can go to **Settings → System → Format SD Card**.
+
+SteamOS formats the card as *ext4*, a Linux file system. Unlike the FAT32 or exFAT format the card probably came with, ext4 supports everything Linux and Proton expect, like file permissions and links between files.
+
+The catch: Windows can't read ext4 without extra software. If you put the card into a Windows PC, Windows will offer to format it. Say no, or you'll erase your games.
 
 > [!CAUTION]
-> **Formatting erases everything on the card.** If you're reusing a card from a camera or phone, back up those files first!
+> **Formatting erases everything on the card.** If you're reusing a card from a camera or phone, copy those files somewhere else first.
 
-### Where Does It Show Up?
-As we learned in {{ collections.posts | chapterLink('filesystem') | safe }}, your SD card is mounted at:
-```
-/run/media/deck/[card-name]
-```
-In **Dolphin** (the file manager), it appears in the left sidebar under **Removable Devices** for easy access.
+### Finding the Card
 
-### Installing Games to the SD Card
-Once formatted, Steam treats the SD card as a second library folder. When you download a new game, Steam will ask you which drive to install it on. You can also change the default in **Settings → Storage**.
+As you saw in {{ collections.posts | chapterLink('filesystem') | safe }}, the card appears at `/run/media/deck/<card name>`, and under **Removable Devices** in Dolphin's sidebar.
 
----
+### Installing Games to the Card
 
-## 🐷 The Hidden Space Hogs
+Once it's formatted, Steam treats the card as a second library. When you install a game, the install dialog's **Install to:** option lets you pick the drive. To change where games go by default, select the drive in **Settings → Storage** and choose **Make Default**.
 
-Even if you only have a few games installed, you might notice your storage bar is suspiciously full. Here are the usual culprits:
+## Where the Hidden Space Goes
 
-### 1. Shader Cache
-Steam pre-downloads compiled shaders so games don't stutter on first launch. These are generally small per game, but they add up across dozens of titles.
+If your storage bar looks fuller than your game list explains, these are the usual causes.
 
-**Where they live:** `~/.local/share/Steam/steamapps/shadercache/`
+### Shader Cache
 
-**How to clear them:** The folders inside `shadercache` are named by AppID (more on those in the next chapter). You can delete a game's folder by hand, and Steam rebuilds it the next time you play. You can also switch pre-caching off entirely in **Settings → Downloads → Shader Pre-Caching**, but expect more stutter in return.
+Steam pre-downloads compiled shaders so games don't stutter the first time they draw something. Each game's cache is usually small, but they add up across dozens of games.
 
-### 2. Compatdata (Proton Prefixes)
-As we'll cover in {{ collections.posts | chapterLink('proton') | safe }}, every Windows game creates a fake `C:\` drive, called a *prefix*. Most are a few hundred megabytes, but big games can grow to 2 GB or more.
+**Where it lives:** `~/.local/share/Steam/steamapps/shadercache/`
+
+**How to clean it up:** The folders inside `shadercache` are named by AppID, a number you'll learn to look up in the next chapter. You can delete a game's folder by hand, and Steam rebuilds it the next time you play. You can also switch pre-caching off entirely in **Settings → Downloads → Shader Pre-Caching**, but expect more stutter in return.
+
+### Proton Prefixes (compatdata)
+
+As you'll see in {{ collections.posts | chapterLink('proton') | safe }}, every Windows game gets its own fake `C:` drive, called a *prefix*. Most are a few hundred megabytes, but big games can grow to 2 GB or more.
 
 **Where they live:** `~/.local/share/Steam/steamapps/compatdata/`
 
-**How to clean up:** Sort the folder by **size** in Dolphin to find the biggest ones. A prefix for a game that's no longer installed anywhere is safe to delete, once you've copied out any save files you want to keep.
+**How to clean them up:** Sort the folder by size in Dolphin to find the biggest ones. A prefix for a game that's no longer installed anywhere is safe to delete, once you've copied out any save files you want to keep.
 
 > [!CAUTION]
 > **A prefix can hold your only copy of a game's saves.** If a game doesn't use Steam Cloud, back up its saves *before* you uninstall it: Steam may delete the prefix along with the game. And before deleting a prefix by hand, check the game isn't installed on your SD card. Prefixes for SD card games can still live here, on the internal drive.
 
-### 3. Flatpak Data
-Flatpak apps (from the Discover store) store their settings and data separately from the apps themselves. When you remove an app, its data stays behind in case you reinstall, so old app data can pile up.
+### Flatpak App Data
+
+Apps from Discover keep their settings and data separately from the apps themselves. When you remove an app, its data stays behind in case you reinstall it, so old app data can pile up.
 
 **Where it lives:** `~/.var/app/`
 
-**How to clean up:** Open the removed app's page in Discover. It shows a message that the app still has data, with a **Delete settings and user data** button.
+**How to clean it up:** Open the removed app's page in Discover. It shows a message that the app still has data, with a **Delete settings and user data** button.
 
----
+## Measuring Folders From the Terminal
 
-## 🔍 Finding What's Eating Your Space
+You'll learn the terminal properly later in this series, but these commands are worth bookmarking now. To see the total size of your shader cache and Proton prefixes:
 
-If you're comfortable in the terminal, two commands are your best friends:
-
-### The Quick Check
 ```bash
 du -sh ~/.local/share/Steam/steamapps/shadercache
 du -sh ~/.local/share/Steam/steamapps/compatdata
 ```
-This shows the total size of your shader cache and Proton prefixes in a human-readable format (like `12G`).
 
-### The Deep Dive
-For a more interactive experience, use `ncdu` (a visual disk usage analyzer). It comes preinstalled on SteamOS, so there's nothing to install:
+**What did that just do?** `du` measures disk usage. `-s` gives one total per folder instead of listing every file inside, and `-h` shows sizes in human-readable units like `12G`.
+
+For an interactive view, SteamOS includes `ncdu`:
+
 ```bash
 ncdu /home/deck
 ```
-It gives you a navigable, sorted view of every folder on your system — biggest first. It's the fastest way to find surprise space hogs.
 
----
+It lists every folder in your home folder, biggest first. Use the arrow keys to open folders, and press `q` to quit.
 
-Now that you know where your space goes and how to manage it, let's dive into the fascinating world of how Windows games actually run on your Linux-powered Deck.
+Those prefixes deserve a closer look, because they're where your Windows games keep their saves.
