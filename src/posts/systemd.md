@@ -122,7 +122,7 @@ If the server isn't reachable, `systemctl --user status copyparty` is the first 
 
 By default, Linux only runs your `--user` services while the `deck` user is logged in. As you saw in {{ collections.posts | chapterLink('steamos-sessions') | safe }}, Game Mode and Desktop Mode are *both* login sessions: the Deck logs you in automatically either way. But switching modes ends one session and starts another, and if there's a moment with no session at all, systemd may stop your background services along with it.
 
-The fix is a one-time setting called *lingering*:
+The fix is a one-time setting called *lingering*. SteamOS ships with it switched off, so you have to turn it on yourself:
 
 ```bash
 loginctl enable-linger deck
