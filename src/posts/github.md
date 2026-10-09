@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🐙 GitHub & Community Mods"
-excerpt: "Learn how to safely find, download, and execute community scripts and mods from GitHub."
+excerpt: "How to find community tools on GitHub, read them before running them, and install them three common ways."
 tags:
   - posts
   - scripting
@@ -11,47 +11,45 @@ tags:
 
 # GitHub & Community Mods
 
-The Steam Deck has an incredible community of hackers, modders, and developers building custom scripts to improve your experience. Whether it's a script to fix a specific game, a tool to manage shaders, or the legendary **Decky Loader** for plugins, most of these live on a site called GitHub.
+Many Steam Deck tools are made by the community rather than Valve: scripts that fix specific games, tools that manage shader caches, and Decky Loader itself. Most of them are published on GitHub. This chapter shows how to find what you need on a GitHub page, check it, and install it in Desktop Mode.
 
-In this chapter, we're going to learn how to confidently navigate GitHub, download what you need, and run it safely in Desktop Mode.
+## What Is GitHub?
 
-## What is GitHub?
+**[GitHub](https://github.com/)** is a website, owned by Microsoft, where developers publish and work on code. Each project lives in a *repository* (or *repo*): a folder of files with its history.
 
-GitHub is Microsoft's platform for storing, sharing, and collaborating on code. Think of it as Google Drive, but specifically designed for programmers. Because the Steam Deck is an open PC, developers use GitHub to share their SteamOS projects with the world.
-
-When you land on a GitHub page for a Steam Deck mod, it might look confusing—there are files, weird graphs, and lots of text. But as a user, you really only care about two things: the **README** and the **Releases**.
+A project page shows a lot at once: files, commit counts, contributor lists. As someone installing a tool, you only need two parts: the **README** and the **Releases**.
 
 ### The README
 
-Scroll down past the files, and you'll almost always see a `README.md` document displayed on the page. This is the instruction manual. **Always read this first.** It will tell you:
-1. What the mod/script actually does.
-2. If it's compatible with the latest SteamOS version.
-3. The exact steps to install it.
+Scroll down past the list of files, and you'll almost always see a document called `README.md`. It's the project's instructions. **Read it first.** It usually tells you:
 
-## Method 1: The "Curl" Script
+1. What the tool does.
+2. Whether it works on current versions of SteamOS.
+3. Exactly how to install it.
 
-The most common way developers distribute mods for the Steam Deck is via a "curl" script. Decky Loader's README, for example, offers one as a faster alternative to the installer file you used in {{ collections.posts | chapterLink('customization') | safe }}.
+## Method 1: Install Scripts With curl
+
+Many Deck tools are installed by pasting a single `curl` command into Konsole. Decky Loader's README, for example, offers one as a faster alternative to the installer file you used in {{ collections.posts | chapterLink('customization') | safe }}.
 
 > [!CAUTION]
-> Always verify you are on the legitimate GitHub page before copying a curl script. A malicious script can do serious harm to your system.
+> **Check that you're on the project's real GitHub page before copying a script.** An install script can do anything your password allows, including deleting your files.
 
-A curl command usually looks like this:
+A typical install command looks like this:
+
 ```bash
 curl -L https://github.com/DeveloperName/CoolDeckMod/raw/main/install.sh | sh
 ```
 
-### What is this command doing?
-Let's break it down so it's not just black magic:
-* `curl -L URL`: This tells your Deck to visit the URL and download (`curl`) the raw text of the script file. The `-L` tells it to follow any redirects.
-* `|`: This is the **pipe** symbol. It takes the output of the first command (the raw script text) and feeds it into the second command.
-* `sh`: This tells the `sh` (shell) program to execute the text it just received.
+**What does it do?**
 
-### How to use it:
-1. Open **Konsole** (your terminal).
-2. Paste the command and hit `Enter`.
-3. If you haven't set a `sudo` password yet, the script might ask you to set one (refer back to {{ collections.posts | chapterLink('bash') | safe }}).
+- `curl -L <address>` downloads the script's text. `-L` tells `curl` to follow redirects, since GitHub often forwards download links to another server.
+- `|` is the *pipe*. It sends the output of the command on its left into the command on its right.
+- `sh` runs the text it receives as a script.
+
+To use it, open **Konsole**, paste the command and press **Enter**. If the script needs your admin password and you haven't set one yet, see {{ collections.posts | chapterLink('bash') | safe }}.
 
 ### The Safer Way: Read It First
+
 Piping straight into `sh` runs the script before you've seen a single line of it. For anything that asks for your admin password, split it into three steps instead:
 
 ```bash
@@ -64,39 +62,37 @@ bash install.sh
 
 ## Method 2: GitHub Releases
 
-Sometimes, a mod is a compiled application or a ZIP file containing assets. You won't use a curl command for this; you need to download it from the **Releases** page.
+Some projects publish ready-to-use downloads instead of a script, such as an app or a ZIP file.
 
-1. On the right-hand side of the GitHub repository page, look for the **Releases** section.
-2. Click on the version that says **Latest**.
-3. Scroll down to the **Assets** dropdown.
-4. You will see several files. Look for the file meant for Linux. It will usually end in `.AppImage`, `.tar.gz`, or simply have "linux" in the name.
-5. Download it, open your Dolphin File Manager in your `Downloads` folder, and extract it or make it executable!
+1. On the project page, find the **Releases** section on the right-hand side.
+2. Open the release marked **Latest**.
+3. Scroll down to **Assets**, the list of downloadable files.
+4. Pick the file meant for Linux. It usually ends in `.AppImage` or `.tar.gz`, or has "linux" in its name.
+5. Download it and open your `Downloads` folder in Dolphin.
 
-> [!TIP]
-> **Understanding file extensions:**
-> - `.zip` and `.tar.gz` are compressed folders. Right-click and Extract them.
-> - `.AppImage` is a portable app. Right-click it, go to Properties -> Permissions, and check "Is executable" before running it.
-> - `.sh` is a shell script. Read it first (see above), then run it from Konsole with `bash scriptname.sh`.
+What to do next depends on the file type:
+
+| File | What to do |
+| :--- | :--- |
+| `.zip`, `.tar.gz` | Compressed folders. Right-click and choose **Extract**. |
+| `.AppImage` | A portable app. Right-click it, go to **Properties → Permissions**, and tick **Allow executing file as program** before running it. |
+| `.sh` | A shell script. Read it first (see above), then run it from Konsole with `bash scriptname.sh`. |
 
 ## Method 3: Git Clone
 
-Some projects don't have a release or a curl script. Instead, they tell you to "clone the repo", which downloads the project's whole folder. You already did this for the Tailscale installer in {{ collections.posts | chapterLink('tailscale') | safe }}, and many Python tools work the same way. To do this, you need the `git` tool. 
-
-Thankfully, the Steam Deck has `git` pre-installed!
+Some projects don't have a release or a script. Instead, they tell you to "clone the repo", which downloads the project's whole folder. You already did this for the Tailscale installer in {{ collections.posts | chapterLink('tailscale') | safe }}, and many Python tools work the same way. Cloning uses `git`, which comes with SteamOS.
 
 1. Open **Konsole**.
-2. Navigate to where you want the folder to live, like your Documents:
+2. Move to the folder where you want the project, such as `Documents`:
    ```bash
    cd ~/Documents
    ```
-3. Run the clone command:
+3. Clone the project:
    ```bash
    git clone https://github.com/DeveloperName/CoolDeckMod.git
    ```
-4. This will create a new folder called `CoolDeckMod`. You can then `cd` into it and follow the developer's instructions!
+4. This creates a folder called `CoolDeckMod`. Move into it with `cd CoolDeckMod` and follow the README's instructions.
 
 To get the author's latest changes later, open the folder in Konsole and run `git pull`.
 
----
-
-With these three methods under your belt, the entire world of Steam Deck community mods is now at your fingertips! Many of those community tools are written in one programming language in particular, and your Deck already speaks it.
+Many of the tools you'll find this way are written in Python, and your Deck already has it installed. The next chapter covers how to run them without breaking anything.
