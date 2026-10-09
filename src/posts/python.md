@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "🐍 Python"
+title: "🐍 Python on SteamOS"
 excerpt: "The programming language SteamOS itself runs on, and how to use it without breaking anything."
 tags:
   - posts
@@ -9,7 +9,7 @@ tags:
   - intermediate
 ---
 
-#  Python on SteamOS
+# Python on SteamOS
 
 In {{ collections.posts | chapterLink('github') | safe }}, you learned how to grab community tools from GitHub. Many of them are written in **[Python](https://www.python.org/)**, one of the world's most popular programming languages. Good news: your Steam Deck already has it.
 
@@ -44,7 +44,7 @@ python --version
 
 You'll see something like `Python 3.14.6`. Typing `python` on its own opens an interactive prompt (`>>>`) where you can try out Python code, or just use it as a calculator. Type `exit()` to leave.
 
-## 🐙 Running Community Scripts
+## Running Community Scripts
 Most community Python tools follow the same pattern:
 
 1. Download the project with `git clone`, as in the GitHub chapter.
@@ -55,7 +55,7 @@ To update a project later, open its folder in Konsole and run `git pull`, which 
 
 Step 2 is where many scripts hit a snag: they need extra Python *libraries* (add-on code packages), and SteamOS won't let you install those the usual way.
 
-## 🔒 Why There's No `pip`
+## Why There's No `pip`
 On most computers, Python libraries are installed with a tool called `pip`. On SteamOS, try it:
 
 ```bash
@@ -73,10 +73,10 @@ Why the lock? The fan controller and update client depend on the exact libraries
 > [!WARNING]
 > The notice suggests installing packages with `pacman -S`. That advice comes from Arch Linux, which SteamOS is built on, but on SteamOS anything installed with `pacman` is wiped by the next update (see {{ collections.posts | chapterLink('steamos-extending') | safe }}). Follow its *other* suggestion instead: a virtual environment.
 
-## 🐍 The Right Way: Virtual Environments
+## Virtual Environments
 
-### 1. The Standard Way: `venv`
-Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time — they'd conflict. A **virtual environment** solves this by giving each project its own private copy of Python and its libraries. SteamOS's Python stays untouched, and your scripts stay happy.
+### Option 1: `venv`
+Imagine you're running two community scripts: one needs version 1 of a library, the other needs version 2. They can't both be installed at the same time, because they'd conflict. A **virtual environment** solves this by giving each project its own private copy of Python and its libraries. SteamOS's Python stays untouched, and your scripts stay happy.
 
 ```bash
 # Go to the folder of your Python project
@@ -97,7 +97,7 @@ When you're done, just type `deactivate`.
 
 *(If you use Fish, activate with `source .venv/bin/activate.fish` instead.)*
 
-### 2. The Modern Choice: uv ⚡
+### Option 2: uv
 **[uv](https://github.com/astral-sh/uv)** is a very fast Python tool that creates and manages environments for you. Install it with one command:
 
 ```bash
@@ -113,4 +113,4 @@ Everything uv installs lives in your home folder, so it survives SteamOS updates
 
 ---
 
-Now that you can run Python scripts safely, let's learn how to make them run automatically in the background.
+Running a script by hand is fine once. For tools you want running all the time, like a file server, the next chapter shows how to start them automatically in the background.
