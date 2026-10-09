@@ -28,8 +28,6 @@ Because SteamOS's system is read-only, you can't install everything you might ne
 - **Try another distro**: Curious about Ubuntu? Try it without reformatting your Deck.
 - **Throw it away**: Mess up a box? Delete it and make a fresh one in minutes.
 
-It's also the approach Valve recommends: SteamOS's own `steamos-devmode` command tells developers to build software in containers with Distrobox instead of changing the system.
-
 > [!TIP]
 > Wondering exactly *which* Linux distributions you can run? Check out the **[Official Distrobox Compatibility List](https://distrobox.it/compatibility/#containers-distros)**.
 
@@ -51,6 +49,8 @@ distrobox create -i ubuntu:latest -n my-ubuntu
 ```
 
 **What did that just do?** `-i ubuntu:latest` picks the image (the latest Ubuntu release), and `-n my-ubuntu` names your box. The first time, it downloads Ubuntu (around 110 MB).
+
+The short name `ubuntu` works even though {{ collections.posts | chapterLink('podman') | safe }} said to use full names: like `hello-world`, it's on Podman's built-in list of shortcuts, and so are `debian` and `archlinux` (used below). Images that aren't on the list, like `itzg/minecraft-server`, still need the full name.
 
 Now "enter" your new Linux world:
 
@@ -128,7 +128,5 @@ Run these from SteamOS, outside any box:
 | **`distrobox upgrade --all`** | Updates the software inside every box |
 
 Deleting a box never touches your home folder, so your own files stay put. To see how much space your boxes take up, use `podman system df` from the previous chapter.
-
----
 
 With Distrobox, almost any Linux software can run on your Deck without touching SteamOS. The last phase is about the terminal itself, starting with a more informative prompt.
