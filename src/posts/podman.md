@@ -131,7 +131,7 @@ podman unshare rm -rf ~/minecraft-data
 
 ### Keeping a Server Running
 - **After a reboot**, containers don't start on their own. Run `podman start mc-server` again.
-- **If a server stops when you switch** between Game Mode and Desktop Mode, enable lingering from {{ collections.posts | chapterLink('systemd') | safe }}. It keeps your user's background programs alive no matter which mode is open.
+- **Switching modes or closing an SSH connection doesn't stop it.** Podman runs each container under your user's service manager, not inside your login session, so it keeps running in both cases.
 
 ## Letting Friends Connect
 - **On your home network**, friends connect to your Deck's IP address. You learned how to find it in {{ collections.posts | chapterLink('ssh') | safe }}.
