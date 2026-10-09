@@ -2,7 +2,7 @@ module.exports = {
 	title: "SteamOS Unlocked",
 	url: "https://steamos-unlocked.com/",
 	language: "en",
-	description: "The multi-part blog series for absolute noobs.",
+	description: "A beginner-friendly guide to how SteamOS works, from Desktop Mode to what's under the hood.",
 	author: {
 		name: "bristledev",
 		email: "hello@bristledev.com",
