@@ -11,16 +11,16 @@ tags:
 
 # Anatomy of SteamOS
 
-By now you've installed apps, opened a terminal and even connected to your Deck from another computer. You've also heard "SteamOS is read-only" more times than you can count. In this phase, we finally open the hood and look at *how* it all fits together.
+By now you've installed apps, opened a terminal and even connected to your Deck from another computer. You've also read "SteamOS is read-only" many times. This phase looks at *how* it all fits together.
 
-This chapter is the map. Once you know where everything lives, a lot of earlier rules suddenly make sense: why `pacman` installs vanish, why Flatpaks don't, and why your Deck can survive a broken update.
+This chapter is the map. Once you know where everything lives, a lot of earlier rules make sense: why `pacman` installs vanish, why Flatpaks don't, and why your Deck can survive a broken update.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel). Every Steam Deck uses the same layout; only the size of the biggest partition changes with your storage.
 
 ---
 
-## 🎮 What Is SteamOS Made Of?
+## What Is SteamOS Made Of?
 
 Think of an old game console. The **cartridge** holds the game: you can play it, but you can't write to it. Your progress goes on a separate **memory card**. Swap in a new cartridge, and your memory card still works.
 
@@ -33,7 +33,7 @@ There's one twist that a cartridge can't do. SteamOS keeps **two** system images
 
 ---
 
-## 🗺️ The Partition Map
+## The Partition Map
 
 A *partition* is a section of a drive that the computer treats as its own separate disk. Let's list them. Open Konsole and run:
 
@@ -70,7 +70,7 @@ Notice the pattern: almost everything comes in an **A** and a **B**. Only one se
 
 ---
 
-## 🔒 The Read-Only Root (`/`)
+## The Read-Only Root (`/`)
 
 The root partition (`/`) holds the operating system itself: every program in `/usr/bin`, every library, the kernel. Check how full it is:
 
@@ -86,7 +86,7 @@ So how is it locked? Try this:
 findmnt -no OPTIONS /
 ```
 
-Surprise: the options start with `rw` (read-write)! The lock isn't in the mount options. It's a *property* set on the btrfs filesystem itself. Ask for it directly:
+The options start with `rw` (read-write), so the lock isn't in the mount options. It's a *property* set on the btrfs filesystem itself. Ask for it directly:
 
 ```bash
 btrfs property get / ro
@@ -102,7 +102,7 @@ steamos-readonly status
 
 ---
 
-## 📝 `/etc`: A Writable Layer on Top
+## `/etc`: A Writable Layer on Top
 
 `/etc` is where Linux keeps system settings: user accounts, Wi-Fi networks, which background services start at boot. If the image is read-only, how can you change any of that? Take a look:
 
@@ -112,8 +112,8 @@ findmnt -no FSTYPE,OPTIONS /etc
 
 The type is `overlay`, and the options include two important folders:
 
-- `lowerdir=…/etc` — the original settings inside the read-only image.
-- `upperdir=…/var/lib/overlays/etc/upper` — a writable folder on the `var` partition.
+- `lowerdir=…/etc`: the original settings inside the read-only image.
+- `upperdir=…/var/lib/overlays/etc/upper`: a writable folder on the `var` partition.
 
 Think of it like a sheet of tracing paper laid over a printed page. You see both at once, but anything you write goes on the tracing paper. When you change a setting, the new version lands in the *upper* folder and covers the original. The image underneath never changes.
 
@@ -130,7 +130,7 @@ You'll find things like `hostname`, `passwd`, `NetworkManager` (your Wi-Fi) and 
 
 ---
 
-## 🗄️ `/var`: The Per-Slot Workspace
+## `/var`: The Per-Slot Workspace
 
 `/var` holds system data that changes all the time: logs, caches, databases, and the `/etc` tracing paper you just saw. Each slot has its own small `var` partition (256 MB), mounted at `/var`.
 
@@ -138,7 +138,7 @@ Because it's per-slot, the `var` that goes with slot A is separate from the one 
 
 ---
 
-## 🏠 `/home`, and the Offload Trick
+## `/home`, and the Offload Trick
 
 The `home` partition takes up nearly the whole drive. It holds `/home/deck` (everything you've learned about in {{ collections.posts | chapterLink('filesystem') | safe }}), and it's never touched by updates.
 
@@ -170,7 +170,7 @@ That's why your Flatpaks and Nix packages survive every SteamOS update: they phy
 
 ---
 
-## 💨 Bonus: Where Swap Lives
+## Bonus: Where Swap Lives
 
 *Swap* is space the system uses when RAM fills up. Check yours:
 
@@ -180,12 +180,12 @@ swapon --show
 
 You'll see two entries:
 
-- **`/dev/zram0`** — compressed swap that lives *in RAM*. Squeezing rarely used memory is much faster than writing it to the SSD.
-- **`/home/swapfile`** — a 1 GB file on the home partition, used as a last resort.
+- **`/dev/zram0`**: compressed swap that lives *in RAM*. Squeezing rarely used memory is much faster than writing it to the SSD.
+- **`/home/swapfile`**: a 1 GB file on the home partition, used as a last resort.
 
 ---
 
-## 🧭 The Whole Picture
+## The Whole Picture
 
 | Location | Partition | Writable? | What happens during an update |
 | :--- | :--- | :--- | :--- |
