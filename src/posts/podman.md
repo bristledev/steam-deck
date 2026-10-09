@@ -35,7 +35,7 @@ You don't need to install anything. Open **Konsole** and run:
 podman run hello-world
 ```
 
-Podman downloads a tiny test *image* (the packaged files a container starts from), runs it, and prints a short greeting, all without `sudo`.
+Podman downloads a tiny test *image* (the packaged files a container starts from), runs it and prints a short greeting, all without `sudo`.
 
 ### See It in Action
 This recording shows a container starting and running:
