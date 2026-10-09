@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "🔍 Fixing Games (Proton Troubleshooting)"
-excerpt: "What to do when a game won't launch or runs badly."
+title: "🩺 Fixing Games That Won't Run"
+excerpt: "A step-by-step toolkit for Windows games that won't launch, crash or run badly under Proton."
 tags:
   - posts
   - gaming
@@ -9,131 +9,105 @@ tags:
   - intermediate
 ---
 
-#  Fixing Games (Proton Troubleshooting) 🔧
+# Fixing Games That Won't Run
 
-You found a game you're excited about, you hit **Install**, you click **Play**... and nothing happens. Or it crashes. Or it runs at 5 FPS.
+You install a game, press **Play**, and nothing happens. Or it crashes, or runs at 5 FPS. Most of the time, one of the five steps below gets it working. Work through them in order: each one takes a little more effort than the last.
 
-Don't panic — this is fixable 90% of the time. Let's walk through the troubleshooting toolkit that every Steam Deck owner should know.
+## Step 1: Check ProtonDB
 
----
+Before changing anything, find out whether someone has already solved the problem.
 
-## 🟢 Step 1: Check ProtonDB
+**[ProtonDB](https://www.protondb.com/)** is a community website where Linux players report how well each Windows game runs under Proton. Search for your game and you'll find:
 
-Before you start tinkering, check if someone else has already solved your problem.
-
-**[ProtonDB](https://www.protondb.com/)** is a community-run website where thousands of Linux gamers report how well each game works under Proton. Search for your game and you'll find:
-- A **rating** (Platinum, Gold, Silver, Bronze, Borked)
-- **User reports** with exact settings and fixes that worked for them
-- Specific **launch options** to copy and paste
+- A **rating**: Platinum, Gold, Silver, Bronze or Borked.
+- **Reports** describing the settings and fixes that worked for other players.
+- **Launch options** you can copy and paste (see Step 4).
 
 > [!TIP]
-> **Filter by "Steam Deck" reports.** ProtonDB covers all Linux devices, but you can filter reports to see only Steam Deck results. These are the most relevant to you since the hardware and OS are identical.
+> **Look for Steam Deck reports.** ProtonDB covers all Linux PCs, but reports from other Deck owners were made on the same hardware as yours, so they're the most useful.
 
----
+## Step 2: Try a Different Proton Version
 
-## 🔀 Step 2: Switch Your Proton Version
+Steam picks a version of Proton for each game, but a newer or older one sometimes works better.
 
-SteamOS ships with Valve's official Proton, but it's not always the best version for every game. Sometimes a newer (or older) version does the trick.
-
-### How to Change the Proton Version
 1. In your **Library**, select the game.
-2. Tap the **gear icon** → **Properties**.
-3. Go to the **Compatibility** tab.
-4. Check **"Force the use of a specific Steam Play compatibility tool."**
-5. Select a different Proton version from the dropdown.
+2. Select the **gear icon**, then **Properties**.
+3. Open the **Compatibility** page.
+4. Under **Select compatibility tool**, choose a different Proton version.
 
-**Which version to try?**
-- **Proton Experimental** — Valve's bleeding-edge version. Try this first for newer games.
-- **Numbered releases** (like Proton 10.0) — Stable versions. If Experimental is crashing, try the newest numbered release, then step back one version at a time.
+Which version to try:
 
----
+- **Proton Experimental** is Valve's newest, least-tested build. Try it first for recently released games.
+- **Numbered releases**, like Proton 10.0, are stable versions. If Experimental doesn't help, try the newest numbered release, then step back one version at a time.
 
-## ⚡ Step 3: Install GE-Proton (The Community Fix)
+## Step 3: Install GE-Proton
 
-If none of Valve's official Proton versions work, there's a community-maintained fork called **[GE-Proton](https://github.com/GloriousEggroll/proton-ge-custom)** (short for Glorious Eggroll — yes, really). It includes extra patches, codec support, and fixes that Valve hasn't merged yet.
+If none of Valve's versions work, try **[GE-Proton](https://github.com/GloriousEggroll/proton-ge-custom)**, a community-maintained version of Proton. (GE stands for GloriousEggroll, its developer's username.) It adds patches that Valve's Proton doesn't have, including:
 
-GE-Proton is often the magic bullet for games that have:
-- Missing cutscenes or videos (codec issues)
-- Launcher/installer windows that freeze
-- Anti-cheat errors on single-player games
+- extra media patches, which can fix cutscenes and videos that don't play
+- automatic per-game fixes, including workarounds for some anti-cheat problems
 
 ### Installing GE-Proton with ProtonUp-Qt
-1. Open **Discover** in Desktop Mode.
-2. Search for **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)** and install it.
-3. Open ProtonUp-Qt and click **Add version**.
-4. Select **GE-Proton** from the dropdown, pick the latest version, and install it.
-5. Restart Steam.
-6. Now go back to your game's **Properties → Compatibility** and you'll see the new GE-Proton version in the dropdown!
+
+1. In Desktop Mode, open **Discover**, search for **[ProtonUp-Qt](https://davidotek.github.io/protonup-qt/)**, and install it.
+2. Open ProtonUp-Qt and click **Add version**.
+3. Select **GE-Proton**, pick the latest version, and install it.
+4. Restart Steam.
+5. Back in the game's **Properties → Compatibility**, the new GE-Proton version now appears in the list.
 
 > [!NOTE]
-> **You can have multiple Proton versions installed at the same time.** Different games can use different versions. There's no conflict.
+> **You can install several Proton versions side by side.** Each game uses whichever version you pick for it.
 
----
+## Step 4: Add Launch Options
 
-## 🎮 Step 4: Launch Options (The Secret Weapons)
+*Launch options* are extra settings Steam passes to a game when it starts. ProtonDB reports often include them.
 
-Steam lets you add special flags that run *before* your game launches. These can fix all sorts of weird issues.
+To set them, select the game, then the **gear icon → Properties**, and paste them into **Launch Options** on the **General** page.
 
-### How to Set Launch Options
-1. Select the game → **gear icon** → **Properties**.
-2. In the **General** tab, find the **Launch Options** text box.
-3. Paste in your command.
+These are some common ones:
 
-### Common Launch Options
-
-| Launch Option | What It Fixes |
+| Launch option | What it does |
 | :--- | :--- |
 | `PROTON_USE_WINED3D=1 %command%` | Translates DirectX to OpenGL (WineD3D) instead of Vulkan (DXVK). Fixes some older games that crash with DXVK. |
-| `PULSE_LATENCY_MSEC=60 %command%` | Fixes crackling or distorted audio. |
-| `SteamDeck=0 %command%` | Tells the game you're NOT on a Steam Deck. Some games apply unwanted "Deck optimizations" that hurt more than they help. |
+| `PULSE_LATENCY_MSEC=60 %command%` | Can fix crackling or distorted audio. |
+| `SteamDeck=0 %command%` | Tells the game it's *not* on a Steam Deck, for games whose Deck-specific settings cause problems. |
 
-> [!TIP]
-> **You can combine launch options!** Just put them all before `%command%`:
-> ```
-> PULSE_LATENCY_MSEC=60 SteamDeck=0 %command%
-> ```
+`%command%` stands for the game itself. To combine options, put them all before it:
+
+```
+PULSE_LATENCY_MSEC=60 SteamDeck=0 %command%
+```
 
 > [!NOTE]
-> **Two options you'll see in older guides don't help on the Deck.** `DXVK_ASYNC=1` does nothing on Valve's Proton, because async shader compilation was never part of official DXVK. `gamescope -f -- %command%` is meant for desktop Linux; in Game Mode your game already runs inside Gamescope, so this just nests a second copy.
+> **Two options from older guides don't help on the Deck.** `DXVK_ASYNC=1` does nothing on Valve's Proton, because async shader compilation was never part of official DXVK. `gamescope -f -- %command%` is meant for desktop Linux; in Game Mode your game already runs inside Gamescope, so this just nests a second copy.
 
----
+## Step 5: Use Protontricks
 
-## 🛠️ Step 5: Protontricks (The Advanced Fix)
+Some games need Windows components that Proton doesn't include, like Visual C++ runtimes, .NET or extra DirectX libraries. **[Protontricks](https://github.com/Matoking/protontricks)** installs these into a single game's prefix. Install it from Discover, then run it from Konsole:
 
-Some games need specific Windows components (like .NET runtimes, Visual C++ redistributables, or DirectX libraries) that don't come with Proton by default.
-
-**[Protontricks](https://github.com/Matoking/protontricks)** is a tool that lets you install these Windows components into a game's individual Proton prefix.
-
-### Installing Protontricks
-Search for **Protontricks** in the Discover store and install it.
-
-### Common Uses
 ```bash
 # Install a Visual C++ runtime for a specific game
 flatpak run com.github.Matoking.protontricks 1245620 vcrun2019
 
-# Install DirectX 9 for an older game
+# Install DirectX 9 libraries for an older game
 flatpak run com.github.Matoking.protontricks 1245620 d3dx9
 ```
-*(Replace `1245620` with your game's AppID — check {{ collections.posts | chapterLink('proton') | safe }} for how to find it!)*
+
+Replace `1245620` with your game's AppID; {{ collections.posts | chapterLink('proton') | safe }} shows how to find it.
 
 > [!WARNING]
-> **Protontricks is a power tool.** You generally don't need it unless a ProtonDB report specifically tells you to. If in doubt, try switching Proton versions first — it's simpler and solves most problems.
+> **Only use Protontricks when a ProtonDB report tells you to.** Installing the wrong components can make a game worse. Switching Proton versions is simpler, so try that first.
 
----
+## The Short Version
 
-## 🗺️ The Troubleshooting Flowchart
+| Step | What to do |
+| :--- | :--- |
+| 1 | Check **ProtonDB** for reports and fixes |
+| 2 | Try **Proton Experimental**, then numbered versions |
+| 3 | Install **GE-Proton** with ProtonUp-Qt |
+| 4 | Copy **launch options** from ProtonDB |
+| 5 | Use **Protontricks**, only if a report says to |
 
-When a game doesn't work, follow this order:
+If a game still won't run after all five, it may simply not work on Linux yet; games with kernel-level anti-cheat are the most common example. The game's ProtonDB page will usually confirm it.
 
-1. **Check ProtonDB** — someone probably already solved it.
-2. **Switch Proton version** — try Experimental, then a stable numbered version.
-3. **Install GE-Proton** — the community fork with extra fixes.
-4. **Add launch options** — copy the exact flags from ProtonDB reports.
-5. **Use Protontricks** — only if ProtonDB specifically recommends it.
-
-Most games are fixed by step 2 or 3. If a game still doesn't work after all five steps, it's likely a genuine compatibility issue (like kernel-level anti-cheat) — check the game's ProtonDB page for confirmation.
-
----
-
-Now that you know how to get even the stubbornest games running, let's add brand-new features to Game Mode itself.
+Once your games are running, you might want to add features to Game Mode itself. That's what Decky Loader does, and it's the subject of the next chapter.
