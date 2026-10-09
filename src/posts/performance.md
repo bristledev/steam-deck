@@ -19,7 +19,7 @@ Press the **"..."** button, below the right trackpad, to open the **Quick Access
 > [!TIP]
 > At the top of the performance menu, switch on **Use per-game profile** first. Then every setting below is saved for the game you're playing, so a demanding game and a light indie game can each keep their own limits.
 
-### Frame Rate Limit
+### Frame Limit
 
 Capping the frame rate saves battery and makes motion more even, because the Deck stops chasing frames it can't hold steadily.
 
@@ -39,11 +39,11 @@ Capping the frame rate saves battery and makes motion more even, because the Dec
 
 If a game struggles at the Deck's full resolution, lower its resolution in the game's own settings (for example, to 960×600), then set **Scaling Filter** to **Sharp**. The game renders fewer pixels, which runs faster, and the Sharp filter (Steam calls it a "super-resolution sharpening filter") scales the picture back up to fill the screen with less blur.
 
-Older guides call this setting **FSR**, after **[AMD FSR](https://www.amd.com/en/technologies/fidelityfx-super-resolution)**, the upscaler that earlier versions of SteamOS named here.
+Older guides call this setting **FSR**, after **[AMD FSR](https://gpuopen.com/fidelityfx-superresolution/)**, the upscaler that earlier versions of SteamOS named here.
 
 ### The Performance Overlay
 
-To see whether a change helped, move the **Performance Overlay Level** slider up. A small readout appears on top of your game: at the first level just the frame rate, and at higher levels battery drain in watts, CPU and GPU load, and temperatures. Watch the numbers while you adjust the other settings, then slide it back to off.
+To see whether a change helped, move the **Performance Overlay Level** slider up. A small readout appears on top of your game: at the first level just the frame rate, and at higher levels CPU and GPU load, temperatures and battery drain in watts. Watch the numbers while you adjust the other settings, then slide it back to off.
 
 ## Deck Verified Ratings
 
