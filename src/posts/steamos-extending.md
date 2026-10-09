@@ -13,7 +13,7 @@ tags:
 
 You now know the map ({{ collections.posts | chapterLink('steamos-anatomy') | safe }}) and the rules of updates ({{ collections.posts | chapterLink('steamos-updates') | safe }}). Put them together and you can answer the question every Deck tinkerer eventually asks: *"If I add this, will it still be here after the next update?"*
 
-This chapter lays out every sanctioned way to extend SteamOS, takes apart a real example, and explains why the obvious approach, `sudo pacman -S`, is the one to avoid.
+This chapter lays out every sanctioned way to extend SteamOS, takes apart a real example and explains why the obvious approach, `sudo pacman -S`, is the one to avoid.
 
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel).
@@ -113,10 +113,10 @@ The same message then recommends packaging apps with Flatpak and building softwa
 | A desktop app (browser, Discord, emulator) | **Flatpak** from Discover |
 | A single downloaded app | **AppImage** in your home folder |
 | A terminal tool that isn't preinstalled | **Homebrew** or **Nix** |
-| A compiler, a whole distro, or `apt install` | **Distrobox** |
+| A compiler, a whole distro or `apt install` | **Distrobox** |
 | Your own background script | A **user service** in `~/.config/systemd/user` |
 | A system service that needs root | **`/opt`** plus kept **`/etc`** settings, like Tailscale |
 
 And before any of that, check {{ collections.posts | chapterLink('preinstalled') | safe }}: the tool may already be on your Deck.
 
-That wraps up the internals. You know where everything lives, how updates treat it and how to add your own pieces safely. Time to use that knowledge, starting with the most popular way to add terminal tools.
+The next phase puts those safe places to work, starting with the most popular way to add terminal tools.
