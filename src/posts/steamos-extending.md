@@ -18,15 +18,11 @@ This chapter lays out every sanctioned way to extend SteamOS, takes apart a real
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel).
 
----
-
 ## What Does "Extending" Mean?
 
 Think of SteamOS like a rented apartment. You can't knock down walls (the read-only image), but you can bring in furniture, hang pictures and add shelves. The trick is putting things where the landlord's renovations won't sweep them away.
 
 SteamOS gives you five such places. Each one maps to a row of the "Whole Picture" table from the Anatomy chapter.
-
----
 
 ## The Five Safe Places
 
@@ -40,11 +36,9 @@ SteamOS gives you five such places. Each one maps to a row of the "Whole Picture
 
 The first four don't need anything beyond what this series has already shown you. The fifth is how system-level tools hook in, and it's worth a closer look.
 
----
-
 ## Case Study: How Tailscale Survives Updates
 
-In {{ collections.posts | chapterLink('tailscale') | safe }}, a community script installed a VPN service that keeps working through every SteamOS update. It uses exactly the pieces you've learned about, one for each job. Let's take it apart. (If you skipped the Tailscale chapter, these files won't exist on your Deck, so just read along.)
+In {{ collections.posts | chapterLink('tailscale') | safe }}, the `deck-tailscale` script installed a VPN service that keeps working through every SteamOS update. It uses exactly the pieces you've learned about, one for each job. Let's take it apart. (If you skipped the Tailscale chapter, these files won't exist on your Deck, so just read along.)
 
 **1. The programs live in `/opt`, which is offloaded to the home partition:**
 
@@ -76,11 +70,9 @@ It lists `/etc/default/tailscaled` and `/etc/profile.d/tailscale.sh`, two files 
 cat /etc/profile.d/tailscale.sh
 ```
 
-It's a single line: `PATH="$PATH:/opt/tailscale"`. Every new login shell reads it, which is why you had to open a new terminal before `tailscale` worked.
+It's a single line: `PATH="$PATH:/opt/tailscale"`. Files in `/etc/profile.d` are read when you log in, which is why plain `tailscale` only worked after you switched modes or restarted.
 
 That's the full recipe for a system service that survives updates: **programs in an offloaded folder, settings in kept `/etc` files**. The Nix installer follows the same pattern; check `/etc/atomic-update.conf.d/nix-installer.conf`.
-
----
 
 ## The Advanced Option: System Extensions
 
@@ -93,8 +85,6 @@ systemd-sysext status
 ```
 
 On most Decks, including our test Deck, it shows `none` for both `/usr` and `/opt`. Extensions are mainly used by developers and specialized tools, and an extension built for one SteamOS version may refuse to load after an update. For everyday use, the five safe places above are simpler.
-
----
 
 ## The One Way That Always Gets Wiped
 
@@ -116,8 +106,6 @@ The same message then recommends packaging apps with Flatpak and building softwa
 > [!CAUTION]
 > **There's a second trap.** SteamOS's package sources are pinned to Valve's own snapshots: run `grep '^\[' /etc/pacman.conf` and you'll see repositories like `[jupiter-3.9]` and `[holo-3.9]`. Following a guide that points `pacman` at regular Arch Linux repositories mixes incompatible versions into your system, and that's a reliable way to break it.
 
----
-
 ## Which Method Should You Use?
 
 | You want… | Use |
@@ -130,7 +118,5 @@ The same message then recommends packaging apps with Flatpak and building softwa
 | A system service that needs root | **`/opt`** plus kept **`/etc`** settings, like Tailscale |
 
 And before any of that, check {{ collections.posts | chapterLink('preinstalled') | safe }}: the tool may already be on your Deck.
-
----
 
 That wraps up the internals. You know where everything lives, how updates treat it and how to add your own pieces safely. Time to use that knowledge, starting with the most popular way to add terminal tools.
