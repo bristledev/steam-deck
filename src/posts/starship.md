@@ -109,6 +109,6 @@ Starship's look is set in `~/.config/starship.toml`. The easiest way to change i
 > 2. Extract the `.zip` file.
 > 3. Copy the `.ttf` files into `~/.local/share/fonts/` (create the folder if needed).
 > 4. Rebuild the font cache with `fc-cache -fv`.
-> 5. In Konsole, go to **Settings → Edit Current Profile → Appearance** and pick the new font.
+> 5. In Konsole, right-click inside the window and choose **Edit Current Profile...**. On the **Appearance** page, click **Choose...** next to **Font** and pick the new font.
 
 The prompt is one part of the terminal's look. The next chapter covers tools that make the rest of it, from file listings to system monitors, easier to read.
