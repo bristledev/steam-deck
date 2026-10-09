@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "🐟 The Fish Shell"
-excerpt: "A friendlier shell that comes with SteamOS: suggestions as you type, typo highlighting, and how to make it your default."
+excerpt: "A friendlier shell that comes with SteamOS: suggestions as you type, typo highlighting and how to make it your default."
 tags:
   - posts
   - terminal
@@ -34,7 +34,7 @@ Fish colors your command as you type it. If you type a command that doesn't exis
 
 ## Settings in Your Browser
 
-Type `fish_config`, and Fish opens a settings page in your web browser. There you can pick a color theme, choose a prompt style, and browse your saved functions and shortcuts.
+Type `fish_config`, and Fish opens a settings page in your web browser. There you can pick a color theme, choose a prompt style and browse your saved functions and shortcuts.
 
 ## Shortcuts With Aliases
 
@@ -60,7 +60,7 @@ To have Fish start every time you open Konsole, change your *login shell* with `
 > [!NOTE]
 > **Is this safe on a Steam Deck?** Yes. Game Mode and Desktop Mode both start through SDDM, the login manager, and its startup script has a section written specifically for Fish users. Two small things do change. Fish doesn't read Bash's startup file, `~/.bashrc`, so anything you added there needs adding to `~/.config/fish/config.fish` too. And over SSH, Fish skips SteamOS's default editor setting (see {{ collections.posts | chapterLink('preinstalled') | safe }} for the one-line fix).
 >
-> Prefer to leave your login shell alone? Set just **Konsole** to use Fish instead: right-click inside the Konsole window, choose **Edit Current Profile...**, and on the **General** page change **Command** to `/usr/bin/fish`. To switch back to Bash later, run `chsh -s /bin/bash`.
+> Prefer to leave your login shell alone? Set just **Konsole** to use Fish instead: right-click inside the Konsole window, choose **Edit Current Profile...** and change **Command** on the **General** page to `/usr/bin/fish`. To switch back to Bash later, run `chsh -s /bin/bash`.
 
 ## Further Reading
 
