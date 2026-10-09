@@ -39,7 +39,7 @@ Work through these phases in order. By the end, you will know your way around St
 |---|---------|-------------------|
 | 10 | {{ collections.posts | chapterLink('performance') | safe }} | Squeezing more battery life, smoother frame rates, and better thermals from your Deck |
 | 11 | {{ collections.posts | chapterLink('troubleshooting') | safe }} | Fixing games that will not launch or run well under Proton |
-| 12 | {{ collections.posts | chapterLink('customization') | safe }} | Making your Deck feel personal without getting lost in the weeds |
+| 12 | {{ collections.posts | chapterLink('customization') | safe }} | Adding plugins to Game Mode with Decky Loader, and what it changes on your Deck |
 
 ## Optional Power User Path
 
@@ -52,39 +52,48 @@ Once the basics feel comfortable, these phases unlock the deeper Linux side of t
 | 14 | {{ collections.posts | chapterLink('bash') | safe }} | Your first terminal commands |
 | 15 | {{ collections.posts | chapterLink('fish') | safe }} | A friendlier, smarter shell |
 | 16 | {{ collections.posts | chapterLink('coreutils') | safe }} | The everyday Linux commands you will see everywhere |
+| 17 | {{ collections.posts | chapterLink('preinstalled') | safe }} | The useful tools SteamOS already ships with, and how to check before you install |
 
 ### Phase 5: Remote & Network
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 17 | {{ collections.posts | chapterLink('ssh') | safe }} | Remote terminal access and file transfers over Wi-Fi |
-| 18 | {{ collections.posts | chapterLink('tailscale') | safe }} | Secure access to your Deck from anywhere |
+| 18 | {{ collections.posts | chapterLink('ssh') | safe }} | Remote terminal access and file transfers over Wi-Fi |
+| 19 | {{ collections.posts | chapterLink('tailscale') | safe }} | Secure access to your Deck from anywhere |
 
-### Phase 6: Package Managers
+### Phase 6: How SteamOS Works
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 19 | {{ collections.posts | chapterLink('homebrew') | safe }} | Installing extra developer and terminal tools easily |
-| 20 | {{ collections.posts | chapterLink('nix') | safe }} | A reproducible package manager with stronger rollback habits |
+| 20 | {{ collections.posts | chapterLink('steamos-anatomy') | safe }} | The partitions, read-only image and writable layers that make up SteamOS |
+| 21 | {{ collections.posts | chapterLink('steamos-updates') | safe }} | What really happens during an update, which settings survive, and how to roll back |
+| 22 | {{ collections.posts | chapterLink('steamos-sessions') | safe }} | How Game Mode boots, what Gamescope does, and what switching modes really does |
+| 23 | {{ collections.posts | chapterLink('steamos-extending') | safe }} | Every way to add software that survives updates, and the one that always gets wiped |
 
-### Phase 7: Scripting & Services
+### Phase 7: Package Managers
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 21 | {{ collections.posts | chapterLink('github') | safe }} | Fetching scripts from the internet without being reckless |
-| 22 | {{ collections.posts | chapterLink('python') | safe }} | Running and understanding Python scripts on your Deck |
-| 23 | {{ collections.posts | chapterLink('systemd') | safe }} | Automating tasks as background services |
+| 24 | {{ collections.posts | chapterLink('homebrew') | safe }} | Installing extra developer and terminal tools easily |
+| 25 | {{ collections.posts | chapterLink('nix') | safe }} | A reproducible package manager with stronger rollback habits |
 
-### Phase 8: Containers & Sandboxing
+### Phase 8: Scripting & Services
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 24 | {{ collections.posts | chapterLink('podman') | safe }} | Running isolated app containers |
-| 25 | {{ collections.posts | chapterLink('distrobox') | safe }} | Using a full Linux distro inside your Deck |
+| 26 | {{ collections.posts | chapterLink('github') | safe }} | Fetching scripts from the internet without being reckless |
+| 27 | {{ collections.posts | chapterLink('python') | safe }} | Running and understanding Python scripts on your Deck |
+| 28 | {{ collections.posts | chapterLink('systemd') | safe }} | Automating tasks as background services |
 
-### Phase 9: Power User Extras
+### Phase 9: Containers & Sandboxing
 | # | Chapter | What You'll Learn |
 |---|---------|-------------------|
-| 26 | {{ collections.posts | chapterLink('starship') | safe }} | Building a beautiful, smart terminal prompt |
-| 27 | {{ collections.posts | chapterLink('ricing') | safe }} | Adding terminal eye candy without losing usability |
-| 28 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts that make the terminal feel dramatically faster |
-| 29 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Fuzzy finding and instant directory jumping like a power user |
+| 29 | {{ collections.posts | chapterLink('podman') | safe }} | Running isolated app containers |
+| 30 | {{ collections.posts | chapterLink('distrobox') | safe }} | Using a full Linux distro inside your Deck |
+
+### Phase 10: Power User Extras
+| # | Chapter | What You'll Learn |
+|---|---------|-------------------|
+| 31 | {{ collections.posts | chapterLink('starship') | safe }} | Building a beautiful, smart terminal prompt |
+| 32 | {{ collections.posts | chapterLink('ricing') | safe }} | Adding terminal eye candy without losing usability |
+| 33 | {{ collections.posts | chapterLink('readline') | safe }} | Keyboard shortcuts that make the terminal feel dramatically faster |
+| 34 | {{ collections.posts | chapterLink('zoxide-fzf') | safe }} | Fuzzy finding and instant directory jumping like a power user |
 
 ## Appendix
 
