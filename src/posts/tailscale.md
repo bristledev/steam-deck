@@ -39,7 +39,7 @@ Tailscale needs a background service with admin rights, which an app from Discov
    sudo /opt/tailscale/tailscale up --qr --operator=deck --ssh
    ```
    A **QR Code** will appear in your terminal. Scan it with your phone and sign in to Tailscale (or create a free account). Your Steam Deck is now on your private network.
-5. **Close Konsole and open a new window.** The installer adds Tailscale to your PATH, but only terminals opened afterwards pick that up. From now on, plain `tailscale` commands work without `sudo`.
+5. **Log out and back in.** The installer adds Tailscale to your PATH with a file in `/etc/profile.d`, which is only read when you log in, so a new Konsole window isn't enough. Switch to Game Mode and back to Desktop Mode, or restart the Deck. To use it in the terminal you already have open, run `. /etc/profile.d/tailscale.sh` (in Fish, `set -gx PATH $PATH /opt/tailscale`). After that, plain `tailscale` commands work without `sudo`.
 6. **Install Tailscale on your other devices** from **[tailscale.com/download](https://tailscale.com/download)**, and sign in with the same account.
 
 **What did that just do?** In step 4, `up` connects your Deck to your Tailscale network. `--qr` shows the login link as a QR code, `--operator=deck` lets your `deck` user control Tailscale without `sudo` afterwards, and `--ssh` turns on Tailscale SSH.
@@ -111,7 +111,5 @@ sudo bash tailscale.sh
 ```
 
 To remove Tailscale completely, run `sudo bash uninstall.sh` from the same folder.
-
----
 
 You've now used SteamOS from the couch, the desk and the other side of the world. The next phase looks at how it works underneath, starting with a map of everything on your drive.
