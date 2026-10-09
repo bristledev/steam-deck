@@ -137,6 +137,4 @@ podman unshare rm -rf ~/minecraft-data
 - **On your home network**, friends connect to your Deck's IP address. You learned how to find it in {{ collections.posts | chapterLink('ssh') | safe }}.
 - **From outside your home**, avoid opening ports on your router. Instead, use {{ collections.posts | chapterLink('tailscale') | safe }}'s **[device sharing](https://tailscale.com/kb/1084/sharing)**: share your Deck from the **Machines** page of Tailscale's admin console. Your friend needs a free Tailscale account and the Tailscale app, and then connects to your Deck's Tailscale address.
 
----
-
 Podman containers are deliberately cut off from the rest of your Deck. The next chapter covers Distrobox, which uses Podman to build containers that share your home folder, so you can work inside another Linux distribution as if it were installed.
