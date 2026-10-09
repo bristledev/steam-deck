@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "🔧 Updates & Recovery"
-excerpt: "What happens when things go wrong — and why you shouldn't panic."
+title: "🛟 Updates & Recovery"
+excerpt: "How SteamOS protects itself from bad updates and mistakes, and how to recover when something does go wrong."
 tags:
   - posts
   - steamos
@@ -9,66 +9,60 @@ tags:
   - intermediate
 ---
 
-#  Updates & Recovery 🛟
+# Updates & Recovery
 
-Here's a fear every new Steam Deck owner shares: *"What if I break it?"*
+Most new Steam Deck owners worry about breaking something. SteamOS is designed so that's hard to do: it keeps a spare copy of itself, it locks its own system files, and Valve provides several ways to recover if things still go wrong. This chapter explains each safety net and when to use it.
 
-Good news — SteamOS is **incredibly hard to permanently break**. Valve designed the system with multiple safety nets, so even the worst case is a reinstall from a USB drive. Let's understand how it all works.
+## How SteamOS Updates
 
----
+SteamOS checks for updates by itself. When one is available, you'll see it under **Settings → System**, with an **Apply** button.
 
-## 🔄 How SteamOS Updates Work
+### Two Copies of the System
 
-SteamOS updates itself automatically. You'll occasionally see a notification in Game Mode telling you an update is ready. But what's happening under the hood is surprisingly clever.
+SteamOS keeps **two copies** of the operating system on your drive, called the **A** and **B** slots. You only ever run one of them.
 
-### The A/B Partition System
-Unlike Windows (which overwrites itself in place and hopes for the best), SteamOS keeps **two copies** of the operating system on your drive — called the **A** and **B** partitions.
+When you apply an update:
 
-When an update arrives:
-1. SteamOS downloads the update to the **inactive** partition (the one you're not booting from).
-2. Once the download is complete and verified, it switches your boot to the newly updated partition.
-3. If the new update fails to boot? SteamOS **automatically rolls back** to the previous working partition.
+1. SteamOS writes the new version into the slot you're *not* using, while you keep playing.
+2. Once the new copy is complete and checked, your Deck is set to start from it on the next reboot.
+3. If the new version fails to boot, SteamOS automatically goes back to the previous one.
 
-This means an update that fails to boot won't strand you. Your Deck just quietly goes back to the version that worked. The rollback only kicks in when booting fails, though. An update that boots fine but has a bug stays installed until Valve ships a fix, unless you roll back yourself: hold the **"..."** button while powering on and choose the **Previous** version. We'll walk through that, and what happens behind the scenes, in {{ collections.posts | chapterLink('steamos-updates') | safe }}.
+Because the update is prepared in the spare slot, the reboot itself is quick: there's nothing left to install.
 
-> [!NOTE]
-> This is why SteamOS updates feel so fast — it's not installing "live." It prepared everything in the background and just flips a switch on reboot.
+The automatic rollback only covers updates that fail to boot. An update that boots fine but has a bug stays installed until Valve ships a fix, unless you roll back yourself: hold the **"..."** button while powering on and choose the **Previous** version. We'll walk through that, and what happens behind the scenes, in {{ collections.posts | chapterLink('steamos-updates') | safe }}.
 
-### Checking for Updates Manually
-If you don't want to wait for the notification:
-- **Game Mode**: Steam Button → Settings → System → Check for Updates
-- **Desktop Mode**: Open Konsole and run:
+### Checking for Updates Yourself
+
+- **Game Mode:** press the **Steam** button, go to **Settings → System**, and select **Check For Updates**.
+- **Desktop Mode:** open Konsole and run:
+
 ```bash
 steamos-update check
 ```
 
----
+## The Read-Only System
 
-## 🔒 The Immutable Filesystem (Your Safety Net)
+In {{ collections.posts | chapterLink('filesystem') | safe }}, you saw that the Deck's system files are locked. The technical term is *immutable*: the core operating system (everything under `/usr`, including `/bin`) is read-only. Programs can't overwrite it, and neither can a typo.
 
-In {{ collections.posts | chapterLink('filesystem') | safe }}, we briefly mentioned that the Steam Deck's system files are "locked." Let's explain what that means and why it's actually a *good* thing.
+There's one important exception: `/etc`, where system settings live. It's a writable layer on top of the read-only system, and SteamOS carries the important settings over when it updates: your account, Wi-Fi networks, SSH keys and which services start at boot. That's why settings like `sudo systemctl enable sshd` or `chsh` (both covered later) survive updates, while programs installed into `/usr` don't. We'll look at exactly what's kept in {{ collections.posts | chapterLink('steamos-updates') | safe }}.
 
-SteamOS is an **immutable** operating system. That means the core operating system (everything under `/usr`, including `/bin`) is **read-only**. You physically cannot accidentally delete something critical or install a rogue program that corrupts your OS.
+### What You Can Change
 
-There's one important exception: `/etc`, where system settings live. It's a writable layer on top of the read-only image, and SteamOS carries the important settings over when it updates: your account, Wi-Fi networks, SSH keys and which services start at boot. That's why settings like `sudo systemctl enable sshd` or `chsh` (both covered later) survive updates, while programs installed into `/usr` don't. We'll look at exactly what's kept in {{ collections.posts | chapterLink('steamos-updates') | safe }}.
+- **Your home folder** (`/home/deck`), including your scripts, settings, game files and mods.
+- **Apps from Discover**, which install outside the locked system.
 
-### What You *Can* Change
-- **Your home folder** (`/home/deck`) — completely yours, read/write, no restrictions.
-- **Flatpaks and apps** — installed in their own sandboxed containers.
-- **Anything in `/home`** — scripts, configs, game files, mods.
+### What You Can't Change Without Unlocking
 
-### What You *Can't* Change (Without Effort)
-- System packages, core libraries, kernel modules.
-- You *can* temporarily unlock the filesystem with `sudo steamos-readonly disable`, but this is **not recommended** — any changes you make will be wiped by the next SteamOS update anyway.
+- System programs, core libraries and the kernel.
+
+You *can* unlock the system with `sudo steamos-readonly disable`, but anything you change will be wiped by the next SteamOS update.
 
 > [!WARNING]
-> **Avoid `steamos-readonly disable` unless you really know what you're doing.** The package managers covered later in this series ({{ collections.posts | chapterLink('homebrew') | safe }}, {{ collections.posts | chapterLink('nix') | safe }}, {{ collections.posts | chapterLink('distrobox') | safe }}) exist specifically to let you install software *without* touching the immutable system.
+> **Leave `steamos-readonly disable` alone unless you know exactly why you need it.** The tools covered later in this series ({{ collections.posts | chapterLink('homebrew') | safe }}, {{ collections.posts | chapterLink('nix') | safe }}, {{ collections.posts | chapterLink('distrobox') | safe }}) exist so you can install software *without* touching the locked system.
 
----
+## Recovery Options, From Gentle to Drastic
 
-## 🆘 Recovery Options, From Gentle to Nuclear
-
-If something truly goes sideways, Valve gives you several ways back. Start with the gentlest one that fits your problem. Valve's **[SteamOS Recovery and Troubleshooting](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)** guide has the full details.
+If something does go wrong, Valve gives you several ways back. Start with the gentlest one that fits your problem. Valve's **[SteamOS Recovery and Troubleshooting](https://help.steampowered.com/en/faqs/view/1B71-EDF2-EB6D-2BB3)** guide has the full details.
 
 ### Without a USB Drive
 
@@ -78,11 +72,12 @@ If something truly goes sideways, Valve gives you several ways back. Start with 
 
 ### The Recovery Image (USB)
 
-If your Deck won't boot at all, or the options above didn't help, Valve provides an official **recovery image** you can boot from a USB drive.
+If your Deck won't boot at all, or the options above didn't help, Valve provides an official *recovery image* you can start from a USB drive.
 
 **What you need:**
+
 - A **USB drive** (8 GB minimum).
-- A **PC** (Windows, Mac, or Linux) to create the recovery drive.
+- A **PC** (Windows, Mac or Linux) to create the recovery drive.
 - A **USB-C hub or adapter** to plug the USB drive into your Steam Deck.
 
 **How to create the recovery drive:**
@@ -99,30 +94,22 @@ If your Deck won't boot at all, or the options above didn't help, Valve provides
 
 ### Recovery Image Options
 
-| Option | What It Does |
+| Option | What it does |
 | :--- | :--- |
-| **Repair SteamOS** | Reinstalls SteamOS while trying to keep your games and personal files. Try this first! |
-| **Re-image Device** | A full factory reset: wipes everything and installs a fresh SteamOS. This is the "nuclear option." |
+| **Repair SteamOS** | Reinstalls SteamOS while trying to keep your games and personal files. Try this first. |
+| **Re-image Device** | A full factory reset: wipes everything and installs a fresh SteamOS. |
 | **Recovery tools** | Opens a command prompt for fixing the boot partition. Only for advanced repairs. |
 
-> [!TIP]
-> **Always try "Repair SteamOS" before "Re-image."** Repair resets the operating system files but tries to keep your home folder, game installs and settings.
-
 > [!CAUTION]
-> **"Re-image" deletes everything** — games, saves, settings, all of it. If you go this route, anything not backed up to Steam Cloud or an external drive is gone.
+> **"Re-image Device" deletes everything:** games, saves and settings. Anything not backed up to Steam Cloud or another drive is gone, so try **Repair SteamOS** first.
 
----
+## Quick Reference
 
-## 🧘 The Bottom Line
+| Problem | What to do |
+| :--- | :--- |
+| An update won't boot | Nothing: SteamOS falls back to the previous version automatically |
+| An update boots but breaks something | Hold **"..."** while powering on and choose **Previous** |
+| You want a clean slate and Game Mode still works | **Settings → System → Factory Reset** |
+| The Deck won't boot at all | Recovery image → **Repair SteamOS**, then **Re-image Device** if needed |
 
-The Steam Deck is designed to be resilient:
-- **Update won't boot?** The A/B system rolls back automatically.
-- **Update boots but breaks something?** Pick the **Previous** version from the boot menu.
-- **Weird software glitch?** The immutable filesystem means the core OS is untouchable.
-- **Something truly broken?** The recovery image can repair SteamOS, or get you back to factory fresh.
-
-You genuinely cannot "brick" this device through normal use. So experiment freely — that's the whole point!
-
----
-
-Now that you know your safety net is rock solid, let's learn how to install apps on your Deck.
+With the safety nets covered, it's time to install some software, starting with the Discover store.
