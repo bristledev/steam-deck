@@ -71,7 +71,7 @@ Open a new terminal, and `z` is ready to use. zoxide also adds `zi`, a searchabl
 
 ### Searching Your Command History
 
-Normally, **Up Arrow** steps back through your commands one at a time. With fzf set up, **Ctrl+R** opens a searchable list of every command you've run. Type `podman`, and the list shrinks to your Podman commands. Select one and press **Enter** to put it back on your command line, ready to run or edit.
+Your shell's own **Ctrl+R**, from {{ collections.posts | chapterLink('readline') | safe }}, already searches your history, but Bash shows only one match at a time. With fzf set up, **Ctrl+R** opens a list of every command you've run instead. Type `podman`, and the list shrinks to your Podman commands. Select one and press **Enter** to put it back on your command line, ready to run or edit.
 
 ### Installing fzf
 
@@ -103,11 +103,11 @@ eval "$(fzf --bash)"
 fzf --fish | source
 ```
 
-Open a new terminal, and you have three new shortcuts:
+Open a new terminal, and you have fzf's version of **Ctrl+R** plus two new shortcuts:
 
 | Shortcut | What it does |
 | :--- | :--- |
-| **Ctrl+R** | Search your command history |
+| **Ctrl+R** | Search your command history in a full list |
 | **Ctrl+T** | Search for a file below the current folder and paste its path |
 | **Alt+C** | Search for a folder below the current one and `cd` into it |
 
