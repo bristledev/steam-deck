@@ -31,7 +31,7 @@ Open **Konsole** and run:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-**What did that just do?** `curl` downloaded Homebrew's official install script, and `/bin/bash -c` ran it. It asks for your admin password once, creates `/home/linuxbrew/.linuxbrew`, and downloads Homebrew into it.
+**What did that just do?** `curl` downloaded Homebrew's official install script, and `/bin/bash -c` ran it. It asks for your admin password once, creates `/home/linuxbrew/.linuxbrew` and downloads Homebrew into it.
 
 ### Adding Homebrew to Your Path
 
