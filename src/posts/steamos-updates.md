@@ -16,15 +16,11 @@ In {{ collections.posts | chapterLink('recovery') | safe }}, you learned the sho
 > [!NOTE]
 > Everything here was checked on a Steam Deck running **SteamOS 3.9.2** (Preview update channel).
 
----
-
 ## What Is an Atomic Update?
 
 Imagine a game that autosaves by overwriting your only save file. If the power cuts out halfway through, the save is corrupted and your progress is gone. Smart games write the new save into a **separate slot** first, check it, and only then mark it as the one to load.
 
 SteamOS updates the same way. It never edits the system you're running. It writes a complete new copy into the spare slot, and switching to it is a single, instant flip. That's what *atomic* means here: the update either happens completely or not at all. There's no half-updated state to get stuck in.
-
----
 
 ## Update Channels
 
@@ -50,8 +46,6 @@ cat /etc/steamos-atomupd/manifest.json
 
 **What did that just do?** It printed the details of your installed image: the product (`steamos`), the version (like `3.9.2`), the exact build ID and your device variant (`steamdeck`).
 
----
-
 ## An Update, Step by Step
 
 When you press **Apply** on an update, here's what happens behind the progress bar:
@@ -70,8 +64,6 @@ grep -A2 '^\[slot.rootfs' /etc/rauc/system.conf
 ```
 
 **What did that just do?** It showed the `[slot.rootfs.0]` and `[slot.rootfs.1]` sections, named `A` and `B`, each pointing at one of the `rootfs` partitions from the last chapter. You'll also see a third slot named `dev`. That one is for developer builds, and it doesn't exist on a normal Deck's drive.
-
----
 
 ## Which Settings Survive?
 
@@ -116,12 +108,10 @@ You can add your own entries to the keep-list. Create a file ending in `.conf` i
 ls /etc/atomic-update.conf.d
 ```
 
-If you followed {{ collections.posts | chapterLink('tailscale') | safe }} or {{ collections.posts | chapterLink('nix') | safe }}, you'll see `tailscale.conf` or `nix-installer.conf` here. That's how those tools survive updates.
+If you followed {{ collections.posts | chapterLink('tailscale') | safe }}, you'll see `tailscale.conf` here. The Nix installer in {{ collections.posts | chapterLink('nix') | safe }}, later in the series, adds `nix-installer.conf` the same way. That's how those tools survive updates.
 
 > [!WARNING]
 > **Keep the list short.** Valve's example file warns against keeping everything with `/etc/**`. A file you keep will shadow every future fix Valve ships for it, which can cause confusing problems months later.
-
----
 
 ## Rolling Back to the Previous Version
 
@@ -136,7 +126,5 @@ Your games, saves and files all stay put, because they live on the home partitio
 
 > [!TIP]
 > A rollback is a stopgap, not a permanent downgrade. SteamOS will offer the newer version again, and Valve's fix usually arrives in a later update. Check **Settings → System** after a restart to see which version you're on.
-
----
 
 Updates swap the system out from under you, but your Deck still somehow boots straight into Game Mode and can flip to a full desktop in seconds. Next, let's see how those two modes really work.
