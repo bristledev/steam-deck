@@ -81,17 +81,17 @@ A full tunnel sends your games through the VPN too: every download, voice chat a
 NetworkManager can import a WireGuard config directly, and the connection then behaves like any other network on your Deck.
 
 1. **Rename the file** to a short name with no spaces, ending in `.conf`, such as `wg-home.conf`. NetworkManager uses the name for the connection and its network interface, so it must be 15 characters or fewer before the `.conf`.
-2. Open **System Settings → Wi-Fi & Networking**.
-3. Click the **+** button below the list of connections.
-4. Choose **Import VPN connection...** and select your `wg-home.conf`.
-5. The new connection appears in the list, named `wg-home`. Select it to see its settings: your keys and addresses are on the **WireGuard Interface** tab, and **Peers** opens the other end's settings.
+2. Open **System Settings → Wi-Fi & Internet → Wi-Fi & Networking**.
+3. Click the **+** button below the list of connections. A **Choose a Connection Type** list opens.
+4. Scroll to the bottom and, under **Other**, choose **Import VPN connection...**. Select your `wg-home.conf` and click **Open**.
+5. Plasma shows "Connection imported." and `wg-home` appears under **Connected**. Select it to see its settings: your keys and addresses are on the **WireGuard Interface** tab.
 
 **What did that just do?** NetworkManager read the file and created its own connection from it, stored in `/etc/NetworkManager/system-connections/` along with your Wi-Fi networks. That folder is on Valve's keep-list too, so the connection survives updates. Only `root` can read the files there, which is why Plasma describes the private key as stored "for all users (not encrypted)".
 
-By default, an imported WireGuard connection connects automatically, now and at every startup. If you only want the tunnel some of the time, open its **General** tab and switch off **Connect automatically with priority**. You can then turn it on and off from the network icon in the system tray.
+The tunnel connects straight away, and again at every startup, because **Connect automatically with priority** on its **General** tab is switched on. If you only want the tunnel some of the time, switch that off and click **Apply**. You can then turn it on and off from the network icon in the system tray, where `wg-home` has its own **Connect** and **Disconnect** button.
 
 > [!TIP]
-> **Prefer the terminal?** This command does the same import:
+> **Prefer the terminal?** In Konsole, this command does the same import:
 > ```bash
 > nmcli connection import type wireguard file ~/Downloads/wg-home.conf
 > ```
@@ -106,11 +106,25 @@ ip -brief addr show wg-home
 sudo wg show
 ```
 
-**What did that just do?** `nmcli` listed your active connections, which should include `wg-home`. `ip` showed the tunnel's network interface and your Deck's address inside it. `wg show` printed the WireGuard details: look for `latest handshake`. While the tunnel is in use, WireGuard repeats the handshake every two minutes, so a recent one means the two ends are talking. If there's no handshake line at all, the server isn't answering, so check its address and port.
+**What did that just do?** `nmcli` listed your active connections, which should include `wg-home`. `ip` showed the tunnel's network interface and your Deck's address inside it; its state shows as `UNKNOWN`, which is normal for a tunnel. `wg show` printed the WireGuard details. On our test Deck, connected to a PC on the same network, it looked like this (trimmed):
+
+```
+interface: wg-home
+  public key: dKXsF+7mi6m6ZZCsnGLn5pcnkXdXkOj76ehFTFzBYWI=
+  private key: (hidden)
+
+peer: rUdEhbNA4m7aA5KsS9yp6BwdDRxJx17mjWTihP0QnyY=
+  endpoint: 10.0.0.39:51830
+  allowed ips: 10.8.0.0/24
+  latest handshake: 1 minute, 20 seconds ago
+  transfer: 3.39 KiB received, 1.55 KiB sent
+```
+
+Look for `latest handshake`. While the tunnel is in use, WireGuard repeats the handshake every two minutes, so a recent one means the two ends are talking. If there's no handshake line at all, the server isn't answering, so check its address and port.
 
 ## WireGuard in Game Mode
 
-Game Mode's settings have no VPN section, but they don't need one. NetworkManager runs underneath both modes, so a tunnel that's connected keeps running when you switch to Game Mode, and one set to connect automatically comes up there after a restart.
+Game Mode's settings have no VPN section, but they don't need one. NetworkManager runs underneath both modes, so a tunnel set to connect automatically also comes up when your Deck starts straight into Game Mode.
 
 To switch it on or off without Desktop Mode, use SSH from {{ collections.posts | chapterLink('ssh') | safe }}:
 
@@ -119,14 +133,14 @@ sudo nmcli connection up wg-home
 sudo nmcli connection down wg-home
 ```
 
-Over SSH, NetworkManager asks for your admin password, which is why these need `sudo`. {{ collections.posts | chapterLink('steamos-sessions') | safe }} explains the rule behind that.
+Over SSH, NetworkManager asks for your admin password, which is why these need `sudo`. Without it, you'll see `Not authorized to deactivate connections`. {{ collections.posts | chapterLink('steamos-sessions') | safe }} explains the rule behind that.
 
 ## The Terminal Way: wg-quick
 
 `wg-quick` is WireGuard's own command-line tool. It reads configs from `/etc/wireguard` and doesn't involve NetworkManager. Use it *instead of* the import above, not alongside it: both try to create an interface with the same name.
 
 > [!WARNING]
-> **Remove the `DNS` line first.** `wg-quick` hands DNS settings to a program called `resolvconf`, which SteamOS doesn't include. With a `DNS` line in the file, `wg-quick up` stops with an error. If you need the tunnel's DNS server, use the NetworkManager import instead.
+> **Remove the `DNS` line first.** `wg-quick` hands DNS settings to a program called `resolvconf`, which SteamOS doesn't include. With a `DNS` line in the file, `wg-quick up` stops with `resolvconf: command not found` and removes the tunnel again. If you need the tunnel's DNS server, use the NetworkManager import instead.
 
 Copy the config into place, then bring the tunnel up:
 
