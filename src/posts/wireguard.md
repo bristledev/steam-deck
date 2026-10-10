@@ -124,7 +124,7 @@ Look for `latest handshake`. While the tunnel is in use, WireGuard repeats the h
 
 ## WireGuard in Game Mode
 
-Game Mode's settings have no VPN section, but they don't need one. NetworkManager runs underneath both modes, so a tunnel set to connect automatically also comes up when your Deck starts straight into Game Mode.
+Game Mode's settings have no VPN section, but they don't need one. NetworkManager runs underneath both modes, so a tunnel set to connect automatically also comes up in Game Mode: when your Deck starts, and after you switch modes.
 
 To switch it on or off without Desktop Mode, use SSH from {{ collections.posts | chapterLink('ssh') | safe }}:
 
